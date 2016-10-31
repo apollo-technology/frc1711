@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C251DC78C1B00889A15 /* ATGScouting.m */; };
+		1E574C291DC78D0B00889A15 /* ATGSTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C281DC78D0B00889A15 /* ATGSTeam.m */; };
 		1EE4D3991DC15AE700943921 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4D3981DC15AE700943921 /* main.m */; };
 		1EE4D39C1DC15AE700943921 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4D39B1DC15AE700943921 /* AppDelegate.m */; };
 		1EE4D3A21DC15AE700943921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4D3A01DC15AE700943921 /* Main.storyboard */; };
@@ -77,6 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E574C241DC78C1B00889A15 /* ATGScouting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGScouting.h; sourceTree = "<group>"; };
+		1E574C251DC78C1B00889A15 /* ATGScouting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGScouting.m; sourceTree = "<group>"; };
+		1E574C271DC78D0B00889A15 /* ATGSTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGSTeam.h; sourceTree = "<group>"; };
+		1E574C281DC78D0B00889A15 /* ATGSTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGSTeam.m; sourceTree = "<group>"; };
 		1EE4D3941DC15AE700943921 /* frc1711.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frc1711.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4D3981DC15AE700943921 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1EE4D39A1DC15AE700943921 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -198,6 +204,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E574C211DC78BE600889A15 /* Ground Scouting */ = {
+			isa = PBXGroup;
+			children = (
+				1E574C231DC78BF700889A15 /* Back End */,
+				1E574C221DC78BF200889A15 /* Interface */,
+			);
+			name = "Ground Scouting";
+			path = frc1711;
+			sourceTree = "<group>";
+		};
+		1E574C221DC78BF200889A15 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		1E574C231DC78BF700889A15 /* Back End */ = {
+			isa = PBXGroup;
+			children = (
+				1E574C241DC78C1B00889A15 /* ATGScouting.h */,
+				1E574C251DC78C1B00889A15 /* ATGScouting.m */,
+				1E574C271DC78D0B00889A15 /* ATGSTeam.h */,
+				1E574C281DC78D0B00889A15 /* ATGSTeam.m */,
+			);
+			name = "Back End";
+			sourceTree = "<group>";
+		};
 		1EE4D38B1DC15AE700943921 = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +243,7 @@
 				1EE4D4131DC15D1200943921 /* ParseTwitterUtils.framework */,
 				1EE4D4141DC15D1200943921 /* ParseUI.framework */,
 				1EE4D3E21DC15B6200943921 /* ATFRC */,
+				1E574C211DC78BE600889A15 /* Ground Scouting */,
 				1EE4D3961DC15AE700943921 /* frc1711 */,
 				1EE4D3B01DC15AE800943921 /* frc1711Tests */,
 				1EE4D3BB1DC15AE800943921 /* frc1711UITests */,
@@ -496,6 +531,7 @@
 				1EE4D3DB1DC15B5F00943921 /* ATFRCTeam.m in Sources */,
 				1EE4D3FC1DC15C2500943921 /* RankingsTableViewController.m in Sources */,
 				1EE4D3E11DC15B5F00943921 /* ATFRCRankings.m in Sources */,
+				1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */,
 				1EE4D3F71DC15C2500943921 /* EventViewController.m in Sources */,
 				1EE4D3DE1DC15B5F00943921 /* ATFRCAwards.m in Sources */,
 				1EE4D3F91DC15C2500943921 /* TeamViewController.m in Sources */,
@@ -503,6 +539,7 @@
 				1EE4D3F61DC15C2500943921 /* AllEventsViewController.m in Sources */,
 				1EE4D3DD1DC15B5F00943921 /* ATFRCMatch.m in Sources */,
 				1EE4D3FA1DC15C2500943921 /* CollectionViewCell.m in Sources */,
+				1E574C291DC78D0B00889A15 /* ATGSTeam.m in Sources */,
 				1EE4D39C1DC15AE700943921 /* AppDelegate.m in Sources */,
 				1EE4D4371DC15DB600943921 /* InitialViewController.m in Sources */,
 				1EE4D3DF1DC15B5F00943921 /* ATFRCMedia.m in Sources */,
@@ -760,6 +797,7 @@
 				1EE4D3C31DC15AE800943921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1EE4D3C41DC15AE800943921 /* Build configuration list for PBXNativeTarget "frc1711Tests" */ = {
 			isa = XCConfigurationList;
@@ -768,6 +806,7 @@
 				1EE4D3C61DC15AE800943921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1EE4D3C71DC15AE800943921 /* Build configuration list for PBXNativeTarget "frc1711UITests" */ = {
 			isa = XCConfigurationList;
@@ -776,6 +815,7 @@
 				1EE4D3C91DC15AE800943921 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

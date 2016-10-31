@@ -16,6 +16,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="6Bn-cW-7th" kind="relationship" relationship="viewControllers" id="PTo-8F-HfR"/>
+                        <segue destination="Q9H-0J-dbd" kind="relationship" relationship="viewControllers" id="19g-vG-xRi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geE-hv-Tc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,6 +88,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bkr-cW-0g9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1819" y="489"/>
+        </scene>
+        <!--Ground Scouting-->
+        <scene sceneID="q4t-tL-s4e">
+            <objects>
+                <tableViewController id="roX-ie-Db6" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BSW-8t-0qm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="myX-5P-jYb">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myX-5P-jYb" id="ez4-BQ-Zti">
+                                    <frame key="frameInset" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="roX-ie-Db6" id="SpA-NY-WLN"/>
+                            <outlet property="delegate" destination="roX-ie-Db6" id="Yze-MG-0WN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Ground Scouting" id="jjP-iw-5vq"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jdk-1m-eu8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1029" y="1180"/>
+        </scene>
+        <!--Ground Scouting-->
+        <scene sceneID="04E-u1-rwa">
+            <objects>
+                <navigationController id="Q9H-0J-dbd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ground Scouting" image="teamTabIcon" id="AWr-Yj-MjI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNc-14-TAf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="roX-ie-Db6" kind="relationship" relationship="rootViewController" id="1R5-ea-qTH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="osc-jL-s56" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1821" y="1181"/>
         </scene>
         <!--Database-->
         <scene sceneID="FJr-mM-l39">
@@ -941,5 +988,6 @@ Hanging Points: %@</string>
         <image name="databaseTabIcon" width="30" height="30"/>
         <image name="raptorseye.png" width="1669" height="1328"/>
         <image name="raptorslogonogear.png" width="2567" height="307"/>
+        <image name="teamTabIcon" width="30" height="30"/>
     </resources>
 </document>
