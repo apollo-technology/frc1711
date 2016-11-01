@@ -20,7 +20,7 @@
 }
 
 +(NSString *)teamId{
-    return @"heyAustinChangeMe";
+    return [[PFUser currentUser] objectForKey:@"team"];
 }
 
 +(void)getTeams:(void (^)(NSError *error, BOOL succeeded))block{
