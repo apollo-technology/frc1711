@@ -11,7 +11,11 @@
 @interface ATGSTeam : NSObject
 
 @property NSString *foo;
+/*
+ Add all properties here
+ */
 
 -(void)pushUpdates:(void (^)(NSError *error, BOOL succeeded))block;
+
 
 @end
