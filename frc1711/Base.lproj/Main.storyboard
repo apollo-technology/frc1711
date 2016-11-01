@@ -16,6 +16,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="6Bn-cW-7th" kind="relationship" relationship="viewControllers" id="PTo-8F-HfR"/>
+                        <segue destination="kVg-du-dY4" kind="relationship" relationship="viewControllers" id="1vk-m8-IJv"/>
                         <segue destination="Q9H-0J-dbd" kind="relationship" relationship="viewControllers" id="19g-vG-xRi"/>
                     </connections>
                 </tabBarController>
@@ -47,7 +48,7 @@
                                     <constraint firstAttribute="height" constant="37" id="AjX-xc-Bg9"/>
                                     <constraint firstAttribute="width" constant="37" id="Uk4-EU-2Zq"/>
                                 </constraints>
-                                <color key="color" red="0.40000000000000002" green="0.69411764710000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="color" red="0.40000000000000002" green="0.69411764705882351" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,7 +77,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Bn-cW-7th" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Database" image="databaseTabIcon" id="Lbi-P4-fU5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A84-IC-Hcl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="A84-IC-Hcl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -90,50 +91,142 @@
             <point key="canvasLocation" x="-1819" y="489"/>
         </scene>
         <!--Ground Scouting-->
-        <scene sceneID="q4t-tL-s4e">
-            <objects>
-                <tableViewController id="roX-ie-Db6" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BSW-8t-0qm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="myX-5P-jYb">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="myX-5P-jYb" id="ez4-BQ-Zti">
-                                    <frame key="frameInset" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="roX-ie-Db6" id="SpA-NY-WLN"/>
-                            <outlet property="delegate" destination="roX-ie-Db6" id="Yze-MG-0WN"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Ground Scouting" id="jjP-iw-5vq"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jdk-1m-eu8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1029" y="1180"/>
-        </scene>
-        <!--Ground Scouting-->
         <scene sceneID="04E-u1-rwa">
             <objects>
                 <navigationController id="Q9H-0J-dbd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ground Scouting" image="teamTabIcon" id="AWr-Yj-MjI"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNc-14-TAf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hNc-14-TAf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="roX-ie-Db6" kind="relationship" relationship="rootViewController" id="1R5-ea-qTH"/>
+                        <segue destination="H1J-Xx-aqK" kind="relationship" relationship="rootViewController" id="AEc-ak-9uu"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osc-jL-s56" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1821" y="1181"/>
+        </scene>
+        <!--Scouting-->
+        <scene sceneID="nce-7V-Uaw">
+            <objects>
+                <navigationController id="kVg-du-dY4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Scouting" image="scoutingTabIcon" id="LpZ-OY-AL0"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hRh-Cj-RaA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vhX-GS-cjC" kind="relationship" relationship="rootViewController" id="us6-Kl-eFf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgc-Bo-Tci" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1821" y="1914"/>
+        </scene>
+        <!--Ground Scouting-->
+        <scene sceneID="3JQ-n5-AID">
+            <objects>
+                <viewController id="H1J-Xx-aqK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bVy-se-ROz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tcs-gn-xjh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n7e-9t-srT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WlC-NV-EvZ">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="construction.png" translatesAutoresizingMaskIntoConstraints="NO" id="N8F-Cu-fix">
+                                        <frame key="frameInset" minY="8" width="240" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Check back a little later. A raptor got out." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="0in-bd-E04">
+                                        <frame key="frameInset" minX="8" minY="140" width="224" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Under Construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7N-zP-cJX">
+                                        <frame key="frameInset" minX="8" minY="106" width="224" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="F7N-Kb-QDq"/>
+                                    <constraint firstAttribute="height" constant="180" id="gG4-wi-dZN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WlC-NV-EvZ" firstAttribute="centerY" secondItem="n7e-9t-srT" secondAttribute="centerY" id="kmQ-5V-PIs"/>
+                            <constraint firstItem="WlC-NV-EvZ" firstAttribute="centerX" secondItem="n7e-9t-srT" secondAttribute="centerX" id="xeo-o9-0m3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ground Scouting" id="f8C-Qz-hda"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iEt-bA-P1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1029" y="1180"/>
+        </scene>
+        <!--Scouting-->
+        <scene sceneID="Qce-FK-OQ5">
+            <objects>
+                <viewController id="vhX-GS-cjC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5lX-w3-Svm"/>
+                        <viewControllerLayoutGuide type="bottom" id="FTG-tV-Wnf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wqi-QR-gFb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ob3-Jd-hxi">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="construction.png" translatesAutoresizingMaskIntoConstraints="NO" id="v7I-ao-VbY">
+                                        <frame key="frameInset" minY="8" width="240" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Check back a little later. A raptor got out." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="w72-kr-uoO">
+                                        <frame key="frameInset" minX="8" minY="140" width="224" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Under Construction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bt1-Pt-Rwc">
+                                        <frame key="frameInset" minX="8" minY="106" width="224" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="Gkd-D7-PdS"/>
+                                    <constraint firstAttribute="width" constant="240" id="g65-IR-kk0"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ob3-Jd-hxi" firstAttribute="centerX" secondItem="Wqi-QR-gFb" secondAttribute="centerX" id="TKY-Ep-pLg"/>
+                            <constraint firstItem="ob3-Jd-hxi" firstAttribute="centerY" secondItem="Wqi-QR-gFb" secondAttribute="centerY" id="kmA-HX-cVJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scouting" id="Sax-av-8M4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXi-pQ-S3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1029.375" y="1913.75"/>
         </scene>
         <!--Database-->
         <scene sceneID="FJr-mM-l39">
@@ -985,9 +1078,11 @@ Hanging Points: %@</string>
         </scene>
     </scenes>
     <resources>
+        <image name="construction.png" width="200" height="200"/>
         <image name="databaseTabIcon" width="30" height="30"/>
         <image name="raptorseye.png" width="1669" height="1328"/>
         <image name="raptorslogonogear.png" width="2567" height="307"/>
+        <image name="scoutingTabIcon" width="30" height="30"/>
         <image name="teamTabIcon" width="30" height="30"/>
     </resources>
 </document>

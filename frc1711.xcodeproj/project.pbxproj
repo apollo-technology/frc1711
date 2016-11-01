@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C251DC78C1B00889A15 /* ATGScouting.m */; };
 		1E574C291DC78D0B00889A15 /* ATGSTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C281DC78D0B00889A15 /* ATGSTeam.m */; };
+		1E574C2B1DC7946A00889A15 /* construction.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E574C2A1DC7946A00889A15 /* construction.png */; };
 		1EE4D3991DC15AE700943921 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4D3981DC15AE700943921 /* main.m */; };
 		1EE4D39C1DC15AE700943921 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4D39B1DC15AE700943921 /* AppDelegate.m */; };
 		1EE4D3A21DC15AE700943921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4D3A01DC15AE700943921 /* Main.storyboard */; };
@@ -83,6 +84,7 @@
 		1E574C251DC78C1B00889A15 /* ATGScouting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGScouting.m; sourceTree = "<group>"; };
 		1E574C271DC78D0B00889A15 /* ATGSTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGSTeam.h; sourceTree = "<group>"; };
 		1E574C281DC78D0B00889A15 /* ATGSTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGSTeam.m; sourceTree = "<group>"; };
+		1E574C2A1DC7946A00889A15 /* construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = construction.png; sourceTree = "<group>"; };
 		1EE4D3941DC15AE700943921 /* frc1711.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frc1711.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4D3981DC15AE700943921 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1EE4D39A1DC15AE700943921 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		1EE4D3971DC15AE700943921 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1E574C2A1DC7946A00889A15 /* construction.png */,
 				1EE4D4001DC15CC000943921 /* raptorseye.png */,
 				1EE4D4011DC15CC000943921 /* raptorslogonogear.png */,
 				1EE4D4021DC15CC000943921 /* Orbitron-Black.ttf */,
@@ -504,6 +507,7 @@
 				1EE4D4091DC15CC000943921 /* Orbitron-Bold.ttf in Resources */,
 				1EE4D40D1DC15D0000943921 /* Assets.xcassets in Resources */,
 				1EE4D4061DC15CC000943921 /* raptorseye.png in Resources */,
+				1E574C2B1DC7946A00889A15 /* construction.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
