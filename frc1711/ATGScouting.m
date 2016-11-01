@@ -20,7 +20,7 @@
 }
 
 +(NSString *)teamId{
-    return @"";
+    return @"heyAustinChangeMe";
 }
 
 +(void)getTeams:(void (^)(NSError *error, BOOL succeeded))block{
