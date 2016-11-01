@@ -26,6 +26,9 @@
 		1E16AA451DC8E7050013B09D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE4D4271DC15D1B00943921 /* SystemConfiguration.framework */; };
 		1E16AA471DC8E70D0013B09D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E16AA461DC8E70D0013B09D /* libz.tbd */; };
 		1E16AA491DC8E7160013B09D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E16AA481DC8E7160013B09D /* libsqlite3.tbd */; };
+		1E16AA4C1DC92CEA0013B09D /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA4B1DC92CEA0013B09D /* HomeVC.m */; };
+		1E16AA4F1DC92FD40013B09D /* AppConfigs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA4E1DC92FD40013B09D /* AppConfigs.m */; };
+		1E16AA521DC934C50013B09D /* InConstructionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA511DC934C50013B09D /* InConstructionVC.m */; };
 		1E37B86E1DC8C0490048139D /* ATScouting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E37B86D1DC8C0490048139D /* ATScouting.m */; };
 		1E37B8731DC8CA890048139D /* SignInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E37B8721DC8CA890048139D /* SignInVC.m */; };
 		1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C251DC78C1B00889A15 /* ATGScouting.m */; };
@@ -110,6 +113,12 @@
 		1E16AA431DC8E6FE0013B09D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1E16AA461DC8E70D0013B09D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		1E16AA481DC8E7160013B09D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		1E16AA4A1DC92CEA0013B09D /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		1E16AA4B1DC92CEA0013B09D /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
+		1E16AA4D1DC92FD40013B09D /* AppConfigs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigs.h; sourceTree = "<group>"; };
+		1E16AA4E1DC92FD40013B09D /* AppConfigs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfigs.m; sourceTree = "<group>"; };
+		1E16AA501DC934C50013B09D /* InConstructionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InConstructionVC.h; sourceTree = "<group>"; };
+		1E16AA511DC934C50013B09D /* InConstructionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InConstructionVC.m; sourceTree = "<group>"; };
 		1E37B86C1DC8C0490048139D /* ATScouting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATScouting.h; sourceTree = "<group>"; };
 		1E37B86D1DC8C0490048139D /* ATScouting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATScouting.m; sourceTree = "<group>"; };
 		1E37B8711DC8CA890048139D /* SignInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInVC.h; sourceTree = "<group>"; };
@@ -231,6 +240,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E16AA531DC9355A0013B09D /* Main Interface */ = {
+			isa = PBXGroup;
+			children = (
+				1EE4D4351DC15DB600943921 /* InitialViewController.h */,
+				1EE4D4361DC15DB600943921 /* InitialViewController.m */,
+				1E16AA4A1DC92CEA0013B09D /* HomeVC.h */,
+				1E16AA4B1DC92CEA0013B09D /* HomeVC.m */,
+				1E37B8711DC8CA890048139D /* SignInVC.h */,
+				1E37B8721DC8CA890048139D /* SignInVC.m */,
+				1E16AA501DC934C50013B09D /* InConstructionVC.h */,
+				1E16AA511DC934C50013B09D /* InConstructionVC.m */,
+			);
+			name = "Main Interface";
+			sourceTree = "<group>";
+		};
+		1E16AA551DC9358A0013B09D /* Other Code */ = {
+			isa = PBXGroup;
+			children = (
+				1E16AA4D1DC92FD40013B09D /* AppConfigs.h */,
+				1E16AA4E1DC92FD40013B09D /* AppConfigs.m */,
+				1E136B991DC8DA55005C8EA0 /* ATGradients.h */,
+				1E136B9A1DC8DA55005C8EA0 /* ATGradients.m */,
+				1E136B9B1DC8DA55005C8EA0 /* ATColors.h */,
+				1E136B9C1DC8DA55005C8EA0 /* ATColors.m */,
+				1EE4D3A01DC15AE700943921 /* Main.storyboard */,
+			);
+			name = "Other Code";
+			sourceTree = "<group>";
+		};
 		1E37B8691DC8C0260048139D /* Interface */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,17 +357,10 @@
 				1E37B86A1DC8C02B0048139D /* Scouting */,
 				1E574C211DC78BE600889A15 /* Ground Scouting */,
 				1EE4D3E21DC15B6200943921 /* ATFRC */,
-				1EE4D3A01DC15AE700943921 /* Main.storyboard */,
-				1EE4D4351DC15DB600943921 /* InitialViewController.h */,
-				1EE4D4361DC15DB600943921 /* InitialViewController.m */,
-				1E37B8711DC8CA890048139D /* SignInVC.h */,
-				1E37B8721DC8CA890048139D /* SignInVC.m */,
+				1E16AA531DC9355A0013B09D /* Main Interface */,
+				1E16AA551DC9358A0013B09D /* Other Code */,
 				1EE4D3A51DC15AE700943921 /* LaunchScreen.storyboard */,
 				1EE4D3A81DC15AE700943921 /* Info.plist */,
-				1E136B991DC8DA55005C8EA0 /* ATGradients.h */,
-				1E136B9A1DC8DA55005C8EA0 /* ATGradients.m */,
-				1E136B9B1DC8DA55005C8EA0 /* ATColors.h */,
-				1E136B9C1DC8DA55005C8EA0 /* ATColors.m */,
 				1EE4D40C1DC15D0000943921 /* Assets.xcassets */,
 				1EE4D3971DC15AE700943921 /* Supporting Files */,
 			);
@@ -611,6 +642,7 @@
 				1EE4D3E11DC15B5F00943921 /* ATFRCRankings.m in Sources */,
 				1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */,
 				1EE4D3F71DC15C2500943921 /* EventViewController.m in Sources */,
+				1E16AA521DC934C50013B09D /* InConstructionVC.m in Sources */,
 				1EE4D3DE1DC15B5F00943921 /* ATFRCAwards.m in Sources */,
 				1EE4D3F91DC15C2500943921 /* TeamViewController.m in Sources */,
 				1E37B86E1DC8C0490048139D /* ATScouting.m in Sources */,
@@ -623,10 +655,12 @@
 				1EE4D39C1DC15AE700943921 /* AppDelegate.m in Sources */,
 				1E37B8731DC8CA890048139D /* SignInVC.m in Sources */,
 				1EE4D4371DC15DB600943921 /* InitialViewController.m in Sources */,
+				1E16AA4F1DC92FD40013B09D /* AppConfigs.m in Sources */,
 				1EE4D3DF1DC15B5F00943921 /* ATFRCMedia.m in Sources */,
 				1EE4D3FD1DC15C2500943921 /* TableViewCell.m in Sources */,
 				1EE4D3DC1DC15B5F00943921 /* ATFRCEvent.m in Sources */,
 				1EE4D3F81DC15C2500943921 /* AllTeamsViewController.m in Sources */,
+				1E16AA4C1DC92CEA0013B09D /* HomeVC.m in Sources */,
 				1EE4D3DA1DC15B5F00943921 /* ATFRC.m in Sources */,
 				1EE4D3FB1DC15C2500943921 /* FavoritesTableViewController.m in Sources */,
 				1EE4D3991DC15AE700943921 /* main.m in Sources */,
@@ -781,6 +815,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3XHW8FDBT3;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -798,6 +833,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3XHW8FDBT3;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

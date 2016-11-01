@@ -103,7 +103,7 @@
                                                             user[@"team"] = teamNumberField.text;
                                                             user.username = phoneField.text;
                                                             user.password = @"raptors";
-                                                            user.email = @"nope";
+                                                            user.email = @"raptors@gmail.com";
                                                             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                                                 if (error) {
                                                                     [self dismissViewControllerAnimated:YES completion:^{

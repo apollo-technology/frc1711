@@ -10,4 +10,12 @@
 
 @implementation ATScouting
 
++(void)setDatabaseForEvent:(NSString *)eventCode block:oblock{
+	
+}
+
++(void)setResultsForTeam:(NSString *)team forAlliance:(ATAlliance)alliance forMatch:(NSString *)match block:oblock{
+	
+}
+
 @end

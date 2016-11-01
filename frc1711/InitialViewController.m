@@ -8,6 +8,7 @@
 
 #import "InitialViewController.h"
 #import <Parse/Parse.h>
+#import "AppConfigs.h"
 
 @interface InitialViewController ()
 
@@ -22,6 +23,16 @@
 			BOOL allowBoot = [config[@"allowBoot"] boolValue];
 			BOOL allowOtherThen1711 = [config[@"allowOtherThen1711"] boolValue];
 			NSArray *allowedVersions = config[@"allowedVersions"];
+			
+			[[AppConfigs configs] setAllowBoot:allowBoot];
+			[[AppConfigs configs] setAllowOtherThen1711:allowOtherThen1711];
+			[[AppConfigs configs] setAllowedVersions:allowedVersions];
+			[[AppConfigs configs] setHomeWelcome:config[@"home_welcome"]];
+			[[AppConfigs configs] setHomeMessage:config[@"home_message"]];
+			[[AppConfigs configs] setConstructionMessage:config[@"other_constructionMessage"]];
+			
+			
+			allowedVersions = @[@""];
 			
 			if ([allowedVersions containsObject:@""]) {
 				if (allowOtherThen1711) {
