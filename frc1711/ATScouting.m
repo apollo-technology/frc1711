@@ -11,7 +11,15 @@
 @implementation ATScouting
 
 +(void)setDatabaseForEvent:(NSString *)eventCode block:oblock{
-	
+	[ATFRC matchesAtEvent:eventCode completion:^(NSArray *matches, BOOL succeeded) {
+		
+	}];
+}
+
++(void)updateDatabaseForEvent:(NSString *)eventCode block:oblock{
+	[ATFRC matchesAtEvent:eventCode completion:^(NSArray *matches, BOOL succeeded) {
+		
+	}];
 }
 
 +(void)setResultsForTeam:(NSString *)team forAlliance:(ATAlliance)alliance forMatch:(NSString *)match block:oblock{

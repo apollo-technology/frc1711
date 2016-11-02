@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "ATFRC.h"
 
 #define oblock (void (^)(NSError *error, BOOL succeeded))block
 
