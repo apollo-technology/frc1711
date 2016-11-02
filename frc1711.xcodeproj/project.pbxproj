@@ -65,6 +65,7 @@
 		1EE4D40B1DC15CC000943921 /* Orbitron-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4D4051DC15CC000943921 /* Orbitron-Regular.ttf */; };
 		1EE4D40D1DC15D0000943921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4D40C1DC15D0000943921 /* Assets.xcassets */; };
 		1EE4D4371DC15DB600943921 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4D4361DC15DB600943921 /* InitialViewController.m */; };
+		1EE60DE01DCA32200081040B /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE60DDF1DCA32200081040B /* MoreVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +197,8 @@
 		1EE4D4281DC15D1B00943921 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		1EE4D4351DC15DB600943921 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		1EE4D4361DC15DB600943921 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InitialViewController.m; sourceTree = "<group>"; };
+		1EE60DDE1DCA32200081040B /* MoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreVC.h; sourceTree = "<group>"; };
+		1EE60DDF1DCA32200081040B /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +252,8 @@
 				1E16AA4B1DC92CEA0013B09D /* HomeVC.m */,
 				1E37B8711DC8CA890048139D /* SignInVC.h */,
 				1E37B8721DC8CA890048139D /* SignInVC.m */,
+				1EE60DDE1DCA32200081040B /* MoreVC.h */,
+				1EE60DDF1DCA32200081040B /* MoreVC.m */,
 				1E16AA501DC934C50013B09D /* InConstructionVC.h */,
 				1E16AA511DC934C50013B09D /* InConstructionVC.m */,
 			);
@@ -264,7 +269,6 @@
 				1E136B9A1DC8DA55005C8EA0 /* ATGradients.m */,
 				1E136B9B1DC8DA55005C8EA0 /* ATColors.h */,
 				1E136B9C1DC8DA55005C8EA0 /* ATColors.m */,
-				1EE4D3A01DC15AE700943921 /* Main.storyboard */,
 			);
 			name = "Other Code";
 			sourceTree = "<group>";
@@ -359,6 +363,7 @@
 				1EE4D3E21DC15B6200943921 /* ATFRC */,
 				1E16AA531DC9355A0013B09D /* Main Interface */,
 				1E16AA551DC9358A0013B09D /* Other Code */,
+				1EE4D3A01DC15AE700943921 /* Main.storyboard */,
 				1EE4D3A51DC15AE700943921 /* LaunchScreen.storyboard */,
 				1EE4D3A81DC15AE700943921 /* Info.plist */,
 				1EE4D40C1DC15D0000943921 /* Assets.xcassets */,
@@ -640,6 +645,7 @@
 				1EE4D3DB1DC15B5F00943921 /* ATFRCTeam.m in Sources */,
 				1EE4D3FC1DC15C2500943921 /* RankingsTableViewController.m in Sources */,
 				1EE4D3E11DC15B5F00943921 /* ATFRCRankings.m in Sources */,
+				1EE60DE01DCA32200081040B /* MoreVC.m in Sources */,
 				1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */,
 				1EE4D3F71DC15C2500943921 /* EventViewController.m in Sources */,
 				1E16AA521DC934C50013B09D /* InConstructionVC.m in Sources */,

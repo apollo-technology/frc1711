@@ -15,14 +15,15 @@
 
 @interface SignInVC (){
     id<SINVerification> _verification;
-	IBOutlet UITextField *teamNumberField;
-	IBOutlet UITextField *firstNameField;
-	IBOutlet UITextField *lastNameField;
 	IBOutlet UITextField *phoneField;
 	IBOutlet UIView *signInView;
 	IBOutlet UILabel *signInLabel;
 	IBOutlet UIButton *signInButton;
+    IBOutlet UIActivityIndicatorView *loaderView;
     UITextField *codeField;
+    UITextField *firstNameField;
+    UITextField *lastNameField;
+    UITextField *teamField;
 }
 
 @end
@@ -32,7 +33,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	[ATGradients applyGradientFromColor:[UIColor colorWithRed:0.400 green:0.694 blue:0.298 alpha:1.00] andColor:[UIColor colorWithRed:0.537 green:0.910 blue:0.424 alpha:1.00] onView:self.view];
+	[ATGradients applyGradientFromColor:[UIColor colorWithRed:0.400 green:0.694 blue:0.298 alpha:1.00] andColor:[UIColor colorWithRed:0.420 green:1.000 blue:0.350 alpha:1.00] onView:self.view];
+    loaderView.alpha = 0;
+    [phoneField becomeFirstResponder];
 }
 
 -(void)segueToInitial{
@@ -42,132 +45,144 @@
     }];
 }
 
+-(void)checkForUserExists:(void (^)(BOOL exists))block{
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"username" equalTo:phoneField.text];
+    PFUser *user = (PFUser *)[query getFirstObject];
+    if (user) {
+        if (block) {
+            block(YES);
+        }
+    } else {
+        if (block) {
+            block(NO);
+        }
+    }
+}
+
 -(IBAction)signInButton:(id)sender{
-	[self hideStuff:^{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Preparing Two-Step Verification\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        spinner.center = CGPointMake(130.5, 80);
-        spinner.color = [UIColor grayColor];
-        [spinner startAnimating];
-        [alert.view addSubview:spinner];
-        [self presentViewController:alert animated:YES completion:^{
-            if (phoneField.text.length > 0) {
-                if (firstNameField.text.length > 0) {
-                    if (lastNameField.text.length > 0) {
-                        if (teamNumberField.text.length > 0) {
-                            _verification = [SINVerification SMSVerificationWithApplicationKey:@"5ed9928a-36c4-4d3b-a012-a4cc1d05cb79" phoneNumber:phoneField.text];
-                            [_verification initiateWithCompletionHandler:^(BOOL success, NSError *error) {
-                                [self dismissViewControllerAnimated:YES completion:^{
-                                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter Verification Code" message:nil preferredStyle:UIAlertControllerStyleAlert];
-                                    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-                                        textField.placeholder = @"Code";
-                                        textField.text = @"";
-                                        textField.returnKeyType = UIReturnKeyNext;
-                                        textField.keyboardType = UIKeyboardTypeNumberPad;
-                                        textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-                                        textField.secureTextEntry = NO;
-                                        textField.autocorrectionType = UITextAutocorrectionTypeDefault;
-                                        codeField = textField;
-                                    }];
-                                    [alertController addAction:[UIAlertAction actionWithTitle:@"Verify" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                        [_verification verifyCode:codeField.text completionHandler:^(BOOL success, NSError* error) {
-                                            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Signing In\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
-                                            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-                                            spinner.center = CGPointMake(130.5, 80);
-                                            spinner.color = [UIColor grayColor];
-                                            [spinner startAnimating];
-                                            [alert.view addSubview:spinner];
-                                            [self presentViewController:alert animated:YES completion:^{
-                                                if (success) {
-                                                    PFQuery *query = [PFQuery queryWithClassName:@"User"];
-                                                    [query whereKey:@"username" equalTo:phoneField.text];
-                                                    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-                                                        if (objects.count > 0) {
-                                                            [PFUser logInWithUsernameInBackground:phoneField.text password:@"raptors" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-                                                                if (error) {
-                                                                    [self dismissViewControllerAnimated:YES completion:^{
-                                                                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                                                                        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
-                                                                        [self presentViewController:alertController animated:YES completion:nil];
-                                                                    }];
-                                                                } else {
-                                                                    [self dismissViewControllerAnimated:YES completion:^{
-                                                                        [self segueToInitial];
-                                                                    }];
-                                                                }
-                                                            }];
-                                                        } else {
-                                                            PFUser *user = [PFUser user];
-                                                            user[@"firstName"] = firstNameField.text;
-                                                            user[@"lastName"] = lastNameField.text;
-                                                            user[@"team"] = teamNumberField.text;
-                                                            user.username = phoneField.text;
-                                                            user.password = @"raptors";
-                                                            user.email = @"raptors@gmail.com";
-                                                            [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                                                                if (error) {
-                                                                    [self dismissViewControllerAnimated:YES completion:^{
-                                                                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                                                                        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
-                                                                        [self presentViewController:alertController animated:YES completion:nil];
-                                                                    }];
-                                                                } else {
-                                                                    [self segueToInitial];
-                                                                }
-                                                            }];
-                                                        }
-                                                    }];
-                                                } else {
-                                                    [self dismissViewControllerAnimated:YES completion:^{
-                                                        [self showStuff:^{
-                                                            
-                                                        }];
-                                                    }];
-                                                }
-                                            }];
+    if (phoneField.text.length == 10) {
+        [self hideStuff:^{
+            _verification = [SINVerification SMSVerificationWithApplicationKey:@"5ed9928a-36c4-4d3b-a012-a4cc1d05cb79" phoneNumber:phoneField.text];
+            [_verification initiateWithCompletionHandler:^(BOOL success, NSError *error) {
+                if (success) {
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter Code" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                        textField.placeholder = @"Code";
+                        textField.text = @"";
+                        textField.returnKeyType = UIReturnKeyNext;
+                        textField.keyboardType = UIKeyboardTypeNumberPad;
+                        textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+                        textField.secureTextEntry = NO;
+                        textField.autocorrectionType = UITextAutocorrectionTypeDefault;
+                        codeField = textField;
+                    }];
+                    [alertController addAction:[UIAlertAction actionWithTitle:@"Next" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [_verification verifyCode:codeField.text completionHandler:^(BOOL success, NSError* error) {
+                            if (success) {
+                                [self checkForUserExists:^(BOOL exists) {
+                                    if (exists) {
+                                        [PFUser logInWithUsernameInBackground:phoneField.text password:@"raptors" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+                                            [self segueToInitial];
                                         }];
-                                    }]];
-                                    [self presentViewController:alertController animated:YES completion:nil];
+                                    } else {
+                                        PFUser *user = [PFUser user];
+                                        user.username = phoneField.text;
+                                        user.password = @"raptors";
+                                        user.email = @"email@apollo.com";
+                                        
+                                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter Some More Info" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                                        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                                            textField.placeholder = @"First Name";
+                                            textField.text = @"";
+                                            textField.returnKeyType = UIReturnKeyNext;
+                                            textField.keyboardType = UIKeyboardTypeDefault;
+                                            textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+                                            textField.secureTextEntry = NO;
+                                            textField.autocorrectionType = UITextAutocorrectionTypeDefault;
+                                            firstNameField = textField;
+                                        }];
+                                        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                                            textField.placeholder = @"Last Name";
+                                            textField.text = @"";
+                                            textField.returnKeyType = UIReturnKeyNext;
+                                            textField.keyboardType = UIKeyboardTypeDefault;
+                                            textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+                                            textField.secureTextEntry = NO;
+                                            textField.autocorrectionType = UITextAutocorrectionTypeDefault;
+                                            lastNameField = textField;
+                                        }];
+                                        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                                            textField.placeholder = @"Team Number";
+                                            textField.text = @"";
+                                            textField.returnKeyType = UIReturnKeyNext;
+                                            textField.keyboardType = UIKeyboardTypeNumberPad;
+                                            textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+                                            textField.secureTextEntry = NO;
+                                            textField.autocorrectionType = UITextAutocorrectionTypeDefault;
+                                            teamField = textField;
+                                        }];
+                                        [alertController addAction:[UIAlertAction actionWithTitle:@"Next" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                            user[@"firstName"] = firstNameField.text;
+                                            user[@"lastName"] = lastNameField.text;
+                                            user[@"team"] = teamField.text;
+                                            [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                                [self segueToInitial];
+                                            }];
+                                        }]];
+                                        [self presentViewController:alertController animated:YES completion:nil];
+                                    }
                                 }];
-                            }];
-                        } else {
-                            [self showError];
-                        }
-                    } else {
-                        [self showError];
-                    }
+                            } else {
+                                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Wrong Code, Try Again." message:nil preferredStyle:UIAlertControllerStyleAlert];
+                                [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                    [self showStuff:nil];
+                                }]];
+                                [self presentViewController:alertController animated:YES completion:nil];
+                            }
+                        }];
+                    }]];
+                    [self presentViewController:alertController animated:YES completion:nil];
                 } else {
-                    [self showError];
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please Try Again" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self showStuff:nil];
+                    }]];
+                    [self presentViewController:alertController animated:YES completion:nil];
                 }
-            } else {
-                [self showError];
-            }
+            }];
         }];
-    }];
+    } else {
+        [self showError];
+    }
 }
 
 -(void)showError{
-    [self dismissViewControllerAnimated:YES completion:^{
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please enter correct information." message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please enter ten digit phone number." message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)hideStuff:(void (^)())block{
 	signInButton.enabled = NO;
-	[UIView animateWithDuration:.75 animations:^{
-		signInView.alpha = 0;
-		signInLabel.alpha = 0;
-	} completion:^(BOOL finished) {
-		[UIView animateWithDuration:.75 animations:^{
-			signInButton.alpha = 0;
-		} completion:^(BOOL finished) {
-			if (block) {
-				block();
-			}
-		}];
-	}];
+    [self.view endEditing:YES];
+    double delayInSeconds = .5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [UIView animateWithDuration:.75 animations:^{
+            signInView.alpha = 0;
+            signInLabel.alpha = 0;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.75 animations:^{
+                signInButton.alpha = 0;
+                loaderView.alpha = 1;
+            } completion:^(BOOL finished) {
+                if (block) {
+                    block();
+                }
+            }];
+        }];
+    });
 }
 
 -(void)showStuff:(void (^)())block{
@@ -179,9 +194,14 @@
             signInView.alpha = 1;
             signInLabel.alpha = 1;
 		} completion:^(BOOL finished) {
-			if (block) {
-				block();
-			}
+            [UIView animateWithDuration:.75 animations:^{
+                signInButton.alpha = 1;
+                loaderView.alpha = 0;
+            } completion:^(BOOL finished) {
+                if (block) {
+                    block();
+                }
+            }];
 		}];
 	}];
 }
