@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <SafariServices/SafariServices.h>
+#import "AppConfigs.h"
+#import <Parse/Parse.h>
 
-@interface MoreVC : UITableViewController
+@interface MoreVC : UITableViewController <MFMailComposeViewControllerDelegate>
 
 @end

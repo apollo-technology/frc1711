@@ -5,7 +5,6 @@
 //  Created by Elijah Cobb on 11/2/16.
 //  Copyright © 2016 Apollo Technology. All rights reserved.
 //
-#import <Parse/Parse.h>
 #import "MoreVC.h"
 
 @interface MoreVC (){
@@ -13,11 +12,20 @@
 	IBOutlet UILabel *teamLabel;
 	IBOutlet UILabel *phoneLabel;
 	IBOutlet UITableViewCell *signOutCell;
+	IBOutlet UITableViewCell *emailCell;
+	IBOutlet UITableViewCell *websiteCell;
+	IBOutlet UITableViewCell *bugCell;
+	MFMailComposeViewController *composerVC;
 }
 
 @end
 
 @implementation MoreVC
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
@@ -37,8 +45,32 @@
 				}];
 			}];
 		}];
+	} else if (selectedCell == emailCell) {
+		composerVC = [[MFMailComposeViewController alloc] init];
+		[composerVC setToRecipients:@[[[AppConfigs configs] raptorEmail]]];
+		[composerVC setMessageBody:@"" isHTML:NO];
+		[composerVC setSubject:@""];
+		[composerVC setMailComposeDelegate:self];
+		[self presentViewController:composerVC animated:YES completion:^{
+			[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		}];
+	} else if (selectedCell == bugCell) {
+		composerVC = [[MFMailComposeViewController alloc] init];
+		[composerVC setToRecipients:@[[[AppConfigs configs] apolloEmail]]];
+		[composerVC setMessageBody:@"" isHTML:NO];
+		[composerVC setSubject:@""];
+		[composerVC setMailComposeDelegate:self];
+		[self presentViewController:composerVC animated:YES completion:^{
+			[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		}];
+	} else if (selectedCell == websiteCell) {
+		SFSafariViewController *browserVC = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:[[AppConfigs configs] raptorWebsite]]];
+		[self presentViewController:browserVC animated:YES completion:^{
+			[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		}];
 	}
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

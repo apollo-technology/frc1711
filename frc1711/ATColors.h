@@ -73,4 +73,7 @@
 +(UIColor *)bubblegum;
 +(UIColor *)carnation;
 
++(UIColor *)raptorGreen;
++(UIColor *)raptorOrange;
+
 @end

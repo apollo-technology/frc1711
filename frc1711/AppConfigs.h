@@ -14,10 +14,13 @@
 
 @property NSArray *allowedVersions;
 @property BOOL allowBoot;
-@property BOOL allowOtherThen1711;
 @property NSString *homeWelcome;
 @property NSString *homeMessage;
 @property NSString *constructionMessage;
+@property NSString *appBuild;
+@property NSString *apolloEmail;
+@property NSString *raptorEmail;
+@property NSString *raptorWebsite;
 
 
 @end

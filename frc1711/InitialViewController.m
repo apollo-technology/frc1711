@@ -74,27 +74,26 @@
 	PFUser *user = [PFUser currentUser];
 	if (user) {
 		[PFConfig getConfigInBackgroundWithBlock:^(PFConfig * _Nullable config, NSError * _Nullable error) {
-			BOOL allowBoot = [config[@"allowBoot"] boolValue];
-			BOOL allowOtherThen1711 = [config[@"allowOtherThen1711"] boolValue];
-			NSArray *allowedVersions = config[@"allowedVersions"];
 			
-			[[AppConfigs configs] setAllowBoot:allowBoot];
-			[[AppConfigs configs] setAllowOtherThen1711:allowOtherThen1711];
-			[[AppConfigs configs] setAllowedVersions:allowedVersions];
+			[[AppConfigs configs] setAllowBoot:[config[@"allowBoot"] boolValue]];
+			[[AppConfigs configs] setAllowedVersions:config[@"allowedVersions"]];
 			[[AppConfigs configs] setHomeWelcome:config[@"home_welcome"]];
 			[[AppConfigs configs] setHomeMessage:config[@"home_message"]];
 			[[AppConfigs configs] setConstructionMessage:config[@"other_constructionMessage"]];
+			[[AppConfigs configs] setRaptorEmail:config[@"raptorEmail"]];
+			[[AppConfigs configs] setApolloEmail:config[@"apolloEmail"]];
+			[[AppConfigs configs] setRaptorWebsite:config[@"raptorWebsite"]];
 			
+			NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+			NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+			NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
+			[[AppConfigs configs] setAppBuild:[NSString stringWithFormat:@"%@(%@)",version,build]];
 			
-			allowedVersions = @[@""];
+			NSLog(@"%@",[[AppConfigs configs] appBuild]);
 			
-			if ([allowedVersions containsObject:@""]) {
-				if (allowOtherThen1711) {
-					if (allowBoot) {
-						[self segueToHome];
-					} else {
-						[self showErrorWithMessage:@"Check back later, someone let a raptor out."];
-					}
+			if ([[[AppConfigs configs] allowedVersions] containsObject:[[AppConfigs configs] appBuild]]) {
+				if ([[AppConfigs configs] allowBoot]) {
+					[self segueToHome];
 				} else {
 					[self showErrorWithMessage:@"Check back later, someone let a raptor out."];
 				}

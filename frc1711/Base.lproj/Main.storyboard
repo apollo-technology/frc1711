@@ -234,7 +234,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Bn-cW-7th" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Database" image="databaseTabIcon" id="Lbi-P4-fU5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="A84-IC-Hcl">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A84-IC-Hcl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000000000002" green="0.69411764710000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -253,7 +253,7 @@
             <objects>
                 <navigationController id="Q9H-0J-dbd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ground Scouting" image="teamTabIcon" id="AWr-Yj-MjI"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hNc-14-TAf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNc-14-TAf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000000000002" green="0.69411764710000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -271,7 +271,7 @@
             <objects>
                 <navigationController id="kVg-du-dY4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Scouting" image="scoutingTabIcon" id="LpZ-OY-AL0"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="hRh-Cj-RaA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hRh-Cj-RaA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000000000002" green="0.69411764710000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -845,7 +845,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="&lt;team.motto&gt;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qAI-Yo-us5">
                                                     <frame key="frameInset" minX="15" width="290" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1248,7 +1248,7 @@ Hanging Points: %@</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nYF-fv-Aos" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="announcementTabIcon" id="NPt-KO-Ggm"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Qqr-nf-wWS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qqr-nf-wWS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.40000000000000002" green="0.69411764710000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1268,7 +1268,7 @@ Hanging Points: %@</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fts-vp-VDG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="more" id="cee-F6-7Cj"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="frl-9K-Oyq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="frl-9K-Oyq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1309,8 +1309,25 @@ Hanging Points: %@</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9SW-fS-IcH" style="IBUITableViewCellStyleDefault" id="Z38-QA-UVa">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="b6D-sf-aHu" style="IBUITableViewCellStyleDefault" id="bpR-RB-qan">
                                         <rect key="frame" x="0.0" y="164" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bpR-RB-qan" id="AEg-wp-TXb">
+                                            <frame key="frameInset" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b6D-sf-aHu">
+                                                    <frame key="frameInset" minX="15" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.69411764710000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9SW-fS-IcH" style="IBUITableViewCellStyleDefault" id="Z38-QA-UVa">
+                                        <rect key="frame" x="0.0" y="208" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z38-QA-UVa" id="f1b-RV-9Ga">
                                             <frame key="frameInset" width="287" height="43"/>
@@ -1331,7 +1348,7 @@ Hanging Points: %@</string>
                             <tableViewSection headerTitle="Account" id="hyL-lE-LNU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Lmx-Lt-8ux">
-                                        <rect key="frame" x="0.0" y="265" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="309" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lmx-Lt-8ux" id="9gD-4p-9dm">
                                             <frame key="frameInset" width="320" height="43"/>
@@ -1363,7 +1380,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="1h9-ET-CPS">
-                                        <rect key="frame" x="0.0" y="309" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="353" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1h9-ET-CPS" id="hCU-OK-u3g">
                                             <frame key="frameInset" width="320" height="43"/>
@@ -1395,7 +1412,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dGd-22-xBu">
-                                        <rect key="frame" x="0.0" y="353" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="397" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dGd-22-xBu" id="ytA-W6-20Y">
                                             <frame key="frameInset" width="320" height="43"/>
@@ -1427,7 +1444,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="4SV-hW-ACY" style="IBUITableViewCellStyleDefault" id="yu7-7k-dqi">
-                                        <rect key="frame" x="0.0" y="397" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="441" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yu7-7k-dqi" id="szc-YT-3Je">
                                             <frame key="frameInset" width="320" height="43"/>
@@ -1453,10 +1470,13 @@ Hanging Points: %@</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="More" id="xk9-2e-NqP"/>
                     <connections>
+                        <outlet property="bugCell" destination="Z38-QA-UVa" id="7Ga-5b-5tx"/>
+                        <outlet property="emailCell" destination="x1M-oP-xgZ" id="o13-1A-4BD"/>
                         <outlet property="nameLabel" destination="4SF-4e-jey" id="bKK-V6-FkQ"/>
                         <outlet property="phoneLabel" destination="k6S-Qm-uxq" id="a6D-dK-bjc"/>
                         <outlet property="signOutCell" destination="yu7-7k-dqi" id="fXx-o7-yOH"/>
                         <outlet property="teamLabel" destination="L8Q-Dg-Jzs" id="XWZ-xA-VCQ"/>
+                        <outlet property="websiteCell" destination="bpR-RB-qan" id="niJ-0N-pX7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGg-KP-Pbk" userLabel="First Responder" sceneMemberID="firstResponder"/>

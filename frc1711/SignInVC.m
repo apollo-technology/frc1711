@@ -63,7 +63,7 @@
 -(IBAction)signInButton:(id)sender{
     if (phoneField.text.length == 10) {
         [self hideStuff:^{
-            _verification = [SINVerification SMSVerificationWithApplicationKey:@"5ed9928a-36c4-4d3b-a012-a4cc1d05cb79" phoneNumber:phoneField.text];
+            _verification = [SINVerification SMSVerificationWithApplicationKey:@"e53ee320-4d09-49f2-a443-b9194b8e49fa" phoneNumber:phoneField.text];
             [_verification initiateWithCompletionHandler:^(BOOL success, NSError *error) {
                 if (success) {
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter Code" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -144,6 +144,7 @@
                     }]];
                     [self presentViewController:alertController animated:YES completion:nil];
                 } else {
+                    NSLog(@"%@",error);
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please Try Again" message:nil preferredStyle:UIAlertControllerStyleAlert];
                     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         [self showStuff:nil];

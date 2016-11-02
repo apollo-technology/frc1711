@@ -210,5 +210,13 @@
     return [UIColor purpleColor];
 }
 
++(UIColor *)raptorGreen{
+	return [UIColor colorWithRed:0.204 green:0.522 blue:0.357 alpha:1.00];
+}
+
++(UIColor *)raptorOrange{
+	return [UIColor colorWithRed:1.000 green:0.212 blue:0.000 alpha:1.00];
+}
+
 
 @end
