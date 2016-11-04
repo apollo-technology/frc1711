@@ -108,14 +108,23 @@
 
 -(void)showController:(UIViewController *)viewController{
 	if (doneDownloading) {
-		CATransition *transition = [CATransition animation];
-		transition.duration = .1;
-		transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-		transition.type = kCATransitionPush;
-		transition.subtype = kCATransitionFromRight;
-		transition.fillMode = kCAFillModeForwards;
-		[self.view.window.layer addAnimation:transition forKey:nil];
-		[self presentViewController:viewController animated:NO completion:nil];
+		
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+		{
+			// The device is an iPad
+			[self presentViewController:viewController animated:NO completion:nil];
+		} else {
+			// The device is an iPhone.
+			CATransition *transition = [CATransition animation];
+			transition.duration = .1;
+			transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+			transition.type = kCATransitionPush;
+			transition.subtype = kCATransitionFromRight;
+			transition.fillMode = kCAFillModeForwards;
+			[self.view.window.layer addAnimation:transition forKey:nil];
+			[self presentViewController:viewController animated:NO completion:nil];
+			
+		}
 	} else {
 		double delayInSeconds = 0.1;
 		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
