@@ -33,6 +33,7 @@
 		[refreshControl endRefreshing];
 	}];
 }
+//hi elijah
 
 - (void)viewDidLoad {
     [super viewDidLoad];
