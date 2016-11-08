@@ -2,7 +2,7 @@
 //  GSScoutingTableVC.m
 //  frc1711
 //
-//  Created by Elijah Cobb on 11/8/16. WHOA!
+//  Created by Elijah Cobb on 11/8/16. WHOA hi buddy!
 //  Copyright © 2016 Apollo Technology. All rights reserved.
 //
 
