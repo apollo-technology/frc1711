@@ -211,7 +211,8 @@
 }
 
 +(UIColor *)raptorGreen{
-	return [UIColor colorWithRed:0.204 green:0.522 blue:0.357 alpha:1.00];
+	//return [UIColor colorWithRed:0.204 green:0.522 blue:0.357 alpha:1.00];
+	return [UIColor colorWithRed:0.408 green:0.690 blue:0.318 alpha:1.00];
 }
 
 +(UIColor *)raptorOrange{

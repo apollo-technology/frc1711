@@ -89,8 +89,6 @@
                                         PFUser *user = [PFUser user];
                                         user.username = phoneField.text;
                                         user.password = @"raptors";
-                                        user.email = @"email@apollo.com";
-                                        
                                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter Some More Info" message:nil preferredStyle:UIAlertControllerStyleAlert];
                                         [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
                                             textField.placeholder = @"First Name";
@@ -127,7 +125,14 @@
                                             user[@"lastName"] = lastNameField.text;
                                             user[@"team"] = teamField.text;
                                             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                                                [self segueToInitial];
+                                                if (error) {
+                                                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                                                    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+                                                    [self presentViewController:alertController animated:YES completion:nil];
+                                                    [self showStuff:nil];
+                                                } else {
+                                                    [self segueToInitial];
+                                                }
                                             }];
                                         }]];
                                         [self presentViewController:alertController animated:YES completion:nil];

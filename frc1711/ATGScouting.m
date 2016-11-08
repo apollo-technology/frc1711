@@ -20,12 +20,13 @@
 }
 
 +(NSString *)teamId{
-    return @"heyAustinChangeMe";
+	return [[PFUser currentUser] objectForKey:@"team"];
 }
 
 +(void)getTeams:(void (^)(NSError *error, BOOL succeeded))block{
     PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",[self teamId]]];
     [query setLimit:1000];
+	[query addAscendingOrder:@"number"];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (error) {
             NSLog(@"%@",error);
@@ -36,7 +37,8 @@
             NSMutableArray *teams = [NSMutableArray new];
             for (PFObject *object in objects) {
                 ATGSTeam *team = [ATGSTeam new];
-                team.foo = object[@"bar"];
+                team.name = object[@"name"];
+				team.number = [object[@"number"] intValue];
                 /*
                  add all information from PFObjects stored in the server. Make sure to add them as @properties in "ATGSTeam.h" file.
                  */
@@ -79,7 +81,8 @@
                             
                             for (ATFRCTeam *team in teams) {
                                 PFObject *object = [PFObject objectWithClassName:[NSString stringWithFormat:@"gS%@",[self teamId]]];
-                                object[@"foo"] = team.key;
+                                object[@"name"] = team.nickname;
+								object[@"number"] = team.number;
                                 
                                 
                                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

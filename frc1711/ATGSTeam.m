@@ -13,6 +13,7 @@
 
 -(void)pushUpdates:(void (^)(NSError *error, BOOL succeeded))block{
     PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",[ATGScouting teamId]]];
+	[query whereKey:@"number" equalTo:@(self.number)];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (error) {
             NSLog(@"%@",error);
@@ -20,7 +21,8 @@
                 block(error,NO);
             }
         } else {
-            object[@"foo"] = self.foo;
+            object[@"name"] = self.name;
+			object[@"number"] = @(self.number);
             /*
              set all of these properties like this
              */
@@ -40,6 +42,35 @@
             }];
         }
     }];
+}
+
+-(void)destroy:(void (^)(NSError *error, BOOL succeeded))block{
+	
+	[[[ATGScouting data] teams] removeObject:self];
+	
+	PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",[ATGScouting teamId]]];
+	[query whereKey:@"number" equalTo:[NSString stringWithFormat:@"%i",self.number]];
+	[query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+		if (error) {
+			NSLog(@"%@",error);
+			if (block) {
+				block(error,NO);
+			}
+		} else {
+			[object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+				if (error) {
+					NSLog(@"%@",error);
+					if (block) {
+						block(error,NO);
+					}
+				} else {
+					if (block) {
+						block(nil,YES);
+					}
+				}
+			}];
+		}
+	}];
 }
 
 @end

@@ -10,12 +10,14 @@
 
 @interface ATGSTeam : NSObject
 
-@property NSString *foo;
+@property NSString *name;
+@property int number;
 /*
  Add all properties here
  */
 
 -(void)pushUpdates:(void (^)(NSError *error, BOOL succeeded))block;
+-(void)destroy:(void (^)(NSError *error, BOOL succeeded))block;
 
 
 @end
