@@ -39,7 +39,7 @@
 	
 	
 	[ATGScouting getTeams:^(NSError *error, BOOL succeeded) {
-		[self.tableView reloadData];s
+		[self.tableView reloadData];
 	}];
 	
 	refreshControl = [[UIRefreshControl alloc] init];
