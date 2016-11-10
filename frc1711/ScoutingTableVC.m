@@ -11,6 +11,8 @@
 #import "ATColors.h"
 #import "ScoutingCell.h"
 #import "ATScouting.h"
+#import "ATScoutingTeam.h"
+#import "ATMatch.h"
 #import "ScoutingMatchView.h"
 
 @interface ScoutingTableVC (){
@@ -25,8 +27,20 @@
 
 - (void)handleRefresh:(id)sender{
 	// do your refresh here...
-	[self.tableView reloadData];
-	[refreshControl endRefreshing];
+	[ATScouting getData:^(NSError *error, BOOL succeeded) {
+		if (succeeded) {
+			[self.tableView reloadData];
+			[refreshControl endRefreshing];
+		} else {
+			NSString *errorDescription;
+			if (error) {
+				errorDescription = error.localizedDescription;
+			}
+			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Getting Data" message:errorDescription preferredStyle:UIAlertControllerStyleAlert];
+			[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+			[self presentViewController:alertController animated:YES completion:nil];
+		}
+	}];
 }
 
 -(void)resetTheDangDB{
@@ -100,6 +114,19 @@
 	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
 	[self.tableView addSubview:refreshControl];
 	
+	[ATScouting getData:^(NSError *error, BOOL succeeded) {
+		[self.tableView reloadData];
+		if (!succeeded) {
+			NSString *errorDescription;
+			if (error) {
+				errorDescription = error.localizedDescription;
+			}
+			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Getting Data" message:errorDescription preferredStyle:UIAlertControllerStyleAlert];
+			[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+			[self presentViewController:alertController animated:YES completion:nil];
+		}
+	}];
+	
 	resetButton.image = [IonIcons imageWithIcon:ioniostrashoutline color:[ATColors raptorGreen]];
 	
 }
@@ -124,11 +151,17 @@
     ScoutingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
-	cell.matchNumber.text = [NSString stringWithFormat:@"Match: %i",];
+	ATMatch *match = [[[ATScouting data] matches] objectAtIndex:[indexPath row]];
+	cell.numberLabel.text = [NSString stringWithFormat:@"Match: %i",match.number];
     return cell;
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	ScoutingMatchView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingMatchView"];
+	newView.match = [[[ATScouting data] matches] objectAtIndex:[indexPath row]];
+	[self.navigationController pushViewController:newView animated:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

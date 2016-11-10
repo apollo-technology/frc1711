@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ATMatch.h"
+#import "ATScoutingTeam.h"
+#import "ATScouting.h"
 
-@interface ScoutingMatchView : UITableViewController
+@interface ScoutingMatchView : UITableViewController{
+	ATMatch *match;
+}
+
+@property ATMatch *match;
 
 @end

@@ -10,6 +10,12 @@
 
 @interface ATScoutingTeam : NSObject
 
+typedef NS_ENUM(NSInteger, ATAlliance) {
+	BlueAlliance,
+	RedAlliance,
+};
+
 @property int number;
+@property int alliance;
 
 @end

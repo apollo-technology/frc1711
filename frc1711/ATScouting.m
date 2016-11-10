@@ -27,10 +27,12 @@
 	return [[PFUser currentUser] objectForKey:@"team"];
 }
 
-+(ATScoutingTeam *)scoutingTeamForObject:(NSDictionary *)object{
++(ATScoutingTeam *)scoutingTeamForObject:(NSDictionary *)object alliacnce:(int)alliance{
 	ATScoutingTeam *team = [ATScoutingTeam new];
 	
 	team.number = [object[@"number"] intValue];
+	team.alliance = alliance;
+	
 	
 	return team;
 }
@@ -38,22 +40,27 @@
 +(void)getData:(void (^)(NSError *error, BOOL succeeded))block{
 	PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"s%@",[self teamId]]];
 	[query setLimit:1000];
+	[query addAscendingOrder:@"number"];
 	[query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
 		ifNotError {
 			NSMutableArray *matches = [NSMutableArray new];
 			for (PFObject *object in objects) {
 				ATMatch *match = [ATMatch new];
 				
-				match.redTeam1 = [self scoutingTeamForObject:object[@"redTeam1"]];
-				match.redTeam2 = [self scoutingTeamForObject:object[@"redTeam2"]];
-				match.redTeam3 = [self scoutingTeamForObject:object[@"redTeam3"]];
-				match.blueTeam1 = [self scoutingTeamForObject:object[@"blueTeam1"]];
-				match.blueTeam2 = [self scoutingTeamForObject:object[@"blueTeam2"]];
-				match.blueTeam3 = [self scoutingTeamForObject:object[@"blueTeam3"]];
+				match.redTeam1 = [self scoutingTeamForObject:object[@"redTeam1"] alliacnce:RedAlliance];
+				match.redTeam2 = [self scoutingTeamForObject:object[@"redTeam2"] alliacnce:RedAlliance];
+				match.redTeam3 = [self scoutingTeamForObject:object[@"redTeam3"] alliacnce:RedAlliance];
+				match.blueTeam1 = [self scoutingTeamForObject:object[@"blueTeam1"] alliacnce:BlueAlliance];
+				match.blueTeam2 = [self scoutingTeamForObject:object[@"blueTeam2"] alliacnce:BlueAlliance];
+				match.blueTeam3 = [self scoutingTeamForObject:object[@"blueTeam3"] alliacnce:BlueAlliance];
 				match.number = [object[@"number"] intValue];
 				match.key = object[@"key"];
 				
 				[matches addObject:match];
+			}
+			[ATScouting data].matches = [[NSMutableArray alloc] initWithArray:matches];
+			if (block) {
+				block(nil,YES);
 			}
 		}
 	}];

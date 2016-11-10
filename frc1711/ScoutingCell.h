@@ -10,6 +10,6 @@
 
 @interface ScoutingCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *matchNumber;
+@property (strong, nonatomic) IBOutlet UILabel *numberLabel;
 
 @end

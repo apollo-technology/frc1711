@@ -8,15 +8,11 @@
 
 #import <Parse/Parse.h>
 #import "ATFRC.h"
-
+#import "ATScoutingTeam.h"
+#import "ATMatch.h"
 #define oblock (void (^)(NSError *error, BOOL succeeded))block
 
 @interface ATScouting : NSObject
-
-typedef NS_ENUM(NSInteger, ATAlliance) {
-	BlueAlliance,
-	RedAlliance,
-};
 
 @property NSMutableArray *matches;
 

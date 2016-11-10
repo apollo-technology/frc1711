@@ -7,81 +7,77 @@
 //
 
 #import "ScoutingMatchView.h"
+#import "ScoutingDetailView.h"
 
-@interface ScoutingMatchView ()
+@interface ScoutingMatchView (){
+	IBOutlet UILabel *red1Label;
+	IBOutlet UILabel *red2Label;
+	IBOutlet UILabel *red3Label;
+	IBOutlet UILabel *blue1Label;
+	IBOutlet UILabel *blue2Label;
+	IBOutlet UILabel *blue3Label;
+	
+	IBOutlet UILabel *keyLabel;
+	
+	IBOutlet UITableViewCell *red1Cell;
+	IBOutlet UITableViewCell *red2Cell;
+	IBOutlet UITableViewCell *red3Cell;
+	IBOutlet UITableViewCell *blue1Cell;
+	IBOutlet UITableViewCell *blue2Cell;
+	IBOutlet UITableViewCell *blue3Cell;
+}
 
 @end
 
 @implementation ScoutingMatchView
 
+@synthesize match;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	red1Label.text = [NSString stringWithFormat:@"%i",match.redTeam1.number];
+	red2Label.text = [NSString stringWithFormat:@"%i",match.redTeam2.number];
+	red3Label.text = [NSString stringWithFormat:@"%i",match.redTeam3.number];
+	
+	blue1Label.text = [NSString stringWithFormat:@"%i",match.blueTeam1.number];
+	blue2Label.text = [NSString stringWithFormat:@"%i",match.blueTeam2.number];
+	blue3Label.text = [NSString stringWithFormat:@"%i",match.blueTeam3.number];
+	
+	self.navigationItem.title = [NSString stringWithFormat:@"Match: %i",match.number];
+	
+	keyLabel.text = match.key;
+	
+}
+
+-(void)segueToTeam:(ATScoutingTeam *)team{
+	ScoutingDetailView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingDetailView"];
+	newView.team = team;
+	newView.match = match;
+	[self.navigationController pushViewController:newView animated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+	if (selectedCell == red1Cell) {
+		[self segueToTeam:match.redTeam1];
+	} else if (selectedCell == red2Cell) {
+		[self segueToTeam:match.redTeam2];
+	} else if (selectedCell == red3Cell) {
+		[self segueToTeam:match.redTeam3];
+	} else if (selectedCell == blue1Cell) {
+		[self segueToTeam:match.blueTeam1];
+	} else if (selectedCell == blue2Cell) {
+		[self segueToTeam:match.blueTeam2];
+	} else if (selectedCell == blue3Cell) {
+		[self segueToTeam:match.blueTeam3];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
