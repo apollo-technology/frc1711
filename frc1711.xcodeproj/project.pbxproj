@@ -29,8 +29,12 @@
 		1E16AA4C1DC92CEA0013B09D /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA4B1DC92CEA0013B09D /* HomeVC.m */; };
 		1E16AA4F1DC92FD40013B09D /* AppConfigs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA4E1DC92FD40013B09D /* AppConfigs.m */; };
 		1E16AA521DC934C50013B09D /* InConstructionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA511DC934C50013B09D /* InConstructionVC.m */; };
+		1E33E1131DD4B1DE00124910 /* ScoutingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E1121DD4B1DE00124910 /* ScoutingCell.m */; };
+		1E33E1161DD4B21A00124910 /* ScoutingMatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E1151DD4B21A00124910 /* ScoutingMatchView.m */; };
+		1E33E1191DD4B22600124910 /* ScoutingDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E1181DD4B22600124910 /* ScoutingDetailView.m */; };
 		1E37B86E1DC8C0490048139D /* ATScouting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E37B86D1DC8C0490048139D /* ATScouting.m */; };
 		1E37B8731DC8CA890048139D /* SignInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E37B8721DC8CA890048139D /* SignInVC.m */; };
+		1E3C7EF41DD4CF7B0055E716 /* ATScoutingTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3C7EF31DD4CF7B0055E716 /* ATScoutingTeam.m */; };
 		1E447E681DD226BC0045E23D /* GSScoutingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E447E671DD226BC0045E23D /* GSScoutingTableVC.m */; };
 		1E447E701DD226F90045E23D /* FontInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E447E6A1DD226F90045E23D /* FontInspector.m */; };
 		1E447E711DD226F90045E23D /* ionicons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1E447E6C1DD226F90045E23D /* ionicons.bundle */; };
@@ -41,6 +45,7 @@
 		1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C251DC78C1B00889A15 /* ATGScouting.m */; };
 		1E574C291DC78D0B00889A15 /* ATGSTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C281DC78D0B00889A15 /* ATGSTeam.m */; };
 		1E574C2B1DC7946A00889A15 /* construction.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E574C2A1DC7946A00889A15 /* construction.png */; };
+		1EC275031DD3CE0C00355915 /* ScoutingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC275021DD3CE0C00355915 /* ScoutingTableVC.m */; };
 		1ECC67D91DCA396200868393 /* raptorseye.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECC67D81DCA396200868393 /* raptorseye.png */; };
 		1ECC67DB1DCA39B700868393 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECC67DA1DCA39B700868393 /* circle.png */; };
 		1ED13A491DD272960031E85C /* GSScoutingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED13A481DD272960031E85C /* GSScoutingDetailVC.m */; };
@@ -129,10 +134,18 @@
 		1E16AA4E1DC92FD40013B09D /* AppConfigs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfigs.m; sourceTree = "<group>"; };
 		1E16AA501DC934C50013B09D /* InConstructionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InConstructionVC.h; sourceTree = "<group>"; };
 		1E16AA511DC934C50013B09D /* InConstructionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InConstructionVC.m; sourceTree = "<group>"; };
+		1E33E1111DD4B1DE00124910 /* ScoutingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoutingCell.h; sourceTree = "<group>"; };
+		1E33E1121DD4B1DE00124910 /* ScoutingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoutingCell.m; sourceTree = "<group>"; };
+		1E33E1141DD4B21A00124910 /* ScoutingMatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoutingMatchView.h; sourceTree = "<group>"; };
+		1E33E1151DD4B21A00124910 /* ScoutingMatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoutingMatchView.m; sourceTree = "<group>"; };
+		1E33E1171DD4B22600124910 /* ScoutingDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoutingDetailView.h; sourceTree = "<group>"; };
+		1E33E1181DD4B22600124910 /* ScoutingDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoutingDetailView.m; sourceTree = "<group>"; };
 		1E37B86C1DC8C0490048139D /* ATScouting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATScouting.h; sourceTree = "<group>"; };
 		1E37B86D1DC8C0490048139D /* ATScouting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATScouting.m; sourceTree = "<group>"; };
 		1E37B8711DC8CA890048139D /* SignInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInVC.h; sourceTree = "<group>"; };
 		1E37B8721DC8CA890048139D /* SignInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInVC.m; sourceTree = "<group>"; usesTabs = 0; };
+		1E3C7EF21DD4CF7B0055E716 /* ATScoutingTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATScoutingTeam.h; sourceTree = "<group>"; };
+		1E3C7EF31DD4CF7B0055E716 /* ATScoutingTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATScoutingTeam.m; sourceTree = "<group>"; };
 		1E447E661DD226BC0045E23D /* GSScoutingTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSScoutingTableVC.h; sourceTree = "<group>"; };
 		1E447E671DD226BC0045E23D /* GSScoutingTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSScoutingTableVC.m; sourceTree = "<group>"; };
 		1E447E691DD226F90045E23D /* FontInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontInspector.h; sourceTree = "<group>"; };
@@ -151,6 +164,8 @@
 		1E574C271DC78D0B00889A15 /* ATGSTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGSTeam.h; sourceTree = "<group>"; };
 		1E574C281DC78D0B00889A15 /* ATGSTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGSTeam.m; sourceTree = "<group>"; };
 		1E574C2A1DC7946A00889A15 /* construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = construction.png; sourceTree = "<group>"; };
+		1EC275011DD3CE0C00355915 /* ScoutingTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoutingTableVC.h; sourceTree = "<group>"; };
+		1EC275021DD3CE0C00355915 /* ScoutingTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoutingTableVC.m; sourceTree = "<group>"; };
 		1ECC67D81DCA396200868393 /* raptorseye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raptorseye.png; sourceTree = "<group>"; };
 		1ECC67DA1DCA39B700868393 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		1ED13A471DD272960031E85C /* GSScoutingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSScoutingDetailVC.h; sourceTree = "<group>"; };
@@ -308,6 +323,14 @@
 		1E37B8691DC8C0260048139D /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				1EC275011DD3CE0C00355915 /* ScoutingTableVC.h */,
+				1EC275021DD3CE0C00355915 /* ScoutingTableVC.m */,
+				1E33E1141DD4B21A00124910 /* ScoutingMatchView.h */,
+				1E33E1151DD4B21A00124910 /* ScoutingMatchView.m */,
+				1E33E1171DD4B22600124910 /* ScoutingDetailView.h */,
+				1E33E1181DD4B22600124910 /* ScoutingDetailView.m */,
+				1E33E1111DD4B1DE00124910 /* ScoutingCell.h */,
+				1E33E1121DD4B1DE00124910 /* ScoutingCell.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -328,6 +351,8 @@
 				1E37B86D1DC8C0490048139D /* ATScouting.m */,
 				1E51D1401DCD485F00E0A79C /* ATMatch.h */,
 				1E51D1411DCD485F00E0A79C /* ATMatch.m */,
+				1E3C7EF21DD4CF7B0055E716 /* ATScoutingTeam.h */,
+				1E3C7EF31DD4CF7B0055E716 /* ATScoutingTeam.m */,
 			);
 			name = "Back End";
 			sourceTree = "<group>";
@@ -602,7 +627,7 @@
 		1EE4D38C1DC15AE700943921 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Apollo Technology";
 				TargetAttributes = {
 					1EE4D3931DC15AE700943921 = {
@@ -687,6 +712,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EE4D3DB1DC15B5F00943921 /* ATFRCTeam.m in Sources */,
+				1E33E1131DD4B1DE00124910 /* ScoutingCell.m in Sources */,
+				1E3C7EF41DD4CF7B0055E716 /* ATScoutingTeam.m in Sources */,
 				1ED13A491DD272960031E85C /* GSScoutingDetailVC.m in Sources */,
 				1EE4D3FC1DC15C2500943921 /* RankingsTableViewController.m in Sources */,
 				1EE4D3E11DC15B5F00943921 /* ATFRCRankings.m in Sources */,
@@ -718,9 +745,12 @@
 				1E16AA4C1DC92CEA0013B09D /* HomeVC.m in Sources */,
 				1E51D1421DCD485F00E0A79C /* ATMatch.m in Sources */,
 				1EE4D3DA1DC15B5F00943921 /* ATFRC.m in Sources */,
+				1E33E1191DD4B22600124910 /* ScoutingDetailView.m in Sources */,
 				1EE4D3FB1DC15C2500943921 /* FavoritesTableViewController.m in Sources */,
 				1EE4D3991DC15AE700943921 /* main.m in Sources */,
+				1EC275031DD3CE0C00355915 /* ScoutingTableVC.m in Sources */,
 				1EE4D3F51DC15C2500943921 /* DatabaseViewController.m in Sources */,
+				1E33E1161DD4B21A00124910 /* ScoutingMatchView.m in Sources */,
 				1E136B9D1DC8DA55005C8EA0 /* ATGradients.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,6 +824,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -842,6 +873,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -870,6 +902,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3XHW8FDBT3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -889,6 +922,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3XHW8FDBT3;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

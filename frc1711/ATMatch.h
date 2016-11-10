@@ -7,10 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ATScoutingTeam.h"
 
 @interface ATMatch : NSObject
 
-@property NSString *matchId;
-//@property
+@property NSString *key;
+@property int number;
+
+@property ATScoutingTeam *blueTeam1;
+@property ATScoutingTeam *blueTeam2;
+@property ATScoutingTeam *blueTeam3;
+@property ATScoutingTeam *redTeam1;
+@property ATScoutingTeam *redTeam2;
+@property ATScoutingTeam *redTeam3;
 
 @end

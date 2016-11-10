@@ -37,6 +37,7 @@
 +(void)eventForKey:(NSString *)eventKey completion:(void (^)(ATFRCEvent *event,BOOL succeeded))completionHandler;
 +(void)teamsAtEvent:(NSString *)eventKey completion:(void (^)(NSArray *teams,BOOL succeeded))completionHandler;
 +(void)matchesAtEvent:(NSString *)eventKey completion:(void (^)(NSArray *,BOOL succeeded))completionHandler;
++(void)qualifyingMatchesAtEvent:(NSString *)eventKey completion:(void (^)(NSArray *,BOOL succeeded))completionHandler;
 +(void)rankingsForEvent:(NSString *)eventKey completion:(void (^)(NSArray *rankings,BOOL succeeded))completionHandler;
 +(void)awardsForEvent:(NSString *)eventKey completion:(void (^)(NSArray *awards,BOOL succeeded))completionHandler;
 

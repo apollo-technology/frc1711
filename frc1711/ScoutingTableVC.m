@@ -1,58 +1,36 @@
 //
-//  GSScoutingTableVC.m
+//  ScoutingTableVC.m
 //  frc1711
 //
-//  Created by Elijah Cobb on 11/8/16. WHOA hi buddy!
+//  Created by Elijah Cobb on 11/9/16.
 //  Copyright © 2016 Apollo Technology. All rights reserved.
 //
 
-#import "GSScoutingTableVC.h"
-#import "ATGScouting.h"
+#import "ScoutingTableVC.h"
 #import "IonIcons.h"
 #import "ATColors.h"
-#import "GSScoutingCell.h"
-#import "GSScoutingDetailVC.h"
+#import "ScoutingCell.h"
+#import "ATScouting.h"
+#import "ScoutingMatchView.h"
 
-@interface GSScoutingTableVC (){
+@interface ScoutingTableVC (){
 	IBOutlet UIBarButtonItem *resetButton;
-	IBOutlet UIBarButtonItem *exportButton;
-	
 	UITextField *keyField;
-	
 	UIRefreshControl *refreshControl;
 }
 
 @end
 
-@implementation GSScoutingTableVC
+@implementation ScoutingTableVC
 
 - (void)handleRefresh:(id)sender{
 	// do your refresh here...
-	[ATGScouting getTeams:^(NSError *error, BOOL succeeded) {
-		[self.tableView reloadData];
-		[refreshControl endRefreshing];
-	}];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-	
-	[ATGScouting getTeams:^(NSError *error, BOOL succeeded) {
-		[self.tableView reloadData];
-	}];
-	
-	refreshControl = [[UIRefreshControl alloc] init];
-	refreshControl.tintColor = [ATColors raptorGreen];
-	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-	[self.tableView addSubview:refreshControl];
-	
-	resetButton.image = [IonIcons imageWithIcon:ioniostrashoutline color:[ATColors raptorGreen]];
-	exportButton.image = [IonIcons imageWithIcon:ioniosflaskoutline color:[ATColors raptorGreen]];
+	[self.tableView reloadData];
+	[refreshControl endRefreshing];
 }
 
 -(void)resetTheDangDB{
-	[ATGScouting resetDataBaseForEvent:keyField.text block:^(NSError *error, BOOL succeeded) {
+	[ATScouting setDatabaseForEvent:keyField.text block:^(NSError *error, BOOL succeeded) {
 		if (!succeeded) {
 			NSString *errorMessage;
 			if (error) {
@@ -113,6 +91,19 @@
 	[self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+	
+	
+	refreshControl = [[UIRefreshControl alloc] init];
+	refreshControl.tintColor = [ATColors raptorGreen];
+	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+	[self.tableView addSubview:refreshControl];
+	
+	resetButton.image = [IonIcons imageWithIcon:ioniostrashoutline color:[ATColors raptorGreen]];
+	
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -125,62 +116,52 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[ATGScouting data] teams] count];
+    return [[[ATScouting data] matches] count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GSScoutingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    ScoutingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
-	ATGSTeam *team = [[[ATGScouting data] teams] objectAtIndex:indexPath.row];
-	cell.teamNumberLabel.text = [NSString stringWithFormat:@"%i",team.number];
-	cell.teamNameLabel.text = team.name;
+	cell.matchNumber.text = [NSString stringWithFormat:@"Match: %i",];
     return cell;
 }
 
 
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Deleting\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
-		UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-		spinner.center = CGPointMake(130.5, 80);
-		spinner.color = [UIColor grayColor];
-		[spinner startAnimating];
-		[alert.view addSubview:spinner];
-		[self presentViewController:alert animated:YES completion:^{
-			ATGSTeam *team = [[[ATGScouting data] teams] objectAtIndex:indexPath.row];
-			[team destroy:^(NSError *error, BOOL succeeded) {
-				if (!succeeded) {
-					[self dismissViewControllerAnimated:YES completion:^{
-						NSString *errorReason;
-						if (error) {
-							errorReason = error.localizedDescription;
-						}
-						UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Deleting Team" message:errorReason preferredStyle:UIAlertControllerStyleAlert];
-						[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-						[self presentViewController:alertController animated:YES completion:nil];
-					}];
-				} else {
-					[self dismissViewControllerAnimated:YES completion:^{
-						[tableView reloadData];
-					}];
-				}
-			}];
-		}];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+*/
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	GSScoutingDetailVC *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailVC"];
-	detailVC.team = [[[ATGScouting data] teams] objectAtIndex:indexPath.row];
-	[self.navigationController pushViewController:detailVC animated:YES];
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
 }
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
 
 /*
 #pragma mark - Navigation

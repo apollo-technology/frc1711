@@ -388,20 +388,46 @@
                 ATFRCMatch *newMatch = [ATFRCMatch new];
                 newMatch.key = matchDictionary[@"key"];
                 newMatch.competitionLevel = matchDictionary[@"comp_level"];
-                newMatch.setNumber = matchDictionary[@"set_number"];
+                newMatch.setNumber = matchDictionary[@"match_number"];
                 newMatch.blueTeams = matchDictionary[@"alliances"][@"blue"][@"teams"];
                 newMatch.redTeams = matchDictionary[@"alliances"][@"red"][@"teams"];
                 newMatch.eventKey = matchDictionary[@"key"];
                 newMatch.videos = matchDictionary[@"videos"];
                 newMatch.time = matchDictionary[@"time"];
                 newMatch.timeReadable = matchDictionary[@"time_string"];
-                [matches addObject:newMatch];
+				[matches addObject:newMatch];
             }
             completionHandler(matches,YES);
         } else {
             completionHandler(nil,NO);
         }
     }];
+}
+
++(void)qualifyingMatchesAtEvent:(NSString *)eventKey completion:(void (^)(NSArray *, BOOL))completionHandler{
+	[ATFRC getArrayForURL:[NSString stringWithFormat:@"/api/v2/event/%@/matches",eventKey] completion:^(NSArray *array, BOOL succeeded) {
+		if (succeeded) {
+			NSMutableArray *matches = [NSMutableArray new];
+			for (NSDictionary *matchDictionary in array) {
+				ATFRCMatch *newMatch = [ATFRCMatch new];
+				newMatch.key = matchDictionary[@"key"];
+				newMatch.competitionLevel = matchDictionary[@"comp_level"];
+				newMatch.setNumber = matchDictionary[@"match_number"];
+				newMatch.blueTeams = matchDictionary[@"alliances"][@"blue"][@"teams"];
+				newMatch.redTeams = matchDictionary[@"alliances"][@"red"][@"teams"];
+				newMatch.eventKey = matchDictionary[@"key"];
+				newMatch.videos = matchDictionary[@"videos"];
+				newMatch.time = matchDictionary[@"time"];
+				newMatch.timeReadable = matchDictionary[@"time_string"];
+				if ([matchDictionary[@"comp_level"] isEqualToString:@"qm"]) {
+					[matches addObject:newMatch];
+				}
+			}
+			completionHandler(matches,YES);
+		} else {
+			completionHandler(nil,NO);
+		}
+	}];
 }
 
 +(void)rankingsForEvent:(NSString *)eventKey completion:(void (^)(NSArray *rankings,BOOL succeeded))completionHandler{

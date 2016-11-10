@@ -18,7 +18,12 @@ typedef NS_ENUM(NSInteger, ATAlliance) {
 	RedAlliance,
 };
 
+@property NSMutableArray *matches;
+
++(instancetype)data;
+
 +(void)setDatabaseForEvent:(NSString *)eventCode block:oblock;
++(void)getData:oblock;
 +(void)setResultsForTeam:(NSString *)team forAlliance:(ATAlliance)alliance forMatch:(NSString *)match block:oblock;
 
 @end
