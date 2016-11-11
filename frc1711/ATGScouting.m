@@ -42,6 +42,7 @@
                 /*
                  add all information from PFObjects stored in the server. Make sure to add them as @properties in "ATGSTeam.h" file.
                  */
+                team.foo = object[@"foo"];
                 
                 [teams addObject:team];
             }
@@ -83,6 +84,7 @@
                                 PFObject *object = [PFObject objectWithClassName:[NSString stringWithFormat:@"gS%@",[self teamId]]];
                                 object[@"name"] = team.nickname;
 								object[@"number"] = team.number;
+                                
                                 
                                 
                                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

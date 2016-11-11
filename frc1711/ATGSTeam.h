@@ -12,6 +12,8 @@
 
 @property NSString *name;
 @property int number;
+
+@property NSString *foo;
 /*
  Add all properties here
  */

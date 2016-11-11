@@ -23,6 +23,8 @@
         } else {
             object[@"name"] = self.name;
 			object[@"number"] = @(self.number);
+            
+            object[@"foo"] = self.foo;
             /*
              set all of these properties like this
              */
