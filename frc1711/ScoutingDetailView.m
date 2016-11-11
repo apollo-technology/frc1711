@@ -15,6 +15,8 @@
 	IBOutlet UILabel *matchLabel;
 	IBOutlet UILabel *allianceLabel;
 	IBOutlet UIBarButtonItem *uploadButton;
+	
+	IBOutlet UITextField *textField;
 }
 
 @end
@@ -35,13 +37,48 @@
 		allianceLabel.text = @"Alliance: Red";
 	}
 	
+	textField.text = team.foo;
+	
 	uploadButton.image = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors raptorGreen]];
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Team: %i",team.number];
 }
 
+-(IBAction)hideKeyboard:(id)sender{
+	[self.view endEditing:YES];
+}
+
 -(IBAction)uploadButton:(id)sender{
 	
+	team.foo = textField.text;
+	
+	
+	
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Updating\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
+	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	spinner.center = CGPointMake(130.5, 80);
+	spinner.color = [UIColor grayColor];
+	[spinner startAnimating];
+	[alert.view addSubview:spinner];
+	[self presentViewController:alert animated:YES completion:^{
+		[team update:^(NSError *error, BOOL succeeded) {
+			if (succeeded) {
+				[self dismissViewControllerAnimated:YES completion:^{
+					[self.navigationController popViewControllerAnimated:YES];
+				}];
+			} else {
+				NSString *errorMessage;
+				if (error) {
+					errorMessage = error.localizedDescription;
+				}
+				[self dismissViewControllerAnimated:YES completion:^{
+					UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Updating" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+					[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+					[self presentViewController:alertController animated:YES completion:nil];
+				}];
+			}
+		}];
+	}];
 }
 
 - (void)didReceiveMemoryWarning {

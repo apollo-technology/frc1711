@@ -10,12 +10,17 @@
 
 @interface ATScoutingTeam : NSObject
 
-typedef NS_ENUM(NSInteger, ATAlliance) {
-	BlueAlliance,
-	RedAlliance,
-};
+//variables
+@property NSString *foo;
 
+//recourse
 @property int number;
 @property int alliance;
+@property NSString *key;
+@property NSString *keyIndex;
+typedef NS_ENUM(NSInteger, ATAlliance) {BlueAlliance,RedAlliance,};
+
+//method
+-(void)update:(void (^)(NSError *error, BOOL succeeded))block;
 
 @end

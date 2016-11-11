@@ -27,12 +27,15 @@
 	return [[PFUser currentUser] objectForKey:@"team"];
 }
 
-+(ATScoutingTeam *)scoutingTeamForObject:(NSDictionary *)object alliacnce:(int)alliance{
++(ATScoutingTeam *)scoutingTeamForObject:(NSDictionary *)object alliacnce:(int)alliance index:(NSString *)index key:(NSString *)key{
 	ATScoutingTeam *team = [ATScoutingTeam new];
 	
 	team.number = [object[@"number"] intValue];
+	team.key = key;
+	team.keyIndex = index;
 	team.alliance = alliance;
 	
+	team.foo = object[@"foo"];
 	
 	return team;
 }
@@ -47,12 +50,12 @@
 			for (PFObject *object in objects) {
 				ATMatch *match = [ATMatch new];
 				
-				match.redTeam1 = [self scoutingTeamForObject:object[@"redTeam1"] alliacnce:RedAlliance];
-				match.redTeam2 = [self scoutingTeamForObject:object[@"redTeam2"] alliacnce:RedAlliance];
-				match.redTeam3 = [self scoutingTeamForObject:object[@"redTeam3"] alliacnce:RedAlliance];
-				match.blueTeam1 = [self scoutingTeamForObject:object[@"blueTeam1"] alliacnce:BlueAlliance];
-				match.blueTeam2 = [self scoutingTeamForObject:object[@"blueTeam2"] alliacnce:BlueAlliance];
-				match.blueTeam3 = [self scoutingTeamForObject:object[@"blueTeam3"] alliacnce:BlueAlliance];
+				match.redTeam1 = [self scoutingTeamForObject:object[@"redTeam1"] alliacnce:RedAlliance index:@"redTeam1" key:object[@"key"]];
+				match.redTeam2 = [self scoutingTeamForObject:object[@"redTeam2"] alliacnce:RedAlliance index:@"redTeam2" key:object[@"key"]];
+				match.redTeam3 = [self scoutingTeamForObject:object[@"redTeam3"] alliacnce:RedAlliance index:@"redTeam3" key:object[@"key"]];
+				match.blueTeam1 = [self scoutingTeamForObject:object[@"blueTeam1"] alliacnce:BlueAlliance index:@"blueTeam1" key:object[@"key"]];
+				match.blueTeam2 = [self scoutingTeamForObject:object[@"blueTeam2"] alliacnce:BlueAlliance index:@"blueTeam2" key:object[@"key"]];
+				match.blueTeam3 = [self scoutingTeamForObject:object[@"blueTeam3"] alliacnce:BlueAlliance index:@"blueTeam3" key:object[@"key"]];
 				match.number = [object[@"number"] intValue];
 				match.key = object[@"key"];
 				
