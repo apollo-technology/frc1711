@@ -123,7 +123,8 @@
                                         [alertController addAction:[UIAlertAction actionWithTitle:@"Next" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                             user[@"firstName"] = firstNameField.text;
                                             user[@"lastName"] = lastNameField.text;
-                                            user[@"team"] = teamField.text;
+                                            user[@"team"] = @"nil";
+                                            
                                             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                                 if (error) {
                                                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
@@ -131,7 +132,12 @@
                                                     [self presentViewController:alertController animated:YES completion:nil];
                                                     [self showStuff:nil];
                                                 } else {
-                                                    [self segueToInitial];
+                                                    PFObject *object = [PFObject objectWithClassName:@"userInitiation"];
+                                                    object[@"user"] = user;
+                                                    object[@"team"] = teamField.text;
+                                                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                                        [self segueToInitial];
+                                                    }];
                                                 }
                                             }];
                                         }]];

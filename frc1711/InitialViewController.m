@@ -10,6 +10,8 @@
 #import <Parse/Parse.h>
 #import "AppConfigs.h"
 
+#define ifNotError if (error) {if (block) {NSLog(@"%@",error);block(error,NO);}} else
+
 @interface InitialViewController (){
 	IBOutlet UIActivityIndicatorView *loaderView;
 	IBOutlet UIImageView *iconImageView;
@@ -71,34 +73,52 @@
 	
 	[self performSelector:@selector(animateEverything) withObject:nil afterDelay:0.25];
 	
-	PFUser *user = [PFUser currentUser];
+	__block PFUser *user = [PFUser currentUser];
 	if (user) {
-		[PFConfig getConfigInBackgroundWithBlock:^(PFConfig * _Nullable config, NSError * _Nullable error) {
-			
-			[[AppConfigs configs] setAllowBoot:[config[@"allowBoot"] boolValue]];
-			[[AppConfigs configs] setAllowedVersions:config[@"allowedVersions"]];
-			[[AppConfigs configs] setHomeWelcome:config[@"home_welcome"]];
-			[[AppConfigs configs] setHomeMessage:config[@"home_message"]];
-			[[AppConfigs configs] setConstructionMessage:config[@"other_constructionMessage"]];
-			[[AppConfigs configs] setRaptorEmail:config[@"raptorEmail"]];
-			[[AppConfigs configs] setApolloEmail:config[@"apolloEmail"]];
-			[[AppConfigs configs] setRaptorWebsite:config[@"raptorWebsite"]];
-			
-			NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-			NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-			NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
-			[[AppConfigs configs] setAppBuild:[NSString stringWithFormat:@"%@(%@)",version,build]];
-			
-			NSLog(@"%@",[[AppConfigs configs] appBuild]);
-			
-			if ([[[AppConfigs configs] allowedVersions] containsObject:[[AppConfigs configs] appBuild]]) {
-				if ([[AppConfigs configs] allowBoot]) {
-					[self segueToHome];
-				} else {
-					[self showErrorWithMessage:@"Check back later, someone let a raptor out."];
-				}
+		[[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+			if (error) {
+				[self showErrorWithMessage:error.localizedDescription];
 			} else {
-				[self showErrorWithMessage:@"Please update the app, we probably fixed a nasty bug."];
+				if ([user[@"team"] isEqualToString:@"nil"]) {
+					UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Well this is awkward." message:@"So, for security, we require a team member to initiate you into the app. This is so other teams can't use or change your scouting data. Ask anyone on your team to accept you and tap \"Retry\" below." preferredStyle:UIAlertControllerStyleAlert];
+					[alertController addAction:[UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+						[self segueToSelf];
+					}]];
+					[alertController addAction:[UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+						[PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+							user = nil;
+							[self segueToSelf];
+						}];
+					}]];
+					[self presentViewController:alertController animated:YES completion:nil];
+				} else {
+					[PFConfig getConfigInBackgroundWithBlock:^(PFConfig * _Nullable config, NSError * _Nullable error) {
+						
+						[[AppConfigs configs] setAllowBoot:[config[@"allowBoot"] boolValue]];
+						[[AppConfigs configs] setAllowedVersions:config[@"allowedVersions"]];
+						[[AppConfigs configs] setHomeWelcome:config[@"home_welcome"]];
+						[[AppConfigs configs] setHomeMessage:config[@"home_message"]];
+						[[AppConfigs configs] setConstructionMessage:config[@"other_constructionMessage"]];
+						[[AppConfigs configs] setRaptorEmail:config[@"raptorEmail"]];
+						[[AppConfigs configs] setApolloEmail:config[@"apolloEmail"]];
+						[[AppConfigs configs] setRaptorWebsite:config[@"raptorWebsite"]];
+						
+						NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+						NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+						NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
+						[[AppConfigs configs] setAppBuild:[NSString stringWithFormat:@"%@(%@)",version,build]];
+						
+						if ([[[AppConfigs configs] allowedVersions] containsObject:[[AppConfigs configs] appBuild]]) {
+							if ([[AppConfigs configs] allowBoot]) {
+								[self segueToHome];
+							} else {
+								[self showErrorWithMessage:@"Check back later, someone let a raptor out."];
+							}
+						} else {
+							[self showErrorWithMessage:@"Please update the app, we probably fixed a nasty bug."];
+						}
+					}];
+				}
 			}
 		}];
 	} else {
@@ -118,6 +138,10 @@
 	}
 }
 
+-(void)segueToSelf{
+	UIViewController *signInVC = [self.storyboard instantiateInitialViewController];
+	[self showController:signInVC];
+}
 -(void)segutToSignIn{
 	UIViewController *signInVC = [self.storyboard instantiateViewControllerWithIdentifier:@"signIn"];
 	[self showController:signInVC];

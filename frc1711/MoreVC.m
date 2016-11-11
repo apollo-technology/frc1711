@@ -15,6 +15,7 @@
 	IBOutlet UITableViewCell *emailCell;
 	IBOutlet UITableViewCell *websiteCell;
 	IBOutlet UITableViewCell *bugCell;
+	IBOutlet UITableViewCell *usersCell;
 	MFMailComposeViewController *composerVC;
 }
 
@@ -68,6 +69,9 @@
 		[self presentViewController:browserVC animated:YES completion:^{
 			[tableView deselectRowAtIndexPath:indexPath animated:YES];
 		}];
+	} else if (selectedCell == usersCell) {
+		UIViewController *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"teamInitiation"];
+		[self.navigationController pushViewController:newView animated:YES];
 	}
 }
 
