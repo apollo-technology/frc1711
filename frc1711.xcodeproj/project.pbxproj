@@ -51,6 +51,7 @@
 		1ECC67D91DCA396200868393 /* raptorseye.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECC67D81DCA396200868393 /* raptorseye.png */; };
 		1ECC67DB1DCA39B700868393 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECC67DA1DCA39B700868393 /* circle.png */; };
 		1ED13A491DD272960031E85C /* GSScoutingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED13A481DD272960031E85C /* GSScoutingDetailVC.m */; };
+		1EE2C75D1DDA31D7002BE087 /* toDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1EE2C75C1DDA31D7002BE087 /* toDo.txt */; };
 		1EE4D3991DC15AE700943921 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4D3981DC15AE700943921 /* main.m */; };
 		1EE4D39C1DC15AE700943921 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4D39B1DC15AE700943921 /* AppDelegate.m */; };
 		1EE4D3A21DC15AE700943921 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4D3A01DC15AE700943921 /* Main.storyboard */; };
@@ -174,6 +175,7 @@
 		1ECC67DA1DCA39B700868393 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		1ED13A471DD272960031E85C /* GSScoutingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSScoutingDetailVC.h; sourceTree = "<group>"; };
 		1ED13A481DD272960031E85C /* GSScoutingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSScoutingDetailVC.m; sourceTree = "<group>"; };
+		1EE2C75C1DDA31D7002BE087 /* toDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = toDo.txt; sourceTree = "<group>"; };
 		1EE4D3941DC15AE700943921 /* frc1711.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frc1711.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4D3981DC15AE700943921 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1EE4D39A1DC15AE700943921 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 			children = (
 				1EE4D39A1DC15AE700943921 /* AppDelegate.h */,
 				1EE4D39B1DC15AE700943921 /* AppDelegate.m */,
+				1EE2C75C1DDA31D7002BE087 /* toDo.txt */,
 				1E37B86A1DC8C02B0048139D /* Scouting */,
 				1E574C211DC78BE600889A15 /* Ground Scouting */,
 				1EE4D3E21DC15B6200943921 /* ATFRC */,
@@ -689,6 +692,7 @@
 				1EE4D40A1DC15CC000943921 /* Orbitron-Medium.ttf in Resources */,
 				1EE4D3A21DC15AE700943921 /* Main.storyboard in Resources */,
 				1EE4D4091DC15CC000943921 /* Orbitron-Bold.ttf in Resources */,
+				1EE2C75D1DDA31D7002BE087 /* toDo.txt in Resources */,
 				1E447E711DD226F90045E23D /* ionicons.bundle in Resources */,
 				1EE4D40D1DC15D0000943921 /* Assets.xcassets in Resources */,
 				1E574C2B1DC7946A00889A15 /* construction.png in Resources */,

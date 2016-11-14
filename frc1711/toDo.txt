@@ -1,0 +1,1 @@
+highlight team whenever it is visible
