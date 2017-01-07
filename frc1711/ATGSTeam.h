@@ -13,7 +13,15 @@
 @property NSString *name;
 @property int number;
 
-@property NSString *foo;
+@property BOOL canShootHighGoal;
+@property BOOL canShootLowGoal;
+@property BOOL canDeliverGear;
+@property int ballCarryingCapacity;
+@property BOOL canScale;
+@property BOOL autonCanHighGoal;
+@property BOOL autonCanLowGoal;
+@property BOOL autonCanCrossBase;
+
 /*
  Add all properties here
  */

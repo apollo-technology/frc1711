@@ -37,8 +37,7 @@
 		allianceLabel.text = @"Alliance: Red";
 	}
 	
-	textField.text = team.foo;
-	
+
 	uploadButton.image = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors raptorGreen]];
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Team: %i",team.number];
@@ -49,9 +48,6 @@
 }
 
 -(IBAction)uploadButton:(id)sender{
-	
-	team.foo = textField.text;
-	
 	
 	
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Updating\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
