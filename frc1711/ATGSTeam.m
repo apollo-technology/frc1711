@@ -24,7 +24,15 @@
             object[@"name"] = self.name;
 			object[@"number"] = @(self.number);
             
-            object[@"foo"] = self.foo;
+            object[@"canShootHighGoal"] = @(self.canShootHighGoal);
+            object[@"canShootLowGoal"] = @(self.canShootLowGoal);
+            object[@"canDeliverGear"] = @(self.canDeliverGear);
+            object[@"ballCarryingCapacity"] = @(self.ballCarryingCapacity);
+            object[@"canScale"] = @(self.canScale);
+            object[@"autonCanHighGoal"] = @(self.autonCanHighGoal);
+            object[@"autonCanlowGoal"] = @(self.autonCanLowGoal);
+            object[@"autonCanCrossBase"] = @(self.autonCanCrossBase);
+            
             /*
              set all of these properties like this
              */

@@ -57,6 +57,7 @@
 	} else if (team.alliance != RedAlliance) {
 		allianceLabel.text = @"Alliance: Red";
 	}
+<<<<<<< HEAD
     
     autonLowGoalStepper.value = team.lowGoalAutonCount;
     autonHighGoalStepper.value = team.highGoalAutonCount;
@@ -78,6 +79,10 @@
     [[UIStepper appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setTintColor:[ATColors raptorGreen]];
     [[UISwitch appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setOnTintColor:[ATColors raptorGreen]];
 	
+=======
+	
+
+>>>>>>> origin/master
 	uploadButton.image = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors raptorGreen]];
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Team: %i",team.number];
@@ -89,6 +94,7 @@
 
 -(IBAction)uploadButton:(id)sender{
 	
+<<<<<<< HEAD
     team.lowGoalAutonCount = (int)autonLowGoalStepper.value;
     team.highGoalAutonCount = (int)autonHighGoalStepper.value;
     team.lowGoalTeleopCount = (int)teleopLowGoalStepper.value;
@@ -100,6 +106,8 @@
     team.didCrossBaseline = crossBaseLineSwitch.isOn;
     team.didScale = scaleRopeSwitch.isOn;
     
+=======
+>>>>>>> origin/master
 	
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Updating\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

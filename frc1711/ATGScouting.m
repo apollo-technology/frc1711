@@ -42,7 +42,15 @@
                 /*
                  add all information from PFObjects stored in the server. Make sure to add them as @properties in "ATGSTeam.h" file.
                  */
-                team.foo = object[@"foo"];
+                
+                team.canShootHighGoal = [object[@"canSHootHighGoal"] boolValue];
+                team.canShootLowGoal = [object[@"canSHootLowGoal"] boolValue];
+                team.canDeliverGear = [object[@"canDeliverGear"] boolValue];
+                team.ballCarryingCapacity = [object[@"ballCarryingCapacity"] intValue];
+                team.canScale = [object[@"canScale"] boolValue];
+                team.autonCanHighGoal = [object[@"autonCanHighGoal"] boolValue];
+                team.autonCanLowGoal = [object[@"autonCanLowGoal"] boolValue];
+                team.autonCanCrossBase = [object[@"autonCanCrossBase"] boolValue];
                 
                 [teams addObject:team];
             }
