@@ -11,7 +11,15 @@
 @interface ATScoutingTeam : NSObject
 
 //variables
-@property NSString *foo;
+@property int scoreTeleOp;
+@property int highGoalTeleOpCount;
+@property int lowGoalTeleopCount;
+@property int highGoalAutonCount;
+@property int lowGoalAutonCount;
+@property BOOL didCrossBaseline;
+@property BOOL didScale;
+@property int autonScore;
+
 
 //recourse
 @property int number;

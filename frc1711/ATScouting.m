@@ -35,7 +35,14 @@
 	team.keyIndex = index;
 	team.alliance = alliance;
 	
-	team.foo = object[@"foo"];
+    team.scoreTeleOp = [object[scoreTeleOpKey] intValue];
+    team.highGoalTeleOpCount = [object[highGoalTeleOpCountKey] intValue];
+    team.lowGoalTeleopCount = [object[lowGoalTeleopCountKey] intValue];
+    team.highGoalAutonCount = [object[highGoalAutonCountKey] intValue];
+    team.lowGoalAutonCount = [object[lowGoalAutonCountKey] intValue];
+    team.didCrossBaseline = [object[didCrossBaselineKey] boolValue];
+    team.didScale = [object[didScaleKey] boolValue];
+    team.autonScore = [object[autonScoreKey] intValue];
 	
 	return team;
 }

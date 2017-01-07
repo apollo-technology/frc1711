@@ -11,6 +11,15 @@
 #import "ATScoutingTeam.h"
 #import "ATMatch.h"
 
+#define scoreTeleOpKey @"scoreTeleOp"
+#define highGoalTeleOpCountKey @"highGoalTeleOpCount"
+#define lowGoalTeleopCountKey @"lowGoalTeleopCount"
+#define highGoalAutonCountKey @"highGoalAutonCount"
+#define lowGoalAutonCountKey @"lowGoalAutonCount"
+#define didCrossBaselineKey @"didCrossBaseline"
+#define didScaleKey @"didScale"
+#define autonScoreKey @"autonScore"
+
 #define oblock (void (^)(NSError *error, BOOL succeeded))block
 
 @interface ATScouting : NSObject

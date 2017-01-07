@@ -123,7 +123,7 @@
                                         [alertController addAction:[UIAlertAction actionWithTitle:@"Next" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                             user[@"firstName"] = firstNameField.text;
                                             user[@"lastName"] = lastNameField.text;
-                                            user[@"team"] = @"nil";
+                                            user[@"team"] = teamField.text;
                                             
                                             [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                                 if (error) {
@@ -132,12 +132,7 @@
                                                     [self presentViewController:alertController animated:YES completion:nil];
                                                     [self showStuff:nil];
                                                 } else {
-                                                    PFObject *object = [PFObject objectWithClassName:@"userInitiation"];
-                                                    object[@"user"] = user;
-                                                    object[@"team"] = teamField.text;
-                                                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                                                        [self segueToInitial];
-                                                    }];
+                                                    [self segueToInitial];
                                                 }
                                             }];
                                         }]];

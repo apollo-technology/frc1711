@@ -45,7 +45,6 @@
 		1E574C261DC78C1B00889A15 /* ATGScouting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C251DC78C1B00889A15 /* ATGScouting.m */; };
 		1E574C291DC78D0B00889A15 /* ATGSTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E574C281DC78D0B00889A15 /* ATGSTeam.m */; };
 		1E574C2B1DC7946A00889A15 /* construction.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E574C2A1DC7946A00889A15 /* construction.png */; };
-		1E60B3CA1DD60099001147A6 /* TeamInitiationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E60B3C91DD60099001147A6 /* TeamInitiationVC.m */; };
 		1E60B3CC1DD6028C001147A6 /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E60B3CB1DD6028C001147A6 /* MoreVC.m */; };
 		1EC275031DD3CE0C00355915 /* ScoutingTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC275021DD3CE0C00355915 /* ScoutingTableVC.m */; };
 		1ECC67D91DCA396200868393 /* raptorseye.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ECC67D81DCA396200868393 /* raptorseye.png */; };
@@ -166,9 +165,8 @@
 		1E574C271DC78D0B00889A15 /* ATGSTeam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGSTeam.h; sourceTree = "<group>"; };
 		1E574C281DC78D0B00889A15 /* ATGSTeam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGSTeam.m; sourceTree = "<group>"; };
 		1E574C2A1DC7946A00889A15 /* construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = construction.png; sourceTree = "<group>"; };
-		1E60B3C81DD60099001147A6 /* TeamInitiationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamInitiationVC.h; sourceTree = "<group>"; };
-		1E60B3C91DD60099001147A6 /* TeamInitiationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInitiationVC.m; sourceTree = "<group>"; };
 		1E60B3CB1DD6028C001147A6 /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
+		1E6DE5E51DF220CA002E2E98 /* frc1711.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = frc1711.entitlements; sourceTree = "<group>"; };
 		1EC275011DD3CE0C00355915 /* ScoutingTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoutingTableVC.h; sourceTree = "<group>"; };
 		1EC275021DD3CE0C00355915 /* ScoutingTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoutingTableVC.m; sourceTree = "<group>"; };
 		1ECC67D81DCA396200868393 /* raptorseye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = raptorseye.png; sourceTree = "<group>"; };
@@ -299,8 +297,6 @@
 				1E37B8721DC8CA890048139D /* SignInVC.m */,
 				1EE60DDE1DCA32200081040B /* MoreVC.h */,
 				1E60B3CB1DD6028C001147A6 /* MoreVC.m */,
-				1E60B3C81DD60099001147A6 /* TeamInitiationVC.h */,
-				1E60B3C91DD60099001147A6 /* TeamInitiationVC.m */,
 				1E16AA501DC934C50013B09D /* InConstructionVC.h */,
 				1E16AA511DC934C50013B09D /* InConstructionVC.m */,
 			);
@@ -428,6 +424,7 @@
 		1EE4D3961DC15AE700943921 /* frc1711 */ = {
 			isa = PBXGroup;
 			children = (
+				1E6DE5E51DF220CA002E2E98 /* frc1711.entitlements */,
 				1EE4D39A1DC15AE700943921 /* AppDelegate.h */,
 				1EE4D39B1DC15AE700943921 /* AppDelegate.m */,
 				1EE2C75C1DDA31D7002BE087 /* toDo.txt */,
@@ -642,6 +639,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3XHW8FDBT3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					1EE4D3AC1DC15AE800943921 = {
 						CreatedOnToolsVersion = 8.0;
@@ -721,7 +723,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EE4D3DB1DC15B5F00943921 /* ATFRCTeam.m in Sources */,
-				1E60B3CA1DD60099001147A6 /* TeamInitiationVC.m in Sources */,
 				1E33E1131DD4B1DE00124910 /* ScoutingCell.m in Sources */,
 				1E3C7EF41DD4CF7B0055E716 /* ATScoutingTeam.m in Sources */,
 				1ED13A491DD272960031E85C /* GSScoutingDetailVC.m in Sources */,
@@ -912,6 +913,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = frc1711/frc1711.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3XHW8FDBT3;
 				ENABLE_BITCODE = NO;
@@ -932,6 +934,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = frc1711/frc1711.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3XHW8FDBT3;
 				ENABLE_BITCODE = NO;

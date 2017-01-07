@@ -25,8 +25,15 @@
 			/*
 			 key
 			 */
-			[data setObject:self.foo forKey:@"foo"];
-			
+            [data setObject:@(self.scoreTeleOp) forKey:scoreTeleOpKey];
+            [data setObject:@(self.highGoalTeleOpCount) forKey:highGoalTeleOpCountKey];
+            [data setObject:@(self.lowGoalTeleopCount) forKey:lowGoalTeleopCountKey];
+            [data setObject:@(self.highGoalAutonCount) forKey:highGoalAutonCountKey];
+            [data setObject:@(self.lowGoalAutonCount) forKey:lowGoalAutonCountKey];
+            [data setObject:@(self.didCrossBaseline) forKey:didCrossBaselineKey];
+            [data setObject:@(self.didScale) forKey:didScaleKey];
+            [data setObject:@(self.autonScore) forKey:autonScoreKey];
+
 			
 			object[self.keyIndex] = data;
 			

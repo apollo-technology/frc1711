@@ -23,7 +23,7 @@
 +(UIColor *)magentaColor;
 +(UIColor *)orangeColor;
 +(UIColor *)purpleColor;
-+ (UIColor *)brownColor;
++(UIColor *)brownColor;
 +(UIColor *)licorice;
 +(UIColor *)lead;
 +(UIColor *)tungsten;

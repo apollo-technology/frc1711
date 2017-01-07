@@ -1,3 +1,1 @@
 highlight team whenever it is visible
-change the ground scouting page title to the competition that is selected
-change the scouting page title to the competition that is selected
