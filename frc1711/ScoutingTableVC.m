@@ -161,6 +161,7 @@
 	ScoutingMatchView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingMatchView"];
 	newView.match = [[[ATScouting data] matches] objectAtIndex:[indexPath row]];
 	[self.navigationController pushViewController:newView animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 /*
 // Override to support conditional editing of the table view.

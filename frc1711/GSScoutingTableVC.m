@@ -180,6 +180,7 @@
 	GSScoutingDetailVC *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailVC"];
 	detailVC.team = [[[ATGScouting data] teams] objectAtIndex:indexPath.row];
 	[self.navigationController pushViewController:detailVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*
