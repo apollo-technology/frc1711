@@ -15,8 +15,22 @@
 	IBOutlet UILabel *matchLabel;
 	IBOutlet UILabel *allianceLabel;
 	IBOutlet UIBarButtonItem *uploadButton;
-	
-	IBOutlet UITextField *textField;
+    
+    IBOutlet UIStepper *autonLowGoalStepper;
+    IBOutlet UILabel *autonLowGoalLabel;
+    IBOutlet UIStepper *autonHighGoalStepper;
+    IBOutlet UILabel *autonHighGoalLabel;
+    
+    IBOutlet UIStepper *teleopLowGoalStepper;
+    IBOutlet UILabel *teleopLowGoalLabel;
+    IBOutlet UIStepper *teleopHighGoalStepper;
+    IBOutlet UILabel *teleopHighGoalLabel;
+    
+    IBOutlet UITextField *autonFinalScoreField;
+    IBOutlet UITextField *teleopFinalScore;
+    
+    IBOutlet UISwitch *crossBaseLineSwitch;
+    IBOutlet UISwitch *scaleRopeSwitch;
 }
 
 @end
@@ -24,6 +38,13 @@
 @implementation ScoutingDetailView
 
 @synthesize match, team;
+
+-(IBAction)updateSteppers:(id)sender{
+    autonLowGoalLabel.text = [NSString stringWithFormat:@"%i Low Goals",(int)autonLowGoalStepper.value];
+    autonHighGoalLabel.text = [NSString stringWithFormat:@"%i High Goals",(int)autonHighGoalStepper.value];
+    teleopLowGoalLabel.text = [NSString stringWithFormat:@"%i Low Goals",(int)teleopLowGoalStepper.value];
+    teleopHighGoalLabel.text = [NSString stringWithFormat:@"%i High Goals",(int)teleopHighGoalStepper.value];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,8 +57,26 @@
 	} else if (team.alliance != RedAlliance) {
 		allianceLabel.text = @"Alliance: Red";
 	}
-	
-	textField.text = team.foo;
+    
+    autonLowGoalStepper.value = team.lowGoalAutonCount;
+    autonHighGoalStepper.value = team.highGoalAutonCount;
+    
+    teleopLowGoalStepper.value = team.lowGoalTeleopCount;
+    teleopHighGoalStepper.value = team.highGoalTeleOpCount;
+    
+    [crossBaseLineSwitch setOn:team.didCrossBaseline];
+    [scaleRopeSwitch setOn:team.didScale];
+    
+    [self updateSteppers:nil];
+    
+    autonFinalScoreField.text = [NSString stringWithFormat:@"%i",team.autonScore];
+    teleopFinalScore.text = [NSString stringWithFormat:@"%i",team.scoreTeleOp];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+    [self.tableView addGestureRecognizer:tap];
+    
+    [[UIStepper appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setTintColor:[ATColors raptorGreen]];
+    [[UISwitch appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setOnTintColor:[ATColors raptorGreen]];
 	
 	uploadButton.image = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors raptorGreen]];
 	
@@ -50,9 +89,17 @@
 
 -(IBAction)uploadButton:(id)sender{
 	
-	team.foo = textField.text;
-	
-	
+    team.lowGoalAutonCount = (int)autonLowGoalStepper.value;
+    team.highGoalAutonCount = (int)autonHighGoalStepper.value;
+    team.lowGoalTeleopCount = (int)teleopLowGoalStepper.value;
+    team.highGoalTeleOpCount = (int)teleopHighGoalStepper.value;
+    
+    team.autonScore = [autonFinalScoreField.text intValue];
+    team.scoreTeleOp = [teleopFinalScore.text intValue];
+    
+    team.didCrossBaseline = crossBaseLineSwitch.isOn;
+    team.didScale = scaleRopeSwitch.isOn;
+    
 	
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Updating\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
