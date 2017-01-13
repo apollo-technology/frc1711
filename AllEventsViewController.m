@@ -36,7 +36,6 @@
     
     NSInteger row = [events indexOfObject:closestObject];
     
-    //NSLog(@"%@",closestObject.shortName);
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];

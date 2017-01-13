@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="raptorslogonogear" translatesAutoresizingMaskIntoConstraints="NO" id="koA-ah-t9s">
+                                <rect key="frame" x="20" y="20" width="992" height="136"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="992" id="PKa-aG-lQ2"/>
+                                    <constraint firstAttribute="height" constant="136" id="qTN-vV-rZj"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="raptorseye" translatesAutoresizingMaskIntoConstraints="NO" id="KXb-ma-HqN">
+                                <rect key="frame" x="1727" y="20" width="173" height="136"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="173" id="YM3-sa-YAI"/>
+                                    <constraint firstAttribute="height" constant="136" id="djf-PE-gMT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KXb-ma-HqN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="147-3k-PXj"/>
+                            <constraint firstItem="koA-ah-t9s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="1Ff-L2-9rW"/>
+                            <constraint firstItem="koA-ah-t9s" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="XXi-5H-uKO"/>
+                            <constraint firstAttribute="trailing" secondItem="KXb-ma-HqN" secondAttribute="trailing" constant="20" id="fnd-FE-XkB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="raptorseye" width="1669" height="1328"/>
+        <image name="raptorslogonogear" width="2567" height="307"/>
+    </resources>
+</document>

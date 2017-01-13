@@ -46,11 +46,11 @@
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Match: %i",match.number];
 	
-	keyLabel.text = match.key;
+	//keyLabel.text = match.event;
 	
 }
 
--(void)segueToTeam:(ATScoutingTeam *)team{
+-(void)segueToTeam:(PDBSTeam *)team{
 	ScoutingDetailView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingDetailView"];
 	newView.team = team;
 	newView.match = match;

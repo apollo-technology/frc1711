@@ -6,6 +6,8 @@
 //  Copyright © 2016 Apollo Technology. All rights reserved.
 //
 #import "MoreVC.h"
+#import "ATFRC.h"
+#import "ParseDB.h"
 
 @interface MoreVC (){
 	IBOutlet UILabel *nameLabel;
@@ -16,7 +18,10 @@
 	IBOutlet UITableViewCell *websiteCell;
 	IBOutlet UITableViewCell *bugCell;
 	IBOutlet UITableViewCell *usersCell;
+    IBOutlet UITableViewCell *eventCell;
+    UITextField *eventField;
 	MFMailComposeViewController *composerVC;
+    
 }
 
 @end
@@ -72,9 +77,75 @@
 	} else if (selectedCell == usersCell) {
 		UIViewController *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"teamInitiation"];
 		[self.navigationController pushViewController:newView animated:YES];
-	}
+    } else if (selectedCell == eventCell) {
+        [self setEvent];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
+-(void)setEvent{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter the Key to Populate the Database." message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Title";
+        textField.text = @"";
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
+        textField.returnKeyType = UIReturnKeyContinue;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.secureTextEntry = NO;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        eventField = textField;
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Set Database" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self setDatabaseFromEvent];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [self presentViewController:alertController animated:YES completion:^{
+        
+    }];
+}
+
+-(void)setDatabaseFromEvent{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = CGPointMake(130.5, 80);
+    spinner.color = [UIColor grayColor];
+    [spinner startAnimating];
+    [alert.view addSubview:spinner];
+    [self presentViewController:alert animated:YES completion:^{
+        [ATFRC checkIfEventIsReal:eventField.text comepletion:^(BOOL isReal, NSString *eventName) {
+            if (isReal) {
+                [ParseDB provisionDatabaseForEvent:eventField.text block:^(NSError *error, BOOL succeeded) {
+                    if (error) {
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            [self presentViewController:alertController animated:YES completion:nil];
+                        }];
+                    } else {
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Done!" message:@"Refresh your pages, the new data will be there." preferredStyle:UIAlertControllerStyleAlert];
+                            [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+                            [self presentViewController:alertController animated:YES completion:^{
+                                
+                            }];
+                        }];
+                    }
+                }];
+            } else {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"The event key you provided does not exist." preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self setEvent];
+                }]];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+                [self presentViewController:alertController animated:YES completion:^{
+                    
+                }];
+            }
+        }];
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

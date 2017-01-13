@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-#import "ATGScouting.h"
 #import "ATFRC.h"
+#import "ParseDB.h"
 #import "ATColors.h"
 #import "IonIcons.h"
 
 @interface GSScoutingDetailVC : UITableViewController{
-	ATGSTeam *team;
+	PDBGSTeam *team;
 }
 
-@property ATGSTeam *team;
+@property PDBGSTeam *team;
 
 @end

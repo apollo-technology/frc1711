@@ -380,7 +380,7 @@
     }];
 }
 
-+(void)matchesAtEvent:(NSString *)eventKey completion:(void (^)(NSArray *,BOOL succeeded))completionHandler{
++(void)matchesAtEvent:(NSString *)eventKey completion:(void (^)(NSArray *matches,BOOL succeeded))completionHandler{
     [ATFRC getArrayForURL:[NSString stringWithFormat:@"/api/v2/event/%@/matches",eventKey] completion:^(NSArray *array, BOOL succeeded) {
         if (succeeded) {
             NSMutableArray *matches = [NSMutableArray new];
@@ -406,27 +406,31 @@
 
 +(void)qualifyingMatchesAtEvent:(NSString *)eventKey completion:(void (^)(NSArray *, BOOL))completionHandler{
 	[ATFRC getArrayForURL:[NSString stringWithFormat:@"/api/v2/event/%@/matches",eventKey] completion:^(NSArray *array, BOOL succeeded) {
-		if (succeeded) {
-			NSMutableArray *matches = [NSMutableArray new];
-			for (NSDictionary *matchDictionary in array) {
-				ATFRCMatch *newMatch = [ATFRCMatch new];
-				newMatch.key = matchDictionary[@"key"];
-				newMatch.competitionLevel = matchDictionary[@"comp_level"];
-				newMatch.setNumber = matchDictionary[@"match_number"];
-				newMatch.blueTeams = matchDictionary[@"alliances"][@"blue"][@"teams"];
-				newMatch.redTeams = matchDictionary[@"alliances"][@"red"][@"teams"];
-				newMatch.eventKey = matchDictionary[@"key"];
-				newMatch.videos = matchDictionary[@"videos"];
-				newMatch.time = matchDictionary[@"time"];
-				newMatch.timeReadable = matchDictionary[@"time_string"];
-				if ([matchDictionary[@"comp_level"] isEqualToString:@"qm"]) {
-					[matches addObject:newMatch];
-				}
-			}
-			completionHandler(matches,YES);
-		} else {
-			completionHandler(nil,NO);
-		}
+        if (array.count == 0) {
+            completionHandler(nil,NO);
+        } else {
+            if (succeeded) {
+                NSMutableArray *matches = [NSMutableArray new];
+                for (NSDictionary *matchDictionary in array) {
+                    ATFRCMatch *newMatch = [ATFRCMatch new];
+                    newMatch.key = matchDictionary[@"key"];
+                    newMatch.competitionLevel = matchDictionary[@"comp_level"];
+                    newMatch.setNumber = matchDictionary[@"match_number"];
+                    newMatch.blueTeams = matchDictionary[@"alliances"][@"blue"][@"teams"];
+                    newMatch.redTeams = matchDictionary[@"alliances"][@"red"][@"teams"];
+                    newMatch.eventKey = matchDictionary[@"key"];
+                    newMatch.videos = matchDictionary[@"videos"];
+                    newMatch.time = matchDictionary[@"time"];
+                    newMatch.timeReadable = matchDictionary[@"time_string"];
+                    if ([matchDictionary[@"comp_level"] isEqualToString:@"qm"]) {
+                        [matches addObject:newMatch];
+                    }
+                }
+                completionHandler(matches,YES);
+            } else {
+                completionHandler(nil,NO);
+            }
+        }
 	}];
 }
 
@@ -589,6 +593,7 @@
     NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringToSend]];
     if (recievedData) {
         NSDictionary *contentData = [NSJSONSerialization JSONObjectWithData:recievedData options:0 error:nil];
+        NSLog(@"%@",contentData);
         NSString *eventName = contentData[@"short_name"];
         completionHandler(YES,eventName);
     } else {

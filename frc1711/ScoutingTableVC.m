@@ -10,9 +10,8 @@
 #import "IonIcons.h"
 #import "ATColors.h"
 #import "ScoutingCell.h"
-#import "ATScouting.h"
-#import "ATScoutingTeam.h"
-#import "ATMatch.h"
+#import "ParseDB.h"
+#import "ATFRC.h"
 #import "ScoutingMatchView.h"
 
 @interface ScoutingTableVC (){
@@ -27,7 +26,7 @@
 
 - (void)handleRefresh:(id)sender{
 	// do your refresh here...
-	[ATScouting getData:^(NSError *error, BOOL succeeded) {
+	[ParseDB getScouting:^(NSError *error, BOOL succeeded) {
 		if (succeeded) {
 			[self.tableView reloadData];
 			[refreshControl endRefreshing];
@@ -43,67 +42,6 @@
 	}];
 }
 
--(void)resetTheDangDB{
-	[ATScouting setDatabaseForEvent:keyField.text block:^(NSError *error, BOOL succeeded) {
-		if (!succeeded) {
-			NSString *errorMessage;
-			if (error) {
-				errorMessage = error.localizedDescription;
-			}
-			[self dismissViewControllerAnimated:YES completion:^{
-				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error, Try again!" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
-				[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-				[self presentViewController:alertController animated:YES completion:nil];
-			}];
-		} else {
-			[self dismissViewControllerAnimated:YES completion:^{
-				[self.tableView reloadData];
-			}];
-		}
-	}];
-}
-
--(IBAction)resetButton:(id)sender{
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please enter the Event Key" message:@"Event Keys are found on an event page in the database tab of the app!" preferredStyle:UIAlertControllerStyleAlert];
-	[alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-		textField.placeholder = @"Event Key";
-		textField.text = @"";
-		textField.returnKeyType = UIReturnKeyNext;
-		textField.keyboardType = UIKeyboardTypeDefault;
-		textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-		textField.secureTextEntry = NO;
-		textField.autocorrectionType = UITextAutocorrectionTypeNo;
-		textField.spellCheckingType = UITextSpellCheckingTypeNo;
-		keyField = textField;
-	}];
-	[alertController addAction:[UIAlertAction actionWithTitle:@"Reset" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
-		UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-		spinner.center = CGPointMake(130.5, 80);
-		spinner.color = [UIColor grayColor];
-		[spinner startAnimating];
-		[alert.view addSubview:spinner];
-		[self presentViewController:alert animated:YES completion:^{
-			[ATFRC checkIfEventIsReal:keyField.text comepletion:^(BOOL isReal, NSString *eventName) {
-				if (isReal) {
-					[self resetTheDangDB];
-				} else {
-					[self dismissViewControllerAnimated:YES completion:^{
-						UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"That event key is not valid!" preferredStyle:UIAlertControllerStyleAlert];
-						[alertController addAction:[UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-							[self resetButton:nil];
-						}]];
-						[self presentViewController:alertController animated:YES completion:nil];
-					}];
-				}
-			}];
-		}];
-	}]];
-	[alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-		
-	}]];
-	[self presentViewController:alertController animated:YES completion:nil];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -114,7 +52,7 @@
 	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
 	[self.tableView addSubview:refreshControl];
 	
-	[ATScouting getData:^(NSError *error, BOOL succeeded) {
+	[ParseDB getScouting:^(NSError *error, BOOL succeeded) {
 		[self.tableView reloadData];
 		if (!succeeded) {
 			NSString *errorDescription;
@@ -143,7 +81,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[ATScouting data] matches] count];
+    return [[[ParseDB data] matches] count];
 }
 
 
@@ -151,7 +89,7 @@
     ScoutingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
-	ATMatch *match = [[[ATScouting data] matches] objectAtIndex:[indexPath row]];
+	PDBSMatch *match = [[[ParseDB data] matches] objectAtIndex:[indexPath row]];
 	cell.numberLabel.text = [NSString stringWithFormat:@"Match: %i",match.number];
     return cell;
 }
@@ -159,7 +97,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	ScoutingMatchView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingMatchView"];
-	newView.match = [[[ATScouting data] matches] objectAtIndex:[indexPath row]];
+	newView.match = [[[ParseDB data] matches] objectAtIndex:[indexPath row]];
 	[self.navigationController pushViewController:newView animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -331,15 +331,7 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Ground Scouting" id="jLU-mQ-p2w">
                         <barButtonItem key="backBarButtonItem" title=" " id="nR3-j7-ce3"/>
-                        <barButtonItem key="leftBarButtonItem" title="?" id="nNM-NP-5TS">
-                            <connections>
-                                <action selector="resetButton:" destination="R0e-7q-BR0" id="FNX-Xw-BVy"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="resetButton" destination="nNM-NP-5TS" id="xXt-ne-4iC"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a0x-cn-dma" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -619,7 +611,7 @@
                             <tableViewSection headerTitle="Team Info" id="Zuf-WM-cVA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="PBs-Lj-GWa" style="IBUITableViewCellStyleDefault" id="G2Q-cM-d92">
-                                        <rect key="frame" x="0.0" y="136" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="522" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G2Q-cM-d92" id="qKz-Qn-f8r">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -636,7 +628,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="3RT-rv-xmT" style="IBUITableViewCellStyleDefault" id="qaU-w0-S3W">
-                                        <rect key="frame" x="0.0" y="180" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="566" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qaU-w0-S3W" id="HSR-Lh-EW6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -653,7 +645,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="DKZ-eH-8eW" style="IBUITableViewCellStyleDefault" id="JRW-5H-OeK">
-                                        <rect key="frame" x="0.0" y="224" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="610" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JRW-5H-OeK" id="8tc-Yu-gBE">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -752,15 +744,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Scouting" id="I5Y-7N-xFz">
                         <barButtonItem key="backBarButtonItem" title=" " id="dLw-WB-MV4"/>
-                        <barButtonItem key="leftBarButtonItem" title="?" id="E53-pl-RqV">
-                            <connections>
-                                <action selector="resetButton:" destination="wxA-0X-Vai" id="5tm-yZ-4Wq"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="resetButton" destination="E53-pl-RqV" id="IZ3-FD-9Qa"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Klp-gv-q5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -885,27 +869,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Match Key" id="fPu-7W-d8p">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="POT-Da-eRn" style="IBUITableViewCellStyleDefault" id="5FG-rt-suH">
-                                        <rect key="frame" x="0.0" y="434" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5FG-rt-suH" id="dlO-sF-t0o">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="match.key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="POT-Da-eRn">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Gxm-Nh-WnF" id="RkZ-rW-nxe"/>
@@ -923,7 +886,6 @@
                         <outlet property="blue2Label" destination="TMk-h5-P4w" id="xsa-gm-Z5e"/>
                         <outlet property="blue3Cell" destination="wnC-av-APV" id="ZY7-a2-o7j"/>
                         <outlet property="blue3Label" destination="hyL-n8-JyP" id="4NE-c9-NOw"/>
-                        <outlet property="keyLabel" destination="POT-Da-eRn" id="gCY-Hd-Bbb"/>
                         <outlet property="red1Cell" destination="Mq9-wm-s6k" id="xkC-Oc-9aq"/>
                         <outlet property="red1Label" destination="FzA-jy-bdG" id="GMm-b6-Yc4"/>
                         <outlet property="red2Cell" destination="T4Z-jt-zgS" id="Ahh-MP-jlj"/>
@@ -2265,10 +2227,31 @@ Hanging Points: %@</string>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Set Data Event" id="aYh-72-FNk">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="WkY-f5-qzH" style="IBUITableViewCellStyleDefault" id="rMP-xm-qCz">
+                                        <rect key="frame" x="0.0" y="245" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rMP-xm-qCz" id="AKb-b3-bif">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Set Event" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WkY-f5-qzH">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.69411764710000001" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Account" id="hyL-lE-LNU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Lmx-Lt-8ux">
-                                        <rect key="frame" x="0.0" y="245" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="346" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lmx-Lt-8ux" id="9gD-4p-9dm">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -2302,7 +2285,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="1h9-ET-CPS">
-                                        <rect key="frame" x="0.0" y="289" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="390" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1h9-ET-CPS" id="hCU-OK-u3g">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -2336,7 +2319,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dGd-22-xBu">
-                                        <rect key="frame" x="0.0" y="333" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="434" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dGd-22-xBu" id="ytA-W6-20Y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -2370,7 +2353,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="4SV-hW-ACY" style="IBUITableViewCellStyleDefault" id="yu7-7k-dqi">
-                                        <rect key="frame" x="0.0" y="377" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="478" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yu7-7k-dqi" id="szc-YT-3Je">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -2400,6 +2383,7 @@ Hanging Points: %@</string>
                     <connections>
                         <outlet property="bugCell" destination="Z38-QA-UVa" id="7Ga-5b-5tx"/>
                         <outlet property="emailCell" destination="x1M-oP-xgZ" id="o13-1A-4BD"/>
+                        <outlet property="eventCell" destination="rMP-xm-qCz" id="pzw-ay-g3a"/>
                         <outlet property="nameLabel" destination="4SF-4e-jey" id="bKK-V6-FkQ"/>
                         <outlet property="phoneLabel" destination="k6S-Qm-uxq" id="a6D-dK-bjc"/>
                         <outlet property="signOutCell" destination="yu7-7k-dqi" id="fXx-o7-yOH"/>

@@ -58,19 +58,19 @@
 		allianceLabel.text = @"Alliance: Red";
 	}
     
-    autonLowGoalStepper.value = team.lowGoalAutonCount;
-    autonHighGoalStepper.value = team.highGoalAutonCount;
+    autonLowGoalStepper.value = team.lowGoalCountAuton;
+    autonHighGoalStepper.value = team.highGoalCountAuton;
     
-    teleopLowGoalStepper.value = team.lowGoalTeleopCount;
-    teleopHighGoalStepper.value = team.highGoalTeleOpCount;
+    teleopLowGoalStepper.value = team.lowGoalCountTeleOp;
+    teleopHighGoalStepper.value = team.highGoalCountTeleOp;
     
     [crossBaseLineSwitch setOn:team.didCrossBaseline];
     [scaleRopeSwitch setOn:team.didScale];
     
     [self updateSteppers:nil];
     
-    autonFinalScoreField.text = [NSString stringWithFormat:@"%i",team.autonScore];
-    teleopFinalScore.text = [NSString stringWithFormat:@"%i",team.scoreTeleOp];
+    autonFinalScoreField.text = [NSString stringWithFormat:@"%i",team.finalScoreAuton];
+    teleopFinalScore.text = [NSString stringWithFormat:@"%i",team.finalScoreTeleOp];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
     [self.tableView addGestureRecognizer:tap];
@@ -89,13 +89,13 @@
 
 -(IBAction)uploadButton:(id)sender{
 	
-    team.lowGoalAutonCount = (int)autonLowGoalStepper.value;
-    team.highGoalAutonCount = (int)autonHighGoalStepper.value;
-    team.lowGoalTeleopCount = (int)teleopLowGoalStepper.value;
-    team.highGoalTeleOpCount = (int)teleopHighGoalStepper.value;
+    team.lowGoalCountAuton = (int)autonLowGoalStepper.value;
+    team.highGoalCountAuton = (int)autonHighGoalStepper.value;
+    team.lowGoalCountTeleOp = (int)teleopLowGoalStepper.value;
+    team.highGoalCountTeleOp = (int)teleopHighGoalStepper.value;
     
-    team.autonScore = [autonFinalScoreField.text intValue];
-    team.scoreTeleOp = [teleopFinalScore.text intValue];
+    team.finalScoreAuton = [autonFinalScoreField.text intValue];
+    team.finalScoreTeleOp = [teleopFinalScore.text intValue];
     
     team.didCrossBaseline = crossBaseLineSwitch.isOn;
     team.didScale = scaleRopeSwitch.isOn;

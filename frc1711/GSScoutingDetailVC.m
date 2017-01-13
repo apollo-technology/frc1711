@@ -79,14 +79,14 @@
     [self.tableView addGestureRecognizer:tap];
     
     
-    [highSwitch setOn:[team canShootHighGoal]];
-    [lowSwitch setOn:[team canShootLowGoal]];
-    [canDeliverGearSwitch setOn:[team canDeliverGear]];
-    ballCarryField.text = [NSString stringWithFormat:@"%i", team.ballCarryingCapacity];
-    [scaleSwitch setOn:[team canScale]];
-    [autonHighSwitch setOn:[team autonCanHighGoal]];
-    [autonLowSwitch setOn:[team autonCanLowGoal]];
-    [autonBaseSwitch setOn:[team autonCanCrossBase]];
+//    [highSwitch setOn:[team canShootHighGoal]];
+//    [lowSwitch setOn:[team canShootLowGoal]];
+//    [canDeliverGearSwitch setOn:[team canDeliverGear]];
+//    ballCarryField.text = [NSString stringWithFormat:@"%i", team.ballCarryingCapacity];
+//    [scaleSwitch setOn:[team canScale]];
+//    [autonHighSwitch setOn:[team canShootHighGoalAuton]];
+//    [autonLowSwitch setOn:[team autonCanLowGoal]];
+//    [autonBaseSwitch setOn:[team autonCanCrossBase]];
     
     nameLabel.text = [NSString stringWithFormat:@"Name: %@", team.name];
     numberLabel.text = [NSString stringWithFormat:@"Number: %i", team.number];
@@ -98,15 +98,15 @@
 
 -(void)updateTeam{
     
-    team.canShootHighGoal = highSwitch.isOn;
-    team.canShootLowGoal = lowSwitch.isOn;
-    team.canDeliverGear = canDeliverGearSwitch.isOn;
-    team.ballCarryingCapacity = ballCarryField.text.intValue;
-    team.canScale = scaleSwitch.isOn;
-    team.autonCanHighGoal = autonHighSwitch.isOn;
-    team.autonCanLowGoal = autonLowSwitch.isOn;
-    team.autonCanCrossBase = autonBaseSwitch.isOn;
-    
+//    team.canShootHighGoal = highSwitch.isOn;
+//    team.canShootLowGoal = lowSwitch.isOn;
+//    team.canDeliverGear = canDeliverGearSwitch.isOn;
+//    team.ballCarryingCapacity = ballCarryField.text.intValue;
+//    team.canScale = scaleSwitch.isOn;
+//    team.autonCanHighGoal = autonHighSwitch.isOn;
+//    team.autonCanLowGoal = autonLowSwitch.isOn;
+//    team.autonCanCrossBase = autonBaseSwitch.isOn;
+//    
     [self.view endEditing:YES];
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Updating\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -115,7 +115,7 @@
 	[spinner startAnimating];
 	[alert.view addSubview:spinner];
 	[self presentViewController:alert animated:YES completion:^{
-        [team pushUpdates:^(NSError *error, BOOL succeeded) {
+        [team update:^(NSError *error, BOOL succeeded) {
             if (succeeded) {
                 [self dismissViewControllerAnimated:YES completion:^{
                     [self.navigationController popToRootViewControllerAnimated:YES];

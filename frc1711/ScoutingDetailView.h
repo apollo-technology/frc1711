@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ATScouting.h"
+#import "ParseDB.h"
 
 @interface ScoutingDetailView : UITableViewController{
-	ATMatch *match;
-	ATScoutingTeam *team;
+	PDBSMatch *match;
+	PDBSTeam *team;
 }
 
-@property ATMatch *match;
-@property ATScoutingTeam *team;
+@property PDBSMatch *match;
+@property PDBSTeam *team;
 
 @end
