@@ -28,7 +28,7 @@
 
 - (void)handleRefresh:(id)sender{
 	// do your refresh here...
-	[ParseDB getScouting:^(NSError *error, BOOL succeeded) {
+	[ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
 		[self.tableView reloadData];
 		[refreshControl endRefreshing];
 	}];
@@ -38,7 +38,7 @@
     [super viewDidLoad];
 	
 	
-	[ParseDB getScouting:^(NSError *error, BOOL succeeded) {
+	[ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
 		[self.tableView reloadData];
 	}];
 	

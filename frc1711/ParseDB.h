@@ -38,10 +38,12 @@
 @property int ballCarryingCapacity;
 @property BOOL canScale;
 @property BOOL canShootHighGoalAuton;
-@property BOOL canShoowLowGoalAuton;
+@property BOOL canShootLowGoalAuton;
 @property BOOL canCrossBaseline;
 
 @property PFObject *serverObject;
+
+@property NSDate *lastUpdated;
 
 -(void)update:(void (^)(NSError *error, BOOL succeeded))block;
 
@@ -62,6 +64,8 @@
 @property BOOL didScale;
 @property int finalScoreAuton;
 
+@property NSDate *lastUpdated;
+
 @property int number;
 @property NSString *eventKey;
 @property int alliance;
@@ -79,6 +83,8 @@ typedef NS_ENUM(NSInteger, ATAlliance) {BlueAlliance,RedAlliance};
 
 @property NSString *eventKey;
 @property int number;
+
+@property NSDate *lastUpdated;
 
 @property PDBSTeam *blueTeam1;
 @property PDBSTeam *blueTeam2;

@@ -51,6 +51,8 @@
     team.eventKey = serverObject[@"eventKey"];
     team.alliance = alliance;
     
+    team.lastUpdated = serverObject.updatedAt;
+    
     team.finalScoreAuton = [object[@"finalScoreAuton"] intValue];
     team.finalScoreTeleOp = [object[@"finalScoreTeleOp"] intValue];
     team.highGoalCountTeleOp = [object[@"highGoalCountTeleOp"] intValue];
@@ -91,6 +93,8 @@
                         match.blueTeam2 = [ParseDB scoutingTeamForObject:object[@"blueTeam2"] pFObject:object alliacnce:BlueAlliance];
                         match.blueTeam3 = [ParseDB scoutingTeamForObject:object[@"blueTeam3"] pFObject:object alliacnce:BlueAlliance];
                         
+                        match.lastUpdated = object.updatedAt;
+                        
                         match.eventKey = object[@"eventKey"];
                         match.number = [object[@"number"] intValue];
                         
@@ -115,6 +119,7 @@
         } else {
             PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",[ParseDB teamId]]];
             [query whereKey:@"eventKey" equalTo:[[ParseDB data] eventKey]];
+            [query addAscendingOrder:@"number"];
             [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                 if (error) {
                     if (block) {
@@ -125,7 +130,9 @@
                     for (PFObject *object in objects) {
                         PDBGSTeam *team = [PDBGSTeam new];
                         team.name = object[@"name"];
+                        team.serverObject = object;
                         team.number = [object[@"number"] intValue];
+                        team.lastUpdated = object.updatedAt;
                         
                         team.canShootHighGoalTeleOp = [object[@"canShootHighGoalTeleOp"] boolValue];
                         team.canShootLowGoalTeleOp = [object[@"canShootLowGoalTeleOp"] boolValue];
@@ -133,7 +140,7 @@
                         team.ballCarryingCapacity = [object[@"ballCarryingCapacity"] intValue];
                         team.canScale = [object[@"canScale"] boolValue];
                         team.canShootHighGoalAuton = [object[@"canShootHighGoalAuton"] boolValue];
-                        team.canShoowLowGoalAuton = [object[@"canShoowLowGoalAuton"] boolValue];
+                        team.canShootLowGoalAuton = [object[@"canShoowLowGoalAuton"] boolValue];
                         team.canCrossBaseline = [object[@"canCrossBaseline"] boolValue];
                         
                         [objectsTemp addObject:team];
@@ -158,7 +165,7 @@
             NSMutableArray *objectsToSave = [NSMutableArray new];
             for (ATFRCTeam *frcTeam in teams) {
                 PFObject *object = [PFObject objectWithClassName:[NSString stringWithFormat:@"gS1711"]];
-                object[@"name"] = frcTeam.name;
+                object[@"name"] = frcTeam.nickname;
                 object[@"number"] = frcTeam.number;
                 object[@"eventKey"] = eventId;
                 [objectsToSave addObject:object];
@@ -244,6 +251,7 @@
 @implementation PDBGSTeam
 
 -(void)update:(void (^)(NSError *error, BOOL succeeded))block{
+    NSLog(@"%@",self.serverObject.objectId);
     [self.serverObject fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (error) {
             if (block) {
@@ -256,7 +264,7 @@
             object[@"ballCarryingCapacity"] = @(self.ballCarryingCapacity);
             object[@"canScale"] = @(self.canScale);
             object[@"canShootHighGoalAuton"] = @(self.canShootHighGoalAuton);
-            object[@"canShoowLowGoalAuton"] = @(self.canShoowLowGoalAuton);
+            object[@"canShoowLowGoalAuton"] = @(self.canShootLowGoalAuton);
             object[@"canCrossBaseline"] = @(self.canCrossBaseline);
             
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -265,7 +273,9 @@
                         block(error,NO);
                     }
                 } else {
-                    block(nil,YES);
+                    if (block) {
+                        block(nil,YES);
+                    }
                 }
             }];
             

@@ -31,6 +31,8 @@
     
     IBOutlet UISwitch *crossBaseLineSwitch;
     IBOutlet UISwitch *scaleRopeSwitch;
+    
+    IBOutlet UILabel *dateLabel;
 }
 
 @end
@@ -51,6 +53,10 @@
 	
 	teamLabel.text = [NSString stringWithFormat:@"Team: %i",team.number];
 	matchLabel.text = [NSString stringWithFormat:@"Match: %i",match.number];
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"EEEE, M/d, h:mm a"];
+    dateLabel.text = [NSString stringWithFormat:@"Last Updated: %@",[dateFormatter stringFromDate:match.lastUpdated]];
 	
 	if (team.alliance == BlueAlliance) {
 		allianceLabel.text = @"Alliance: Blue";

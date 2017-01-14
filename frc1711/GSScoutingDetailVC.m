@@ -11,19 +11,20 @@
 #import "TeamViewController.h"
 
 @interface GSScoutingDetailVC (){
-	UIBarButtonItem *updateButton;
-    IBOutlet UILabel *nameLabel;
-    IBOutlet UILabel *numberLabel;
-    IBOutlet UITextField *textField;
-    IBOutlet UITableViewCell *moreDataCell;
-    IBOutlet UISwitch *highSwitch;
-    IBOutlet UISwitch *lowSwitch;
+    
+    IBOutlet UISwitch *canShootHighGoalTeleOpSwitch;
+    IBOutlet UISwitch *canShootLowGoalTeleOpSwitch;
     IBOutlet UISwitch *canDeliverGearSwitch;
-    IBOutlet UITextField *ballCarryField;
-    IBOutlet UISwitch *scaleSwitch;
-    IBOutlet UISwitch *autonHighSwitch;
-    IBOutlet UISwitch *autonLowSwitch;
-    IBOutlet UISwitch *autonBaseSwitch;
+    IBOutlet UITextField *ballCapacityLabel;
+    IBOutlet UISwitch *canScaleRopeSwitch;
+    IBOutlet UISwitch *canShootHighGoalAutonSwitch;
+    IBOutlet UISwitch *canShootLowGoalAutonSwitch;
+    IBOutlet UISwitch *canCrossBaseLineSwitch;
+    
+    IBOutlet UILabel *teamNameLabel;
+    IBOutlet UILabel *teamNumberLabel;
+    IBOutlet UITableViewCell *moreDataCell;
+    IBOutlet UILabel *dateLabel;
 }
 
 @end
@@ -72,24 +73,27 @@
 	self.navigationItem.title = [NSString stringWithFormat:@"%@ - %i",team.name,team.number];
 	
 	UIImage *uploadIcon = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors raptorGreen]];
-	updateButton = [[UIBarButtonItem alloc] initWithImage:uploadIcon style:UIBarButtonItemStyleDone target:self action:@selector(updateTeam)];
+	UIBarButtonItem *updateButton = [[UIBarButtonItem alloc] initWithImage:uploadIcon style:UIBarButtonItemStyleDone target:self action:@selector(updateTeam)];
 	self.navigationItem.rightBarButtonItem = updateButton;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
     [self.tableView addGestureRecognizer:tap];
     
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"EEEE, M/d, h:mm a"];
+    dateLabel.text = [NSString stringWithFormat:@"Last Updated: %@",[dateFormatter stringFromDate:team.lastUpdated]];
     
-//    [highSwitch setOn:[team canShootHighGoal]];
-//    [lowSwitch setOn:[team canShootLowGoal]];
-//    [canDeliverGearSwitch setOn:[team canDeliverGear]];
-//    ballCarryField.text = [NSString stringWithFormat:@"%i", team.ballCarryingCapacity];
-//    [scaleSwitch setOn:[team canScale]];
-//    [autonHighSwitch setOn:[team canShootHighGoalAuton]];
-//    [autonLowSwitch setOn:[team autonCanLowGoal]];
-//    [autonBaseSwitch setOn:[team autonCanCrossBase]];
+    [canShootHighGoalTeleOpSwitch setOn:[team canShootHighGoalTeleOp]];
+    [canShootLowGoalTeleOpSwitch setOn:[team canShootLowGoalTeleOp]];
+    [canDeliverGearSwitch setOn:[team canDeliverGear]];
+    ballCapacityLabel.text = [NSString stringWithFormat:@"%i", team.ballCarryingCapacity];
+    [canScaleRopeSwitch setOn:[team canScale]];
+    [canShootHighGoalAutonSwitch setOn:[team canShootHighGoalAuton]];
+    [canShootLowGoalAutonSwitch setOn:[team canShootLowGoalAuton]];
+    [canCrossBaseLineSwitch setOn:[team canCrossBaseline]];
     
-    nameLabel.text = [NSString stringWithFormat:@"Name: %@", team.name];
-    numberLabel.text = [NSString stringWithFormat:@"Number: %i", team.number];
+    teamNameLabel.text = [NSString stringWithFormat:@"Name: %@", team.name];
+    teamNumberLabel.text = [NSString stringWithFormat:@"Number: %i", team.number];
 }
 
 -(IBAction)hideKeyboard:(id)sender {
@@ -98,15 +102,17 @@
 
 -(void)updateTeam{
     
-//    team.canShootHighGoal = highSwitch.isOn;
-//    team.canShootLowGoal = lowSwitch.isOn;
-//    team.canDeliverGear = canDeliverGearSwitch.isOn;
-//    team.ballCarryingCapacity = ballCarryField.text.intValue;
-//    team.canScale = scaleSwitch.isOn;
-//    team.autonCanHighGoal = autonHighSwitch.isOn;
-//    team.autonCanLowGoal = autonLowSwitch.isOn;
-//    team.autonCanCrossBase = autonBaseSwitch.isOn;
-//    
+    team.canShootHighGoalTeleOp = canShootHighGoalTeleOpSwitch.isOn;
+    team.canShootLowGoalTeleOp = canShootLowGoalTeleOpSwitch.isOn;
+    team.canDeliverGear = canDeliverGearSwitch.isOn;
+    team.ballCarryingCapacity = ballCapacityLabel.text.intValue;
+    team.canScale = canScaleRopeSwitch.isOn;
+    team.canShootHighGoalAuton = canShootHighGoalAutonSwitch.isOn;
+    team.canShootLowGoalAuton = canShootLowGoalAutonSwitch.isOn;
+    team.canCrossBaseline = canCrossBaseLineSwitch.isOn;
+    
+    
+    
     [self.view endEditing:YES];
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Updating\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
 	UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

@@ -25,6 +25,8 @@
 	IBOutlet UITableViewCell *blue1Cell;
 	IBOutlet UITableViewCell *blue2Cell;
 	IBOutlet UITableViewCell *blue3Cell;
+    
+    IBOutlet UILabel *dateLabel;
 }
 
 @end
@@ -45,6 +47,11 @@
 	blue3Label.text = [NSString stringWithFormat:@"%i",match.blueTeam3.number];
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Match: %i",match.number];
+    
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"EEEE, M/d, h:mm a"];
+    dateLabel.text = [NSString stringWithFormat:@"Last Updated: %@",[dateFormatter stringFromDate:match.lastUpdated]];
 	
 	//keyLabel.text = match.event;
 	
