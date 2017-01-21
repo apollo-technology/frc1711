@@ -27,30 +27,14 @@
     return [[PFUser currentUser] objectForKey:@"team"];
 }
 
-+(void)getInfo:(void (^)(NSError *error, BOOL succeeded))block{
-    PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"i%@",[ParseDB teamId]]];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        if (error) {
-            if (block) {
-                block(error,NO);
-            }
-        } else {
-            [[ParseDB data] setEventKey:object[@"eventKey"]];
-            if (block) {
-                block(nil,YES);
-            }
-        }
-    }];
-}
-
-+(PDBSTeam *)scoutingTeamForObject:(NSDictionary *)object pFObject:(PFObject *)serverObject alliacnce:(int)alliance{
++(PDBSTeam *)scoutingTeamForObject:(NSDictionary *)object pFObject:(PFObject *)serverObject alliacnce:(int)alliance dataId:(NSString *)dataId{
     PDBSTeam *team = [PDBSTeam new];
     
     team.number = [object[@"number"] intValue];
     team.serverObject = serverObject;
     team.eventKey = serverObject[@"eventKey"];
     team.alliance = alliance;
-    
+    team.dataId = dataId;
     team.lastUpdated = serverObject.updatedAt;
     
     team.finalScoreAuton = [object[@"finalScoreAuton"] intValue];
@@ -65,42 +49,22 @@
     return team;
 }
 
-+(void)getScouting:(void (^)(NSError *error, BOOL succeeded))block{
-    [ParseDB getInfo:^(NSError *error, BOOL succeeded) {
++(void)getScoutingAndGroundScoutingData:(void (^)(NSError *error, BOOL succeeded))block{
+    NSLog(@"a");
+    [ParseDB getScouting:^(NSError *error, BOOL succeeded) {
+        NSLog(@"b");
         if (error) {
             if (block) {
-                block(error, NO);
+                block(error,NO);
             }
         } else {
-            NSLog(@"%@",[NSString stringWithFormat:@"s%@",[ParseDB teamId]]);
-            PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"s%@",[ParseDB teamId]]];
-            [query whereKey:@"eventKey" equalTo:[[ParseDB data] eventKey]];
-            [query addAscendingOrder:@"number"];
-            [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            [ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
+                NSLog(@"c");
                 if (error) {
                     if (block) {
-                        block(error, NO);
+                        block(error,NO);
                     }
                 } else {
-                    NSMutableArray *objectsTemp = [NSMutableArray new];
-                    for (PFObject *object in objects) {
-                        PDBSMatch *match = [PDBSMatch new];
-                        match.redTeam1 = [ParseDB scoutingTeamForObject:object[@"redTeam1"] pFObject:object alliacnce:RedAlliance];
-                        match.redTeam2 = [ParseDB scoutingTeamForObject:object[@"redTeam2"] pFObject:object alliacnce:RedAlliance];
-                        match.redTeam3 = [ParseDB scoutingTeamForObject:object[@"redTeam3"] pFObject:object alliacnce:RedAlliance];
-                        
-                        match.blueTeam1 = [ParseDB scoutingTeamForObject:object[@"blueTeam1"] pFObject:object alliacnce:BlueAlliance];
-                        match.blueTeam2 = [ParseDB scoutingTeamForObject:object[@"blueTeam2"] pFObject:object alliacnce:BlueAlliance];
-                        match.blueTeam3 = [ParseDB scoutingTeamForObject:object[@"blueTeam3"] pFObject:object alliacnce:BlueAlliance];
-                        
-                        match.lastUpdated = object.updatedAt;
-                        
-                        match.eventKey = object[@"eventKey"];
-                        match.number = [object[@"number"] intValue];
-                        
-                        [objectsTemp addObject:match];
-                    }
-                    [[ParseDB data] setMatches:objectsTemp];
                     if (block) {
                         block(nil,YES);
                     }
@@ -110,47 +74,89 @@
     }];
 }
 
-+(void)getGroundScouting:(void (^)(NSError *error, BOOL succeeded))block{
-    [ParseDB getInfo:^(NSError *error, BOOL succeeded) {
++(void)getScouting:(void (^)(NSError *error, BOOL succeeded))block{
+    PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"s%@",[ParseDB teamId]]];
+    [query addAscendingOrder:@"number"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (error) {
             if (block) {
                 block(error, NO);
             }
         } else {
-            PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",[ParseDB teamId]]];
-            [query whereKey:@"eventKey" equalTo:[[ParseDB data] eventKey]];
-            [query addAscendingOrder:@"number"];
-            [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-                if (error) {
-                    if (block) {
-                        block(error, NO);
-                    }
-                } else {
-                    NSMutableArray *objectsTemp = [NSMutableArray new];
-                    for (PFObject *object in objects) {
-                        PDBGSTeam *team = [PDBGSTeam new];
-                        team.name = object[@"name"];
-                        team.serverObject = object;
-                        team.number = [object[@"number"] intValue];
-                        team.lastUpdated = object.updatedAt;
-                        
-                        team.canShootHighGoalTeleOp = [object[@"canShootHighGoalTeleOp"] boolValue];
-                        team.canShootLowGoalTeleOp = [object[@"canShootLowGoalTeleOp"] boolValue];
-                        team.canDeliverGear = [object[@"canDeliverGear"] boolValue];
-                        team.ballCarryingCapacity = [object[@"ballCarryingCapacity"] intValue];
-                        team.canScale = [object[@"canScale"] boolValue];
-                        team.canShootHighGoalAuton = [object[@"canShootHighGoalAuton"] boolValue];
-                        team.canShootLowGoalAuton = [object[@"canShoowLowGoalAuton"] boolValue];
-                        team.canCrossBaseline = [object[@"canCrossBaseline"] boolValue];
-                        
-                        [objectsTemp addObject:team];
-                    }
-                    [[ParseDB data] setTeams:objectsTemp];
-                    if (block) {
-                        block(nil,YES);
-                    }
+            NSMutableArray *objectsTemp = [NSMutableArray new];
+            NSMutableArray *keys = [NSMutableArray new];
+            for (PFObject *object in objects) {
+                PDBSMatch *match = [PDBSMatch new];
+                match.redTeam1 = [ParseDB scoutingTeamForObject:object[@"redTeam1"] pFObject:object alliacnce:RedAlliance dataId:@"redTeam1"];
+                match.redTeam2 = [ParseDB scoutingTeamForObject:object[@"redTeam2"] pFObject:object alliacnce:RedAlliance dataId:@"redTeam2"];
+                match.redTeam3 = [ParseDB scoutingTeamForObject:object[@"redTeam3"] pFObject:object alliacnce:RedAlliance dataId:@"redTeam3"];
+                
+                match.blueTeam1 = [ParseDB scoutingTeamForObject:object[@"blueTeam1"] pFObject:object alliacnce:BlueAlliance dataId:@"blueTeam1"];
+                match.blueTeam2 = [ParseDB scoutingTeamForObject:object[@"blueTeam2"] pFObject:object alliacnce:BlueAlliance dataId:@"blueTeam2"];
+                match.blueTeam3 = [ParseDB scoutingTeamForObject:object[@"blueTeam3"] pFObject:object alliacnce:BlueAlliance dataId:@"blueTeam3"];
+                
+                match.lastUpdated = object.updatedAt;
+                
+                match.eventKey = object[@"eventKey"];
+                match.number = [object[@"number"] intValue];
+                
+                [objectsTemp addObject:match];
+                
+                if (![keys containsObject:object[@"eventKey"]]) {
+                    [keys addObject:object[@"eventKey"]];
                 }
-            }];
+            }
+            [[ParseDB data] setMatches:objectsTemp];
+            [[ParseDB data] setAvailableEventKeys:keys];
+            if (block) {
+                block(nil,YES);
+            }
+        }
+    }];
+}
+
++(void)getGroundScouting:(void (^)(NSError *error, BOOL succeeded))block{
+    PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",[ParseDB teamId]]];
+    [query addAscendingOrder:@"number"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            if (block) {
+                block(error, NO);
+            }
+        } else {
+            NSMutableArray *objectsTemp = [NSMutableArray new];
+            NSMutableArray *keys = [NSMutableArray new];
+            for (PFObject *object in objects) {
+                PDBGSTeam *team = [PDBGSTeam new];
+                team.name = object[@"name"];
+                team.serverObject = object;
+                NSLog(@"232");
+                team.number = [object[@"number"] intValue];
+                NSLog(@"233");
+                team.lastUpdated = object.updatedAt;
+                
+                team.canShootHighGoalTeleOp = [object[@"canShootHighGoalTeleOp"] boolValue];
+                team.canShootLowGoalTeleOp = [object[@"canShootLowGoalTeleOp"] boolValue];
+                team.canDeliverGear = [object[@"canDeliverGear"] boolValue];
+                NSLog(@"234");
+                team.ballCarryingCapacity = [object[@"ballCarryingCapacity"] intValue];
+                NSLog(@"2325");
+                team.canScale = [object[@"canScale"] boolValue];
+                team.canShootHighGoalAuton = [object[@"canShootHighGoalAuton"] boolValue];
+                team.canShootLowGoalAuton = [object[@"canShoowLowGoalAuton"] boolValue];
+                team.canCrossBaseline = [object[@"canCrossBaseline"] boolValue];
+                
+                if (![keys containsObject:object[@"eventKey"]]) {
+                    [keys addObject:object[@"eventKey"]];
+                }
+                
+                [objectsTemp addObject:team];
+            }
+            [[ParseDB data] setAvailableEventKeys:keys];
+            [[ParseDB data] setTeams:objectsTemp];
+            if (block) {
+                block(nil,YES);
+            }
         }
     }];
 }
@@ -176,7 +182,7 @@
                         block(error,NO);
                     }
                 } else {
-                    [ATFRC matchesAtEvent:eventId completion:^(NSArray *matches, BOOL succeeded) {
+                    [ATFRC qualifyingMatchesAtEvent:eventId completion:^(NSArray *matches, BOOL succeeded) {
                         if (!succeeded) {
                             if (block) {
                                 block(nil,NO);
@@ -229,16 +235,30 @@
                 block(error,NO);
             }
         } else {
-            /*
-             [data setObject:@(self.scoreTeleOp) forKey:scoreTeleOpKey];
-             [data setObject:@(self.highGoalTeleOpCount) forKey:highGoalTeleOpCountKey];
-             [data setObject:@(self.lowGoalTeleopCount) forKey:lowGoalTeleopCountKey];
-             [data setObject:@(self.highGoalAutonCount) forKey:highGoalAutonCountKey];
-             [data setObject:@(self.lowGoalAutonCount) forKey:lowGoalAutonCountKey];
-             [data setObject:@(self.didCrossBaseline) forKey:didCrossBaselineKey];
-             [data setObject:@(self.didScale) forKey:didScaleKey];
-             [data setObject:@(self.autonScore) forKey:autonScoreKey];
-             */
+            
+            NSDictionary *dictionary = @{@"number" : @(self.number),
+                                         @"highGoalCountTeleOp" : @(self.highGoalCountTeleOp),
+                                         @"lowGoalCountTeleOp" : @(self.lowGoalCountTeleOp),
+                                         @"highGoalCountAuton" : @(self.highGoalCountAuton),
+                                         @"lowGoalCountAuton" : @(self.lowGoalCountAuton),
+                                         @"didCrossBaseline" : @(self.didCrossBaseline),
+                                         @"didScale" : @(self.didScale),
+                                         @"finalScoreAuton" : @(self.finalScoreAuton),
+                                         @"finalScoreTeleOp" : @(self.finalScoreTeleOp),};
+            object[self.dataId] = dictionary;
+            
+            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (error) {
+                    if (block) {
+                        block(error,NO);
+                    }
+                } else {
+                    if (block) {
+                        block(nil,YES);
+                    }
+                }
+            }];
+            
         }
     }];
 }
@@ -251,7 +271,6 @@
 @implementation PDBGSTeam
 
 -(void)update:(void (^)(NSError *error, BOOL succeeded))block{
-    NSLog(@"%@",self.serverObject.objectId);
     [self.serverObject fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (error) {
             if (block) {

@@ -17,10 +17,13 @@
 +(void)getScouting:(void (^)(NSError *error, BOOL succeeded))block;
 +(void)getGroundScouting:(void (^)(NSError *error, BOOL succeeded))block;
 +(void)provisionDatabaseForEvent:(NSString *)eventId block:(void (^)(NSError *error, BOOL succeeded))block;
++(void)getScoutingAndGroundScoutingData:(void (^)(NSError *error, BOOL succeeded))block;
 
 @property NSArray *teams;
 @property NSArray *matches;
 @property NSString *eventKey;
+@property NSArray *availableEventKeys;
+@property NSString *userSelectedKey;
 
 @end
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +73,7 @@
 @property NSString *eventKey;
 @property int alliance;
 @property PFObject *serverObject;
+@property NSString *dataId;
 typedef NS_ENUM(NSInteger, ATAlliance) {BlueAlliance,RedAlliance};
 
 -(void)update:(void (^)(NSError *error, BOOL succeeded))block;

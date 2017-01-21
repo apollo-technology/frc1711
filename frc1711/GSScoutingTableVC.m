@@ -38,9 +38,9 @@
     [super viewDidLoad];
 	
 	
-	[ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
-		[self.tableView reloadData];
-	}];
+//	[ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
+//		[self.tableView reloadData];
+//	}];
 	
 	refreshControl = [[UIRefreshControl alloc] init];
 	refreshControl.tintColor = [ATColors raptorGreen];

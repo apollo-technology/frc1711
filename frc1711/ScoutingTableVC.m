@@ -18,11 +18,22 @@
 	IBOutlet UIBarButtonItem *resetButton;
 	UITextField *keyField;
 	UIRefreshControl *refreshControl;
+    
+    UIPickerView *picker;
+    NSInteger pickedRow;
+    NSArray *pickerData;
 }
 
 @end
 
 @implementation ScoutingTableVC
+
+-(void)showEventPicker{
+    [self presentPickerWithData:[[ParseDB data] availableEventKeys] title:@"Select an Event" completion:^(NSString *value) {
+        [[NSUserDefaults standardUserDefaults] setObject:value forKey:@"sTeamKey"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }];
+}
 
 - (void)handleRefresh:(id)sender{
 	// do your refresh here...
@@ -51,19 +62,12 @@
 	refreshControl.tintColor = [ATColors raptorGreen];
 	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
 	[self.tableView addSubview:refreshControl];
-	
-	[ParseDB getScouting:^(NSError *error, BOOL succeeded) {
-		[self.tableView reloadData];
-		if (!succeeded) {
-			NSString *errorDescription;
-			if (error) {
-				errorDescription = error.localizedDescription;
-			}
-			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Getting Data" message:errorDescription preferredStyle:UIAlertControllerStyleAlert];
-			[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-			[self presentViewController:alertController animated:YES completion:nil];
-		}
-	}];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"sTeamKey"]) {
+        
+    } else {
+        [self showEventPicker];
+    }
 	
 	resetButton.image = [IonIcons imageWithIcon:ioniostrashoutline color:[ATColors raptorGreen]];
 	
@@ -101,48 +105,38 @@
 	[self.navigationController pushViewController:newView animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(void)presentPickerWithData:(NSArray *)array title:(NSString *)title completion:(void (^)(NSString *value))completionHandler{
+    [self.view endEditing:YES];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@\n\n\n\n\n\n",title] message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 50, 230, 140)];
+    pickerView.dataSource = self;
+    pickerView.delegate = self;
+    pickerData = array;
+    pickedRow = 0;
+    [alertController.view addSubview:pickerView];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(array[pickedRow]);
+    }]];
+    [self presentViewController:alertController animated:YES completion:^{
+    }];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return pickerData.count;
 }
-*/
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return pickerData[row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    pickedRow = row;
+}
 
 @end

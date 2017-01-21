@@ -42,6 +42,7 @@
 		1E447E761DD22A690045E23D /* GSScoutingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E447E751DD22A690045E23D /* GSScoutingCell.m */; };
 		1E574C2B1DC7946A00889A15 /* construction.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E574C2A1DC7946A00889A15 /* construction.png */; };
 		1E60B3CC1DD6028C001147A6 /* MoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E60B3CB1DD6028C001147A6 /* MoreVC.m */; };
+		1E7960231E29A8DF0020C781 /* DBAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7960221E29A8DF0020C781 /* DBAnalytics.m */; };
 		1E7BE6131E248BCD00C40153 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7BE6121E248BCD00C40153 /* main.m */; };
 		1E7BE6161E248BCD00C40153 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7BE6151E248BCD00C40153 /* AppDelegate.m */; };
 		1E7BE6191E248BCD00C40153 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E7BE6181E248BCD00C40153 /* ViewController.m */; };
@@ -205,6 +206,8 @@
 		1E574C2A1DC7946A00889A15 /* construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = construction.png; sourceTree = "<group>"; };
 		1E60B3CB1DD6028C001147A6 /* MoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreVC.m; sourceTree = "<group>"; };
 		1E6DE5E51DF220CA002E2E98 /* frc1711.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = frc1711.entitlements; sourceTree = "<group>"; };
+		1E7960211E29A8DF0020C781 /* DBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnalytics.h; sourceTree = "<group>"; };
+		1E7960221E29A8DF0020C781 /* DBAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnalytics.m; sourceTree = "<group>"; };
 		1E7BE60F1E248BCD00C40153 /* tvViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E7BE6121E248BCD00C40153 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1E7BE6141E248BCD00C40153 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -459,6 +462,15 @@
 			name = "Ground Scouting";
 			sourceTree = "<group>";
 		};
+		1E7960201E29A8CA0020C781 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				1E7960211E29A8DF0020C781 /* DBAnalytics.h */,
+				1E7960221E29A8DF0020C781 /* DBAnalytics.m */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
 		1E7BE6101E248BCD00C40153 /* tvViewer */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +552,7 @@
 				1E6DE5E51DF220CA002E2E98 /* frc1711.entitlements */,
 				1EE4D39A1DC15AE700943921 /* AppDelegate.h */,
 				1EE4D39B1DC15AE700943921 /* AppDelegate.m */,
+				1E7960201E29A8CA0020C781 /* Analytics */,
 				1E4268591E291ED600AA725F /* Parse Data */,
 				1EE4D3E21DC15B6200943921 /* ATFRC */,
 				1E16AA531DC9355A0013B09D /* Main Interface */,
@@ -974,6 +987,7 @@
 				1EE4D3E01DC15B5F00943921 /* ATFRCRobot.m in Sources */,
 				1E42685C1E291FC200AA725F /* ParseDB.m in Sources */,
 				1EE4D3F61DC15C2500943921 /* AllEventsViewController.m in Sources */,
+				1E7960231E29A8DF0020C781 /* DBAnalytics.m in Sources */,
 				1EE4D3DD1DC15B5F00943921 /* ATFRCMatch.m in Sources */,
 				1EE4D3FA1DC15C2500943921 /* CollectionViewCell.m in Sources */,
 				1E447E721DD226F90045E23D /* IonIcons.m in Sources */,

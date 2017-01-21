@@ -593,7 +593,6 @@
     NSData *recievedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringToSend]];
     if (recievedData) {
         NSDictionary *contentData = [NSJSONSerialization JSONObjectWithData:recievedData options:0 error:nil];
-        NSLog(@"%@",contentData);
         NSString *eventName = contentData[@"short_name"];
         completionHandler(YES,eventName);
     } else {
