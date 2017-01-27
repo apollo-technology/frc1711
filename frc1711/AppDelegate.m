@@ -20,9 +20,9 @@
     // Override point for customization after application launch.
 	
 	[Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
-		configuration.applicationId = @"raptors";
+		configuration.applicationId = @"frc1711";
 		configuration.clientKey = @"nil";
-		configuration.server = @"http://45.55.72.47:1337/parse";
+		configuration.server = @"http://api.apollotechnology.co:1002";
 	}]];
 	
     return YES;
