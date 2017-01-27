@@ -75,23 +75,18 @@
 	
 	[self performSelector:@selector(animateEverything) withObject:nil afterDelay:0.25];
     
-    NSLog(@"1");
 	
 	__block PFUser *user = [PFUser currentUser];
 	if (user) {
 		[[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-             NSLog(@"2");
 			if (error) {
 				[self showErrorWithMessage:error.localizedDescription];
 			} else {
-                 NSLog(@"3");
                 [ParseDB getScoutingAndGroundScoutingData:^(NSError *error, BOOL succeeded) {
                     if (error) {
                         NSLog(@"%@",error);
                     } else {
-                        NSLog(@"4");
                         [PFConfig getConfigInBackgroundWithBlock:^(PFConfig * _Nullable config, NSError * _Nullable error) {
-                            NSLog(@"5");
                             
                             [[AppConfigs configs] setAllowBoot:[config[@"allowBoot"] boolValue]];
                             [[AppConfigs configs] setAllowedVersions:config[@"allowedVersions"]];

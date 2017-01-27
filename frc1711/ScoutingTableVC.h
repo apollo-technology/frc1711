@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScoutingTableVC : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ScoutingTableVC : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIViewControllerPreviewingDelegate>
 
 @end

@@ -50,16 +50,13 @@
 }
 
 +(void)getScoutingAndGroundScoutingData:(void (^)(NSError *error, BOOL succeeded))block{
-    NSLog(@"a");
     [ParseDB getScouting:^(NSError *error, BOOL succeeded) {
-        NSLog(@"b");
         if (error) {
             if (block) {
                 block(error,NO);
             }
         } else {
             [ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
-                NSLog(@"c");
                 if (error) {
                     if (block) {
                         block(error,NO);
@@ -130,17 +127,13 @@
                 PDBGSTeam *team = [PDBGSTeam new];
                 team.name = object[@"name"];
                 team.serverObject = object;
-                NSLog(@"232");
                 team.number = [object[@"number"] intValue];
-                NSLog(@"233");
                 team.lastUpdated = object.updatedAt;
                 
                 team.canShootHighGoalTeleOp = [object[@"canShootHighGoalTeleOp"] boolValue];
                 team.canShootLowGoalTeleOp = [object[@"canShootLowGoalTeleOp"] boolValue];
                 team.canDeliverGear = [object[@"canDeliverGear"] boolValue];
-                NSLog(@"234");
                 team.ballCarryingCapacity = [object[@"ballCarryingCapacity"] intValue];
-                NSLog(@"2325");
                 team.canScale = [object[@"canScale"] boolValue];
                 team.canShootHighGoalAuton = [object[@"canShootHighGoalAuton"] boolValue];
                 team.canShootLowGoalAuton = [object[@"canShoowLowGoalAuton"] boolValue];
@@ -202,6 +195,8 @@
                                 object[@"redTeam3"] = @{@"number" : [frcMatch.redTeams[2] stringByReplacingOccurrencesOfString:@"frc" withString:@""]};
                                 [objectsToSave addObject:object];
                             }
+                            [[NSUserDefaults standardUserDefaults] setObject:objectsToSave[0][@"eventKey"] forKey:@"dbPreference"];
+                            [[NSUserDefaults standardUserDefaults] synchronize];
                             [PFObject saveAllInBackground:objectsToSave block:^(BOOL succeeded, NSError * _Nullable error) {
                                 if (!succeeded) {
                                     if (block) {

@@ -22,54 +22,121 @@
     UIPickerView *picker;
     NSInteger pickedRow;
     NSArray *pickerData;
+    NSArray *dataArray;
 }
+
+@property (nonatomic, strong) id previewingContext;
 
 @end
 
 @implementation ScoutingTableVC
 
+- (BOOL)isForceTouchAvailable {
+    BOOL isForceTouchAvailable = NO;
+    if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)]) {
+        isForceTouchAvailable = self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable;
+    }
+    return isForceTouchAvailable;
+}
+
+- (UIViewController *)previewingContext:(id)previewingContext viewControllerForLocation:(CGPoint)location{
+    if ([self.presentedViewController isKindOfClass:[ScoutingMatchView class]]) {
+        return nil;
+    }
+    CGPoint cellPostion = [self.tableView convertPoint:location fromView:self.view];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cellPostion];
+    ScoutingMatchView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingMatchView"];
+    newView.match = [dataArray objectAtIndex:[indexPath row]];
+    return newView;
+}
+
+- (void)previewingContext:(id )previewingContext commitViewController: (UIViewController *)viewControllerToCommit {
+    [self.navigationController showViewController:viewControllerToCommit sender:nil];
+}
+
 -(void)showEventPicker{
     [self presentPickerWithData:[[ParseDB data] availableEventKeys] title:@"Select an Event" completion:^(NSString *value) {
-        [[NSUserDefaults standardUserDefaults] setObject:value forKey:@"sTeamKey"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", value];
+        dataArray = [[[ParseDB data] matches] filteredArrayUsingPredicate:predicate];
+        PDBSMatch *match = [dataArray objectAtIndex:0];
+        self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+        [[NSUserDefaults standardUserDefaults] setObject:match.eventKey forKey:@"dbPreference"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.tableView reloadData];
+        [refreshControl endRefreshing];
     }];
+}
+
+-(IBAction)selectDB:(id)sender{
+    [self showEventPicker];
 }
 
 - (void)handleRefresh:(id)sender{
 	// do your refresh here...
 	[ParseDB getScouting:^(NSError *error, BOOL succeeded) {
 		if (succeeded) {
-			[self.tableView reloadData];
-			[refreshControl endRefreshing];
+            PDBSMatch *match1 = [[[ParseDB data] matches] objectAtIndex:0];
+            PDBSMatch *match2 = [[[ParseDB data] matches] objectAtIndex:1];
+            if (match1.number == match2.number) {
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
+                    dataArray = [[[ParseDB data] matches] filteredArrayUsingPredicate:predicate];
+                    PDBSMatch *match = [dataArray objectAtIndex:0];
+                    self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+                    [self.tableView reloadData];
+                    [refreshControl endRefreshing];
+                } else {
+                    [self showEventPicker];
+                }
+            }
 		} else {
 			NSString *errorDescription;
 			if (error) {
 				errorDescription = error.localizedDescription;
 			}
 			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Getting Data" message:errorDescription preferredStyle:UIAlertControllerStyleAlert];
+            alertController.view.tintColor = [ATColors raptorGreen];
 			[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
 			[self presentViewController:alertController animated:YES completion:nil];
 		}
 	}];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    PDBSMatch *match1 = [[[ParseDB data] matches] objectAtIndex:0];
+    PDBSMatch *match2 = [[[ParseDB data] matches] objectAtIndex:1];
+    if (match1.number == match2.number) {
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
+            dataArray = [[[ParseDB data] matches] filteredArrayUsingPredicate:predicate];
+            PDBSMatch *match = [dataArray objectAtIndex:0];
+            self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+            [self.tableView reloadData];
+            [refreshControl endRefreshing];
+        } else {
+            [self showEventPicker];
+        }
+    } else {
+        PDBSMatch *match = [dataArray objectAtIndex:0];
+        self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([self isForceTouchAvailable]) {
+        self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
 	
 	
 	refreshControl = [[UIRefreshControl alloc] init];
 	refreshControl.tintColor = [ATColors raptorGreen];
 	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
 	[self.tableView addSubview:refreshControl];
-    
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"sTeamKey"]) {
-        
-    } else {
-        [self showEventPicker];
-    }
 	
-	resetButton.image = [IonIcons imageWithIcon:ioniostrashoutline color:[ATColors raptorGreen]];
+	resetButton.image = [IonIcons imageWithIcon:ioniosalbumsoutline color:[ATColors raptorGreen]];
 	
 }
 
@@ -85,7 +152,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[ParseDB data] matches] count];
+    return [dataArray count];
 }
 
 
@@ -93,7 +160,7 @@
     ScoutingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
-	PDBSMatch *match = [[[ParseDB data] matches] objectAtIndex:[indexPath row]];
+	PDBSMatch *match = [dataArray objectAtIndex:[indexPath row]];
 	cell.numberLabel.text = [NSString stringWithFormat:@"Match: %i",match.number];
     return cell;
 }
@@ -101,7 +168,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	ScoutingMatchView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingMatchView"];
-	newView.match = [[[ParseDB data] matches] objectAtIndex:[indexPath row]];
+	newView.match = [dataArray objectAtIndex:[indexPath row]];
 	[self.navigationController pushViewController:newView animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -115,6 +182,7 @@
     pickerView.delegate = self;
     pickerData = array;
     pickedRow = 0;
+    alertController.view.tintColor = [ATColors raptorGreen];
     [alertController.view addSubview:pickerView];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler(array[pickedRow]);

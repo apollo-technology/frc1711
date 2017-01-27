@@ -92,7 +92,6 @@
 -(IBAction)hideKeyboard:(id)sender{
 	[self.view endEditing:YES];
 }
-
 -(IBAction)uploadButton:(id)sender{
 	
     team.lowGoalCountAuton = (int)autonLowGoalStepper.value;

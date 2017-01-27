@@ -449,7 +449,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ball Capacity" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pgj-CF-4TC">
-                                                    <rect key="frame" x="130" y="8" width="182" height="27.5"/>
+                                                    <rect key="frame" x="130" y="8" width="182" height="28"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
@@ -762,8 +762,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Scouting" id="I5Y-7N-xFz">
                         <barButtonItem key="backBarButtonItem" title=" " id="dLw-WB-MV4"/>
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="yBL-CU-S1P"/>
+                        <barButtonItem key="leftBarButtonItem" title="?" id="yBL-CU-S1P">
+                            <connections>
+                                <action selector="selectDB:" destination="wxA-0X-Vai" id="Sx7-pV-47V"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="resetButton" destination="yBL-CU-S1P" id="t8R-8h-Iqt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Klp-gv-q5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -958,7 +965,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Low Goals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96w-6e-B2r">
-                                                    <rect key="frame" x="15" y="8" width="195" height="28"/>
+                                                    <rect key="frame" x="15" y="8" width="195" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -992,7 +999,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 High Goals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z3F-V0-YdF">
-                                                    <rect key="frame" x="15" y="8" width="195" height="28"/>
+                                                    <rect key="frame" x="15" y="8" width="195" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1026,13 +1033,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auton Final Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZM-cO-FNh">
-                                                    <rect key="frame" x="15" y="8" width="139" height="28"/>
+                                                    <rect key="frame" x="15" y="8" width="139" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Score" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eG7-Fm-9vt">
-                                                    <rect key="frame" x="162" y="8" width="150" height="27.5"/>
+                                                    <rect key="frame" x="162" y="8" width="150" height="28"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1061,7 +1068,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Low Goals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zI5-ET-cId">
-                                                    <rect key="frame" x="15" y="8" width="195" height="28"/>
+                                                    <rect key="frame" x="15" y="8" width="195" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1095,7 +1102,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 High Goals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwF-mA-vkb">
-                                                    <rect key="frame" x="15" y="8" width="195" height="28"/>
+                                                    <rect key="frame" x="15" y="8" width="195" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1129,13 +1136,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tele-Op Final Score:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbq-0M-Rc4">
-                                                    <rect key="frame" x="15" y="8" width="156" height="28"/>
+                                                    <rect key="frame" x="15" y="8" width="156" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Score" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sKn-L0-kCQ">
-                                                    <rect key="frame" x="179" y="8" width="133" height="27.5"/>
+                                                    <rect key="frame" x="179" y="8" width="133" height="28"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>

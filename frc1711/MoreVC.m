@@ -7,6 +7,7 @@
 //
 #import "MoreVC.h"
 #import "ATFRC.h"
+#import "ATColors.h"
 #import "ParseDB.h"
 
 @interface MoreVC (){
@@ -95,6 +96,7 @@
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
         eventField = textField;
     }];
+    alertController.view.tintColor = [ATColors raptorGreen];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Set Database" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self setDatabaseFromEvent];
     }]];

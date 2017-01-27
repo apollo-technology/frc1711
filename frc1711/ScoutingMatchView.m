@@ -29,11 +29,66 @@
     IBOutlet UILabel *dateLabel;
 }
 
+@property (nonatomic, strong) id previewingContext;
+
 @end
 
 @implementation ScoutingMatchView
 
 @synthesize match;
+
+- (BOOL)isForceTouchAvailable {
+    BOOL isForceTouchAvailable = NO;
+    if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)]) {
+        isForceTouchAvailable = self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable;
+    }
+    return isForceTouchAvailable;
+}
+
+- (UIViewController *)previewingContext:(id)previewingContext viewControllerForLocation:(CGPoint)location{
+    if ([self.presentedViewController isKindOfClass:[ScoutingMatchView class]]) {
+        return nil;
+    }
+    CGPoint cellPostion = [self.tableView convertPoint:location fromView:self.view];
+    UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForRowAtPoint:cellPostion]];
+    ScoutingDetailView *newView = [self.storyboard instantiateViewControllerWithIdentifier:@"scoutingDetailView"];
+    newView.match = match;
+    if (selectedCell == red1Cell) {
+        newView.team = match.redTeam1;
+    } else if (selectedCell == red2Cell) {
+        newView.team = match.redTeam2;
+    } else if (selectedCell == red3Cell) {
+        newView.team = match.redTeam3;
+    } else if (selectedCell == blue1Cell) {
+        newView.team = match.blueTeam1;
+    } else if (selectedCell == blue2Cell) {
+        newView.team = match.blueTeam2;
+    } else if (selectedCell == blue3Cell) {
+        newView.team = match.blueTeam3;
+    }
+    return newView;
+}
+
+
+
+
+- (void)previewingContext:(id )previewingContext commitViewController: (UIViewController *)viewControllerToCommit {
+    [self.navigationController showViewController:viewControllerToCommit sender:nil];
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if ([self isForceTouchAvailable]) {
+        if (!self.previewingContext) {
+            self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+        }
+    } else {
+        if (self.previewingContext) {
+            [self unregisterForPreviewingWithContext:self.previewingContext];
+            self.previewingContext = nil;
+        }
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,6 +103,9 @@
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Match: %i",match.number];
     
+    if ([self isForceTouchAvailable]) {
+        self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     [dateFormatter setDateFormat:@"EEEE, M/d, h:mm a"];
@@ -80,20 +138,5 @@
 		[self segueToTeam:match.blueTeam3];
 	}
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

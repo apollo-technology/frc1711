@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ParseDB.h"
 
-@interface ScoutingMatchView : UITableViewController{
+@interface ScoutingMatchView : UITableViewController <UIViewControllerPreviewingDelegate> {
 	PDBSMatch *match;
 }
 
