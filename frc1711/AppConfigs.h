@@ -6,7 +6,7 @@
 //  Copyright © 2016 Apollo Technology. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface AppConfigs : NSObject
 

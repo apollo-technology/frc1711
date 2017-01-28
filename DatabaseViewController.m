@@ -13,6 +13,7 @@
 #import "EventViewController.h"
 #import "AllEventsViewController.h"
 #import "RankingsTableViewController.h"
+#import "ATColors.h"
 #import <Parse/Parse.h>
 
 @interface DatabaseViewController (){
@@ -71,138 +72,28 @@
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
     if (selectedCell == allEventsCell) {
-        contentPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 50, 230, 190)];
-        contentPicker.dataSource = self;
-        contentPicker.delegate = self;
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Pick a Year\n\n\n\n\n\n\n\n\n" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        
-        [alertController.view addSubview:contentPicker];
-        
-        pickerSelection = @"2016";
-        
-        pickerActualData = @[@"2016",
-                     @"2015",
-                     @"2014",
-                     @"2013",
-                     @"2012",
-                     @"2011",
-                     @"2010",
-                     @"2009",
-                     @"2008",
-                     @"2007",
-                     @"2006",
-                     @"2005",
-                     @"2004",
-                     @"2003",
-                     @"2002",
-                     @"2001",
-                     @"2000",];
-        pickerDisplayData = @[@"2016",
-                     @"2015",
-                     @"2014",
-                     @"2013",
-                     @"2012",
-                     @"2011",
-                     @"2010",
-                     @"2009",
-                     @"2008",
-                     @"2007",
-                     @"2006",
-                     @"2005",
-                     @"2004",
-                     @"2003",
-                     @"2002",
-                     @"2001",
-                     @"2000",];
-        
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }]];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Next" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
-            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            spinner.center = CGPointMake(130.5, 80);
-            spinner.color = [UIColor grayColor];
-            [spinner startAnimating];
-            [alert.view addSubview:spinner];
-            [self presentViewController:alert animated:YES completion:^{
-                [ATFRC eventsForYear:pickerSelection completion:^(NSArray *events, BOOL succeeded) {
-                    
-                    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDateString" ascending:YES];
-                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                    NSArray *sortedArray = [events sortedArrayUsingDescriptors:sortDescriptors];
-                    AllEventsViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsTable"];
-                    newViewController.events = sortedArray;
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        [self.navigationController pushViewController:newViewController animated:YES];
-                    }];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        spinner.center = CGPointMake(130.5, 80);
+        spinner.color = [UIColor grayColor];
+        [spinner startAnimating];
+        [alert.view addSubview:spinner];
+        [self presentViewController:alert animated:YES completion:^{
+            NSDateFormatter *dateFormatter = [NSDateFormatter new];
+            [dateFormatter setDateFormat:@"yyyy"];
+            [ATFRC eventsForYear:[dateFormatter stringFromDate:[NSDate date]] completion:^(NSArray *events, BOOL succeeded) {
+                
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDateString" ascending:YES];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                NSArray *sortedArray = [events sortedArrayUsingDescriptors:sortDescriptors];
+                AllEventsViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsTable"];
+                newViewController.events = sortedArray;
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self.navigationController pushViewController:newViewController animated:YES];
                 }];
             }];
-        }]];
-        alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
-        [self presentViewController:alertController animated:YES completion:^{
-            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
         }];
         
-    } else if (selectedCell == allTeamsCell){
-        contentPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(20, 50, 230, 190)];
-        contentPicker.dataSource = self;
-        contentPicker.delegate = self;
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Pick a Group of Teams\n\n\n\n\n\n\n\n\n" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        pickerSelection = @"0";
-        alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
-        [alertController.view addSubview:contentPicker];
-        
-        pickerDisplayData = @[@"1-499",
-                     @"500-999",
-                     @"1000-1499",
-                     @"1500-1999",
-                     @"2000-2499",
-                     @"2500-2999",
-                     @"3000-3499",
-                     @"3500-3999",
-                     @"4000-4499",
-                     @"4500-4999",
-                     @"5000-5499",
-                     @"5500-5999",
-                     @"6000-6499",];
-        pickerActualData = @[@"0",
-                  @"1",
-                  @"2",
-                  @"3",
-                  @"4",
-                  @"5",
-                  @"6",
-                  @"7",
-                  @"8",
-                  @"9",
-                  @"10",
-                  @"11",
-                  @"12"];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }]];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Next" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
-            UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-            spinner.center = CGPointMake(130.5, 80);
-            spinner.color = [UIColor grayColor];
-            [spinner startAnimating];
-            [alert.view addSubview:spinner];
-            [self presentViewController:alert animated:YES completion:^{
-                [ATFRC teamsInPage:pickerSelection completion:^(NSArray *teams, BOOL succeeded) {
-                    AllTeamsViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"teamsTable"];
-                    newViewController.teams = teams;
-                    [self dismissViewControllerAnimated:YES completion:^{
-                        [self.navigationController pushViewController:newViewController animated:YES];
-                    }];
-                }];
-            }];
-        }]];
-        
-        [self presentViewController:alertController animated:YES completion:^{
-            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
-        }];
     } else if (selectedCell == searchTeamCell){
         
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Search for a Team" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -216,7 +107,7 @@
             textField.autocorrectionType = UITextAutocorrectionTypeDefault;
             searchField = textField;
         }];
-        alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+        alertController.view.tintColor = [ATColors frcBlue];
         [alertController addAction:[UIAlertAction actionWithTitle:@"Search" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Searching\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -240,9 +131,9 @@
                             [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                                 
                             }]];
-                            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+                            alertController.view.tintColor = [ATColors frcBlue];
                             [self presentViewController:alertController animated:YES completion:^{
-                                alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+                                alertController.view.tintColor = [ATColors frcBlue];
                             }];
                         }];
                     }
@@ -253,7 +144,7 @@
             
         }]];
         [self presentViewController:alertController animated:YES completion:^{
-            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+            alertController.view.tintColor = [ATColors frcBlue];
         }];
         
     } else if (selectedCell == rankingsCell){
@@ -269,7 +160,7 @@
             textField.autocorrectionType = UITextAutocorrectionTypeNo;
             searchField = textField;
         }];
-        alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+        alertController.view.tintColor = [ATColors frcBlue];
         [alertController addAction:[UIAlertAction actionWithTitle:@"Search" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -301,9 +192,9 @@
                             [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                                 
                             }]];
-                            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+                            alertController.view.tintColor = [ATColors frcBlue];
                             [self presentViewController:alertController animated:YES completion:^{
-                                alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+                                alertController.view.tintColor = [ATColors frcBlue];
                             }];
                         }];
                     }
@@ -314,7 +205,7 @@
             
         }]];
         [self presentViewController:alertController animated:YES completion:^{
-            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+            alertController.view.tintColor = [ATColors frcBlue];
         }];
     } else if (selectedCell == searchEventCell){
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Search for an Event" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -328,7 +219,7 @@
             textField.autocorrectionType = UITextAutocorrectionTypeNo;
             searchField = textField;
         }];
-        alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+        alertController.view.tintColor = [ATColors frcBlue];
         [alertController addAction:[UIAlertAction actionWithTitle:@"Search" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Searching\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
             UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -336,9 +227,9 @@
             spinner.color = [UIColor grayColor];
             [spinner startAnimating];
             [alert.view addSubview:spinner];
-            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+            alertController.view.tintColor = [ATColors frcBlue];
             [self presentViewController:alert animated:YES completion:^{
-                alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+                alertController.view.tintColor = [ATColors frcBlue];
                 [ATFRC checkIfEventIsReal:searchField.text comepletion:^(BOOL isReal,NSString *eventName) {
                     if (isReal) {
                         [ATFRC eventForKey:searchField.text completion:^(ATFRCEvent *event, BOOL succeeded) {
@@ -354,9 +245,9 @@
                             [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                                 
                             }]];
-                            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+                            alertController.view.tintColor = [ATColors frcBlue];
                             [self presentViewController:alertController animated:YES completion:^{
-                                alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+                                alertController.view.tintColor = [ATColors frcBlue];
                             }];
                         }];
                     }
@@ -367,7 +258,7 @@
             
         }]];
         [self presentViewController:alertController animated:YES completion:^{
-            alertController.view.tintColor = [UIColor colorWithRed:0.400 green:0.694 blue:0.294 alpha:1.00];
+            alertController.view.tintColor = [ATColors frcBlue];
         }];
     } else if (selectedCell == raptorsTeamCell){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];

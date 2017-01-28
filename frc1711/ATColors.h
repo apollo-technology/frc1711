@@ -76,4 +76,7 @@
 +(UIColor *)raptorGreen;
 +(UIColor *)raptorOrange;
 
++(UIColor *)frcBlue;
++(UIColor *)frcRed;
+
 @end

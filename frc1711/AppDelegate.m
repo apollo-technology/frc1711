@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "ATColors.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,15 @@
 		configuration.clientKey = @"nil";
 		configuration.server = @"http://api.apollotechnology.co:1002";
 	}]];
+    
+    [[UITabBar appearanceWhenContainedInInstancesOfClasses:@[[UITabBarController class]]] setTintColor:[ATColors frcBlue]];
+    [[UIRefreshControl appearanceWhenContainedInInstancesOfClasses:@[[UITableView class]]] setTintColor:[ATColors frcBlue]];
+    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UINavigationBar class]]] setTintColor:[ATColors frcBlue]];
+    [[UITabBar appearanceWhenContainedInInstancesOfClasses:@[[UITabBarController class]]] setUnselectedItemTintColor:[UIColor lightGrayColor]];
+    
+    [[UIStepper appearanceWhenContainedInInstancesOfClasses:@[[UIView class]]] setTintColor:[ATColors frcBlue]];
+    [[UISwitch appearanceWhenContainedInInstancesOfClasses:@[[UIView class]]] setOnTintColor:[ATColors frcBlue]];
+    
 	
     return YES;
 }
