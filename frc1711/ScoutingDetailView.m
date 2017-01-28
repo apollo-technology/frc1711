@@ -81,10 +81,10 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
     [self.tableView addGestureRecognizer:tap];
     
-    [[UIStepper appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setTintColor:[ATColors raptorGreen]];
-    [[UISwitch appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setOnTintColor:[ATColors raptorGreen]];
+    [[UIStepper appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setTintColor:[ATColors frcBlue]];
+    [[UISwitch appearanceWhenContainedInInstancesOfClasses:@[[self class]]] setOnTintColor:[ATColors frcBlue]];
 
-	uploadButton.image = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors raptorGreen]];
+	uploadButton.image = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors frcBlue]];
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Team: %i",team.number];
 }

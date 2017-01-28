@@ -30,7 +30,7 @@
 }
 
 -(void)animateEverything{
-	cirleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"circle.png"]];
+	cirleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"launchCircle.png"]];
 	cirleView.frame = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 160, 160);
 	cirleView.center = iconImageView.center;
 	cirleView.alpha = 0;

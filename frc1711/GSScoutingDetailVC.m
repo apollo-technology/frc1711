@@ -72,7 +72,7 @@
     // Do any additional setup after loading the view.
 	self.navigationItem.title = [NSString stringWithFormat:@"%@ - %i",team.name,team.number];
 	
-	UIImage *uploadIcon = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors raptorGreen]];
+	UIImage *uploadIcon = [IonIcons imageWithIcon:ioniosclouduploadoutline color:[ATColors frcBlue]];
 	UIBarButtonItem *updateButton = [[UIBarButtonItem alloc] initWithImage:uploadIcon style:UIBarButtonItemStyleDone target:self action:@selector(updateTeam)];
 	self.navigationItem.rightBarButtonItem = updateButton;
     

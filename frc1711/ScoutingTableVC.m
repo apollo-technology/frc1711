@@ -132,11 +132,11 @@
 	
 	
 	refreshControl = [[UIRefreshControl alloc] init];
-	refreshControl.tintColor = [ATColors raptorGreen];
+	//refreshControl.tintColor = [ATColors raptorGreen];
 	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
 	[self.tableView addSubview:refreshControl];
 	
-	resetButton.image = [IonIcons imageWithIcon:ioniosalbumsoutline color:[ATColors raptorGreen]];
+	resetButton.image = [IonIcons imageWithIcon:ioniosalbumsoutline color:[ATColors frcBlue]];
 	
 }
 
@@ -187,8 +187,7 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler(array[pickedRow]);
     }]];
-    [self presentViewController:alertController animated:YES completion:^{
-    }];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
