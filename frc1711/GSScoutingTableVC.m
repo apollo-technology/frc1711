@@ -148,11 +148,11 @@
 //	}];
 	
 	refreshControl = [[UIRefreshControl alloc] init];
-	refreshControl.tintColor = [ATColors raptorGreen];
+	refreshControl.tintColor = [ATColors frcBlue];
 	[refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
 	[self.tableView addSubview:refreshControl];
 	
-	resetButton.image = [IonIcons imageWithIcon:ioniosalbumsoutline color:[ATColors raptorGreen]];
+	resetButton.image = [IonIcons imageWithIcon:ioniosalbumsoutline color:[ATColors frcBlue]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -195,7 +195,7 @@
     pickerView.delegate = self;
     pickerData = array;
     pickedRow = 0;
-    alertController.view.tintColor = [ATColors raptorGreen];
+    alertController.view.tintColor = [ATColors frcBlue];
     [alertController.view addSubview:pickerView];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Set" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

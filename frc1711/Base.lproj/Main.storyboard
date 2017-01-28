@@ -689,10 +689,6 @@
                         <outlet property="canShootLowGoalAutonSwitch" destination="suW-fN-qbG" id="jVn-DQ-LqI"/>
                         <outlet property="canShootLowGoalTeleOpSwitch" destination="BsA-YM-CFO" id="dzr-38-PHf"/>
                         <outlet property="dateLabel" destination="gCR-Tg-Oyg" id="K16-g2-3so"/>
-<<<<<<< HEAD
-                        <outlet property="moreDataCell" destination="JRW-5H-OeK" id="yP2-9e-irQ"/>
-=======
->>>>>>> origin/master
                         <outlet property="teamNameLabel" destination="PBs-Lj-GWa" id="etG-ec-wc8"/>
                         <outlet property="teamNumberLabel" destination="3RT-rv-xmT" id="boF-BH-FPy"/>
                     </connections>
