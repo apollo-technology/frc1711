@@ -34,7 +34,7 @@
     [[UIStepper appearanceWhenContainedInInstancesOfClasses:@[[UIView class]]] setTintColor:[ATColors frcBlue]];
     [[UISwitch appearanceWhenContainedInInstancesOfClasses:@[[UIView class]]] setOnTintColor:[ATColors frcBlue]];
     
-	
+    
     return YES;
 }
 

@@ -75,21 +75,46 @@
 	// do your refresh here...
 	[ParseDB getScouting:^(NSError *error, BOOL succeeded) {
 		if (succeeded) {
-            PDBSMatch *match1 = [[[ParseDB data] matches] objectAtIndex:0];
-            PDBSMatch *match2 = [[[ParseDB data] matches] objectAtIndex:1];
-            if (match1.number == match2.number) {
-                if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
-                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
-                    dataArray = [[[ParseDB data] matches] filteredArrayUsingPredicate:predicate];
-                    PDBSMatch *match = [dataArray objectAtIndex:0];
-                    self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
-                    [self.tableView reloadData];
-                    [refreshControl endRefreshing];
+            if ([[[ParseDB data] matches] count] > 1) {
+                NSLog(@"3");
+                PDBSMatch *match1 = [[[ParseDB data] matches] objectAtIndex:0];
+                PDBSMatch *match2 = [[[ParseDB data] matches] objectAtIndex:1];
+                if (match1.number == match2.number) {
+                    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
+                        dataArray = [[[ParseDB data] matches] filteredArrayUsingPredicate:predicate];
+                        PDBSMatch *match = [dataArray objectAtIndex:0];
+                        self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+                        [self.tableView reloadData];
+                        [refreshControl endRefreshing];
+                    } else {
+                        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+                            dataArray = [[ParseDB data] matches];
+                            PDBSMatch *match = [dataArray objectAtIndex:0];
+                            self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+                            [self.tableView reloadData];
+                            [refreshControl endRefreshing];
+                        } else {
+                            [self showEventPicker];
+                        }
+                    }
                 } else {
-                    [self showEventPicker];
+                    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+                        dataArray = [[ParseDB data] matches];
+                        PDBSMatch *match = [dataArray objectAtIndex:0];
+                        self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+                        [self.tableView reloadData];
+                        [refreshControl endRefreshing];
+                    } else {
+                        [self showEventPicker];
+                    }
                 }
+            } else {
+                NSLog(@"21");
+                [refreshControl endRefreshing];
             }
 		} else {
+            NSLog(@"12e");
 			NSString *errorDescription;
 			if (error) {
 				errorDescription = error.localizedDescription;
@@ -103,22 +128,35 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    PDBSMatch *match1 = [[[ParseDB data] matches] objectAtIndex:0];
-    PDBSMatch *match2 = [[[ParseDB data] matches] objectAtIndex:1];
-    if (match1.number == match2.number) {
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
-            dataArray = [[[ParseDB data] matches] filteredArrayUsingPredicate:predicate];
-            PDBSMatch *match = [dataArray objectAtIndex:0];
-            self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
-            [self.tableView reloadData];
-            [refreshControl endRefreshing];
+    if ([[[ParseDB data] matches] count] > 1) {
+        NSLog(@"111");
+        PDBSMatch *match1 = [[[ParseDB data] matches] objectAtIndex:0];
+        PDBSMatch *match2 = [[[ParseDB data] matches] objectAtIndex:1];
+        if (match1.number == match2.number) {
+            NSLog(@"19");
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
+                dataArray = [[[ParseDB data] matches] filteredArrayUsingPredicate:predicate];
+                PDBSMatch *match = [dataArray objectAtIndex:0];
+                self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+                [self.tableView reloadData];
+                [refreshControl endRefreshing];
+            } else {
+                [self showEventPicker];
+            }
         } else {
-            [self showEventPicker];
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+                dataArray = [[ParseDB data] matches];
+                PDBSMatch *match = [dataArray objectAtIndex:0];
+                self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+                [self.tableView reloadData];
+                [refreshControl endRefreshing];
+            } else {
+                [self showEventPicker];
+            }
         }
     } else {
-        PDBSMatch *match = [dataArray objectAtIndex:0];
-        self.navigationItem.title = [NSString stringWithFormat:@"Scouting | %@",match.eventKey];
+        NSLog(@"'");
     }
 }
 
@@ -182,7 +220,7 @@
     pickerView.delegate = self;
     pickerData = array;
     pickedRow = 0;
-    alertController.view.tintColor = [ATColors raptorGreen];
+    alertController.view.tintColor = [ATColors frcBlue];
     [alertController.view addSubview:pickerView];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Set" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

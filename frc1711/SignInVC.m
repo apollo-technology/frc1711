@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	[ATGradients applyGradientFromColor:[UIColor colorWithRed:0.400 green:0.694 blue:0.298 alpha:1.00] andColor:[UIColor colorWithRed:0.420 green:1.000 blue:0.350 alpha:1.00] onView:self.view];
+	[ATGradients applyGradientFromColor:[ATColors frcBlue] andColor:[UIColor colorWithRed:0.011 green:0.614 blue:0.947 alpha:1.00] onView:self.view];
     loaderView.alpha = 0;
     [phoneField becomeFirstResponder];
 }

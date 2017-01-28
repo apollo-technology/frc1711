@@ -60,7 +60,6 @@
     // do your refresh here...
     [ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
         if (succeeded) {
-            
             if ([self hasDuplicates]) {
                 if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
                     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
@@ -71,6 +70,7 @@
                     [refreshControl endRefreshing];
                 } else {
                     [self showEventPicker];
+                    [refreshControl endRefreshing];
                 }
                 
             }
@@ -101,7 +101,6 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-
     if ([self hasDuplicates]) {
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];

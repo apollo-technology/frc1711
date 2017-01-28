@@ -93,10 +93,11 @@
         textField.returnKeyType = UIReturnKeyContinue;
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.secureTextEntry = NO;
+        textField.tintColor = [ATColors frcBlue];
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
         eventField = textField;
     }];
-    alertController.view.tintColor = [ATColors raptorGreen];
+    alertController.view.tintColor = [ATColors frcBlue];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Set Database" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self setDatabaseFromEvent];
     }]];
@@ -141,8 +142,10 @@
                     [self setEvent];
                 }]];
                 [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
-                [self presentViewController:alertController animated:YES completion:^{
-                    
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self presentViewController:alertController animated:YES completion:^{
+                        
+                    }];
                 }];
             }
         }];
