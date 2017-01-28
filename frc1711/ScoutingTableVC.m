@@ -184,7 +184,8 @@
     pickedRow = 0;
     alertController.view.tintColor = [ATColors raptorGreen];
     [alertController.view addSubview:pickerView];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Set" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         completionHandler(array[pickedRow]);
     }]];
     [self presentViewController:alertController animated:YES completion:^{

@@ -45,6 +45,7 @@
 @property BOOL canCrossBaseline;
 
 @property PFObject *serverObject;
+@property NSString *eventKey;
 
 @property NSDate *lastUpdated;
 

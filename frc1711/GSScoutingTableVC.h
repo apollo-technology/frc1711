@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GSScoutingTableVC : UITableViewController
+@interface GSScoutingTableVC : UITableViewController <UIPickerViewDelegate, UIPickerViewDataSource, UIViewControllerPreviewingDelegate>
 
 @end

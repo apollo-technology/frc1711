@@ -138,6 +138,7 @@
                 team.canShootHighGoalAuton = [object[@"canShootHighGoalAuton"] boolValue];
                 team.canShootLowGoalAuton = [object[@"canShoowLowGoalAuton"] boolValue];
                 team.canCrossBaseline = [object[@"canCrossBaseline"] boolValue];
+                team.eventKey = object[@"eventKey"];
                 
                 if (![keys containsObject:object[@"eventKey"]]) {
                     [keys addObject:object[@"eventKey"]];

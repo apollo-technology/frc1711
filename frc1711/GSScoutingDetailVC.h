@@ -13,7 +13,7 @@
 #import "ATColors.h"
 #import "IonIcons.h"
 
-@interface GSScoutingDetailVC : UITableViewController{
+@interface GSScoutingDetailVC : UITableViewController {
 	PDBGSTeam *team;
 }
 
