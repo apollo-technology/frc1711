@@ -99,10 +99,10 @@
                             
                             NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
                             NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-                            NSString *build = [infoDictionary objectForKey:@"CFBundleVersion"];
-                            [[AppConfigs configs] setAppBuild:[NSString stringWithFormat:@"%@(%@)",version,build]];
+                            [[AppConfigs configs] setAppBuild:[NSString stringWithFormat:@"%@",version]];
                             
                             if ([[[AppConfigs configs] allowedVersions] containsObject:[[AppConfigs configs] appBuild]]) {
+                                NSLog(@"Aewfewf");
                                 if ([[AppConfigs configs] allowBoot]) {
                                     [self segueToHome];
                                 } else {

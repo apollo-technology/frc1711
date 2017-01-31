@@ -114,15 +114,7 @@
                 [refreshControl endRefreshing];
             }
 		} else {
-            NSLog(@"12e");
-			NSString *errorDescription;
-			if (error) {
-				errorDescription = error.localizedDescription;
-			}
-			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Getting Data" message:errorDescription preferredStyle:UIAlertControllerStyleAlert];
-            alertController.view.tintColor = [ATColors raptorGreen];
-			[alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-			[self presentViewController:alertController animated:YES completion:nil];
+            NSLog(@"NOOOOOOO2");
 		}
 	}];
 }
@@ -156,7 +148,7 @@
             }
         }
     } else {
-        NSLog(@"'");
+        NSLog(@"NOOOOOOO");
     }
 }
 

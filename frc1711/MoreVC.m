@@ -128,11 +128,8 @@
                         }];
                     } else {
                         [self dismissViewControllerAnimated:YES completion:^{
-                            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Done!" message:@"Refresh your pages, the new data will be there." preferredStyle:UIAlertControllerStyleAlert];
-                            [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
-                            [self presentViewController:alertController animated:YES completion:^{
-                                
-                            }];
+                            UIViewController *initial = [self.storyboard instantiateViewControllerWithIdentifier:@"initial"];
+                            [self presentViewController:initial animated:YES completion:nil];
                         }];
                     }
                 }];

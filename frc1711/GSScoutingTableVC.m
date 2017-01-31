@@ -73,6 +73,18 @@
                     [refreshControl endRefreshing];
                 }
                 
+            } else {
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
+                    dataArray = [[[ParseDB data] teams] filteredArrayUsingPredicate:predicate];
+                    PDBGSTeam *team = [dataArray objectAtIndex:0];
+                    self.navigationItem.title = [NSString stringWithFormat:@"Ground Scouting | %@",team.eventKey];
+                    [self.tableView reloadData];
+                    [refreshControl endRefreshing];
+                } else {
+                    [self showEventPicker];
+                    [refreshControl endRefreshing];
+                }
             }
         } else {
             NSString *errorDescription;
@@ -113,8 +125,17 @@
             [self showEventPicker];
         }
     } else {
-        PDBGSTeam *team = [dataArray objectAtIndex:0];
-        self.navigationItem.title = [NSString stringWithFormat:@"Ground Scouting | %@",team.eventKey];
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventKey == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"dbPreference"]];
+            dataArray = [[[ParseDB data] teams] filteredArrayUsingPredicate:predicate];
+            PDBGSTeam *team = [dataArray objectAtIndex:0];
+            self.navigationItem.title = [NSString stringWithFormat:@"Ground Scouting | %@",team.eventKey];
+            [self.tableView reloadData];
+            [refreshControl endRefreshing];
+        } else {
+            [self showEventPicker];
+            [refreshControl endRefreshing];
+        }
     }
 }
 

@@ -12,6 +12,8 @@
 #import <SinchVerification/SinchVerification.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
+#import "ATFRC.h"
+#import "ParseDB.h"
 
 @interface SignInVC (){
     id<SINVerification> _verification;
@@ -24,6 +26,7 @@
     UITextField *firstNameField;
     UITextField *lastNameField;
     UITextField *teamField;
+    UITextField *eventField;
 }
 
 @end
@@ -83,7 +86,22 @@
                                 [self checkForUserExists:^(BOOL exists) {
                                     if (exists) {
                                         [PFUser logInWithUsernameInBackground:phoneField.text password:@"raptors" block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-                                            [self segueToInitial];
+                                            if (error) {
+                                                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                                                [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+                                                [self presentViewController:alertController animated:YES completion:nil];
+                                            } else {
+                                                PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",user[@"team"]]];
+                                                [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                                                    NSLog(@"%@",object);
+                                                    NSLog(@"%@",error);
+                                                    if (object) {
+                                                        [self segueToInitial];
+                                                    } else {
+                                                        [self setEvent];
+                                                    }
+                                                }];
+                                            }
                                         }];
                                     } else {
                                         PFUser *user = [PFUser user];
@@ -132,7 +150,16 @@
                                                     [self presentViewController:alertController animated:YES completion:nil];
                                                     [self showStuff:nil];
                                                 } else {
-                                                    [self segueToInitial];
+                                                    PFQuery *query = [PFQuery queryWithClassName:[NSString stringWithFormat:@"gS%@",teamField.text]];
+                                                    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                                                        NSLog(@"%@",object);
+                                                        NSLog(@"%@",error);
+                                                        if (object) {
+                                                            [self segueToInitial];
+                                                        } else {
+                                                            [self setEvent];
+                                                        }
+                                                    }];
                                                 }
                                             }];
                                         }]];
@@ -163,6 +190,72 @@
         [self showError];
     }
 }
+
+-(void)setEvent{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter the Key to Populate the Database." message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Title";
+        textField.text = @"";
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
+        textField.returnKeyType = UIReturnKeyContinue;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.secureTextEntry = NO;
+        textField.tintColor = [ATColors frcBlue];
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        eventField = textField;
+    }];
+    alertController.view.tintColor = [ATColors frcBlue];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Set Database" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self setDatabaseFromEvent];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    [self presentViewController:alertController animated:YES completion:^{
+        
+    }];
+}
+
+-(void)setDatabaseFromEvent{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Loading\n\n\n" preferredStyle:UIAlertControllerStyleAlert];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = CGPointMake(130.5, 80);
+    spinner.color = [UIColor grayColor];
+    [spinner startAnimating];
+    [alert.view addSubview:spinner];
+    [self presentViewController:alert animated:YES completion:^{
+        [ATFRC checkIfEventIsReal:eventField.text comepletion:^(BOOL isReal, NSString *eventName) {
+            if (isReal) {
+                [ParseDB provisionDatabaseForEvent:eventField.text block:^(NSError *error, BOOL succeeded) {
+                    if (error) {
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                        [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil]];
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            [self presentViewController:alertController animated:YES completion:nil];
+                        }];
+                    } else {
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            UIViewController *initial = [self.storyboard instantiateViewControllerWithIdentifier:@"initial"];
+                            [self presentViewController:initial animated:YES completion:nil];
+                        }];
+                    }
+                }];
+            } else {
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"The event key you provided does not exist." preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self setEvent];
+                }]];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self presentViewController:alertController animated:YES completion:^{
+                        
+                    }];
+                }];
+            }
+        }];
+    }];
+}
+
 
 -(void)showError{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please enter ten digit phone number." message:nil preferredStyle:UIAlertControllerStyleAlert];
