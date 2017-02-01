@@ -29,6 +29,9 @@
 		1E16AA4C1DC92CEA0013B09D /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA4B1DC92CEA0013B09D /* HomeVC.m */; };
 		1E16AA4F1DC92FD40013B09D /* AppConfigs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA4E1DC92FD40013B09D /* AppConfigs.m */; };
 		1E16AA521DC934C50013B09D /* InConstructionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E16AA511DC934C50013B09D /* InConstructionVC.m */; };
+		1E2FEDB01E422D2700496684 /* AnalyticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2FEDAF1E422D2700496684 /* AnalyticsVC.m */; };
+		1E2FEDB31E422DE000496684 /* AnalyticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2FEDB21E422DE000496684 /* AnalyticsCell.m */; };
+		1E2FEDB61E4232BF00496684 /* AnalyticObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E2FEDB51E4232BF00496684 /* AnalyticObject.m */; };
 		1E33E1131DD4B1DE00124910 /* ScoutingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E1121DD4B1DE00124910 /* ScoutingCell.m */; };
 		1E33E1161DD4B21A00124910 /* ScoutingMatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E1151DD4B21A00124910 /* ScoutingMatchView.m */; };
 		1E33E1191DD4B22600124910 /* ScoutingDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E1181DD4B22600124910 /* ScoutingDetailView.m */; };
@@ -135,6 +138,12 @@
 		1E16AA4E1DC92FD40013B09D /* AppConfigs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfigs.m; sourceTree = "<group>"; };
 		1E16AA501DC934C50013B09D /* InConstructionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InConstructionVC.h; sourceTree = "<group>"; };
 		1E16AA511DC934C50013B09D /* InConstructionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InConstructionVC.m; sourceTree = "<group>"; };
+		1E2FEDAE1E422D2700496684 /* AnalyticsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsVC.h; sourceTree = "<group>"; };
+		1E2FEDAF1E422D2700496684 /* AnalyticsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsVC.m; sourceTree = "<group>"; };
+		1E2FEDB11E422DE000496684 /* AnalyticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsCell.h; sourceTree = "<group>"; };
+		1E2FEDB21E422DE000496684 /* AnalyticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsCell.m; sourceTree = "<group>"; };
+		1E2FEDB41E4232BF00496684 /* AnalyticObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticObject.h; sourceTree = "<group>"; };
+		1E2FEDB51E4232BF00496684 /* AnalyticObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticObject.m; sourceTree = "<group>"; };
 		1E33E1111DD4B1DE00124910 /* ScoutingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoutingCell.h; sourceTree = "<group>"; };
 		1E33E1121DD4B1DE00124910 /* ScoutingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoutingCell.m; sourceTree = "<group>"; };
 		1E33E1141DD4B21A00124910 /* ScoutingMatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoutingMatchView.h; sourceTree = "<group>"; };
@@ -320,6 +329,19 @@
 			name = "Other Code";
 			sourceTree = "<group>";
 		};
+		1E2FEDAD1E422D1400496684 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				1E2FEDAE1E422D2700496684 /* AnalyticsVC.h */,
+				1E2FEDAF1E422D2700496684 /* AnalyticsVC.m */,
+				1E2FEDB41E4232BF00496684 /* AnalyticObject.h */,
+				1E2FEDB51E4232BF00496684 /* AnalyticObject.m */,
+				1E2FEDB11E422DE000496684 /* AnalyticsCell.h */,
+				1E2FEDB21E422DE000496684 /* AnalyticsCell.m */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
 		1E37B86A1DC8C02B0048139D /* Scouting */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +362,7 @@
 			children = (
 				1E42685A1E291FC200AA725F /* ParseDB.h */,
 				1E42685B1E291FC200AA725F /* ParseDB.m */,
+				1E2FEDAD1E422D1400496684 /* Analytics */,
 				1E37B86A1DC8C02B0048139D /* Scouting */,
 				1E574C211DC78BE600889A15 /* Ground Scouting */,
 			);
@@ -710,9 +733,11 @@
 				1EE4D3E11DC15B5F00943921 /* ATFRCRankings.m in Sources */,
 				1E447E761DD22A690045E23D /* GSScoutingCell.m in Sources */,
 				1EE4D3F71DC15C2500943921 /* EventViewController.m in Sources */,
+				1E2FEDB61E4232BF00496684 /* AnalyticObject.m in Sources */,
 				1E16AA521DC934C50013B09D /* InConstructionVC.m in Sources */,
 				1EE4D3DE1DC15B5F00943921 /* ATFRCAwards.m in Sources */,
 				1EE4D3F91DC15C2500943921 /* TeamViewController.m in Sources */,
+				1E2FEDB31E422DE000496684 /* AnalyticsCell.m in Sources */,
 				1E136B9E1DC8DA55005C8EA0 /* ATColors.m in Sources */,
 				1EE4D3E01DC15B5F00943921 /* ATFRCRobot.m in Sources */,
 				1E42685C1E291FC200AA725F /* ParseDB.m in Sources */,
@@ -723,6 +748,7 @@
 				1E447E721DD226F90045E23D /* IonIcons.m in Sources */,
 				1EE4D39C1DC15AE700943921 /* AppDelegate.m in Sources */,
 				1E447E701DD226F90045E23D /* FontInspector.m in Sources */,
+				1E2FEDB01E422D2700496684 /* AnalyticsVC.m in Sources */,
 				1E37B8731DC8CA890048139D /* SignInVC.m in Sources */,
 				1EE4D4371DC15DB600943921 /* InitialViewController.m in Sources */,
 				1E16AA4F1DC92FD40013B09D /* AppConfigs.m in Sources */,

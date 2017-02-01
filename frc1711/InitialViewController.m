@@ -102,7 +102,6 @@
                             [[AppConfigs configs] setAppBuild:[NSString stringWithFormat:@"%@",version]];
                             
                             if ([[[AppConfigs configs] allowedVersions] containsObject:[[AppConfigs configs] appBuild]]) {
-                                NSLog(@"Aewfewf");
                                 if ([[AppConfigs configs] allowBoot]) {
                                     [self segueToHome];
                                 } else {

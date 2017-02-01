@@ -23,6 +23,8 @@
     NSInteger pickedRow;
     NSArray *pickerData;
     NSArray *dataArray;
+    
+    IBOutlet UIBarButtonItem *analyticsButton;
 }
 
 @property (nonatomic, strong) id previewingContext;
@@ -30,6 +32,12 @@
 @end
 
 @implementation ScoutingTableVC
+
+-(IBAction)analyticsButton:(id)sender{
+    UIViewController *newVC = [self.storyboard instantiateViewControllerWithIdentifier:@"analyticsVC"];
+    [self.navigationController pushViewController:newVC animated:YES];
+}
+
 
 - (BOOL)isForceTouchAvailable {
     BOOL isForceTouchAvailable = NO;
@@ -159,7 +167,7 @@
     if ([self isForceTouchAvailable]) {
         self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
     }
-	
+	analyticsButton.image = [IonIcons imageWithIcon:ionpiegraph color:[ATColors frcBlue]];
 	
 	refreshControl = [[UIRefreshControl alloc] init];
 	//refreshControl.tintColor = [ATColors raptorGreen];

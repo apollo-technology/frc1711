@@ -23,6 +23,7 @@
     NSInteger pickedRow;
     NSArray *pickerData;
     NSArray *dataArray;
+    IBOutlet UIBarButtonItem *analyticsButton;
 	
 	
 }
@@ -32,6 +33,11 @@
 @end
 
 @implementation GSScoutingTableVC
+
+-(IBAction)analyticsButton:(id)sender{
+    UIViewController *newVC = [self.storyboard instantiateViewControllerWithIdentifier:@"analyticsVC"];
+    [self.navigationController pushViewController:newVC animated:YES];
+}
 
 - (BOOL)isForceTouchAvailable {
     BOOL isForceTouchAvailable = NO;
@@ -162,6 +168,8 @@
     if ([self isForceTouchAvailable]) {
         self.previewingContext = [self registerForPreviewingWithDelegate:self sourceView:self.view];
     }
+    
+    analyticsButton.image = [IonIcons imageWithIcon:ionpiegraph color:[ATColors frcBlue]];
 	
 //	[ParseDB getGroundScouting:^(NSError *error, BOOL succeeded) {
 //		[self.tableView reloadData];

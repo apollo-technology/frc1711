@@ -335,8 +335,14 @@
                                 <action selector="selectDB:" destination="R0e-7q-BR0" id="Jaf-H5-cOt"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="?" id="Ucp-AU-LSc">
+                            <connections>
+                                <action selector="analyticsButton:" destination="R0e-7q-BR0" id="kbO-hI-glT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="analyticsButton" destination="Ucp-AU-LSc" id="623-yH-AQn"/>
                         <outlet property="resetButton" destination="two-gv-Evm" id="pyG-vT-4KU"/>
                     </connections>
                 </tableViewController>
@@ -756,8 +762,14 @@
                                 <action selector="selectDB:" destination="wxA-0X-Vai" id="Sx7-pV-47V"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="?" id="SfD-rh-dyp">
+                            <connections>
+                                <action selector="analyticsButton:" destination="wxA-0X-Vai" id="ciS-uc-VTi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="analyticsButton" destination="SfD-rh-dyp" id="86y-Ju-PhP"/>
                         <outlet property="resetButton" destination="yBL-CU-S1P" id="t8R-8h-Iqt"/>
                     </connections>
                 </tableViewController>
@@ -2432,6 +2444,57 @@ Hanging Points: %@</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGg-KP-Pbk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1029.375" y="2642.9577464788731"/>
+        </scene>
+        <!--Analytics-->
+        <scene sceneID="8xN-Xu-kws">
+            <objects>
+                <tableViewController storyboardIdentifier="analyticsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JrY-QX-ewq" customClass="AnalyticsVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="2HS-CL-3eu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="Pqq-1b-Ulc" rowHeight="50" style="IBUITableViewCellStyleDefault" id="CJ5-ix-pl4" customClass="AnalyticsCell">
+                                <rect key="frame" x="0.0" y="28" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CJ5-ix-pl4" id="xry-j0-2FF">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqq-1b-Ulc">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="teamLabel" destination="Pqq-1b-Ulc" id="7Dn-tg-A7r"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JrY-QX-ewq" id="xOp-rY-HnP"/>
+                            <outlet property="delegate" destination="JrY-QX-ewq" id="rzv-if-DAV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Analytics" id="Mdb-2B-fgx">
+                        <barButtonItem key="rightBarButtonItem" title="?" id="R8z-3X-GqI">
+                            <connections>
+                                <action selector="categoryPickerAction:" destination="JrY-QX-ewq" id="Pyi-9a-uze"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="analyticsButton" destination="R8z-3X-GqI" id="hTN-qx-1Sl"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SWy-OY-kHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1824.375" y="3300"/>
         </scene>
     </scenes>
     <resources>
