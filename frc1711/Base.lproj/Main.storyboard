@@ -2210,31 +2210,10 @@ Hanging Points: %@</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Messaging" id="jde-pe-xHp">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Xum-rL-WOK" style="IBUITableViewCellStyleDefault" id="Non-5h-ybR">
-                                        <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Non-5h-ybR" id="nom-5T-nqp">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Messaging (Soon to Come)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xum-rL-WOK">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.054901960780000002" green="0.40784313729999999" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Contact" id="79b-nR-4AC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="QDM-oF-XmZ" style="IBUITableViewCellStyleDefault" id="x1M-oP-xgZ">
-                                        <rect key="frame" x="0.0" y="155.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x1M-oP-xgZ" id="dr2-yM-pOz">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -2251,7 +2230,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="b6D-sf-aHu" style="IBUITableViewCellStyleDefault" id="bpR-RB-qan">
-                                        <rect key="frame" x="0.0" y="199.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bpR-RB-qan" id="AEg-wp-TXb">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -2268,7 +2247,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9SW-fS-IcH" style="IBUITableViewCellStyleDefault" id="Z38-QA-UVa">
-                                        <rect key="frame" x="0.0" y="243.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z38-QA-UVa" id="f1b-RV-9Ga">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -2289,7 +2268,7 @@ Hanging Points: %@</string>
                             <tableViewSection headerTitle="Set Data Event" id="aYh-72-FNk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="WkY-f5-qzH" style="IBUITableViewCellStyleDefault" id="rMP-xm-qCz">
-                                        <rect key="frame" x="0.0" y="343.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="243.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rMP-xm-qCz" id="AKb-b3-bif">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -2310,7 +2289,7 @@ Hanging Points: %@</string>
                             <tableViewSection headerTitle="Account" id="hyL-lE-LNU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Lmx-Lt-8ux">
-                                        <rect key="frame" x="0.0" y="443.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="343.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lmx-Lt-8ux" id="9gD-4p-9dm">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -2344,7 +2323,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="1h9-ET-CPS">
-                                        <rect key="frame" x="0.0" y="487.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="387.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1h9-ET-CPS" id="hCU-OK-u3g">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -2378,7 +2357,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dGd-22-xBu">
-                                        <rect key="frame" x="0.0" y="531.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="431.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dGd-22-xBu" id="ytA-W6-20Y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -2412,7 +2391,7 @@ Hanging Points: %@</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="4SV-hW-ACY" style="IBUITableViewCellStyleDefault" id="yu7-7k-dqi">
-                                        <rect key="frame" x="0.0" y="575.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="475.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yu7-7k-dqi" id="szc-YT-3Je">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
