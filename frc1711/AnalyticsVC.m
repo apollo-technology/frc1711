@@ -102,7 +102,7 @@
                     //has team already, check for update
                     AnalyticObject *currentHighObject = [dataDictionary objectForKey:@(analyticObject.team)];
                     if (currentHighObject.finalScore < analyticObject.finalScore) {
-                        //need to update
+                        //Hey my name is madison...
                         [dataDictionary setObject:analyticObject forKey:@(analyticObject.team)];
                     }
                 } else {
