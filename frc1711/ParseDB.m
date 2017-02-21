@@ -164,7 +164,7 @@
         } else {
             NSMutableArray *objectsToSave = [NSMutableArray new];
             for (ATFRCTeam *frcTeam in teams) {
-                PFObject *object = [PFObject objectWithClassName:[NSString stringWithFormat:@"gS1711"]];
+                PFObject *object = [PFObject objectWithClassName:[NSString stringWithFormat:@"gS%@",[self teamId]]];
                 object[@"name"] = frcTeam.nickname;
                 object[@"number"] = frcTeam.number;
                 object[@"eventKey"] = eventId;
@@ -184,8 +184,8 @@
                         } else {
                             NSMutableArray *objectsToSave = [NSMutableArray new];
                             for (ATFRCMatch *frcMatch in matches) {
-                                PFObject *object = [PFObject objectWithClassName:[NSString stringWithFormat:@"s1711"]];
-                                object[@"number"] = @([matches indexOfObject:frcMatch]+1    ) ;
+                                PFObject *object = [PFObject objectWithClassName:[NSString stringWithFormat:@"s%@",[self teamId]]];
+                                object[@"number"] = @([matches indexOfObject:frcMatch]+1);
                                 object[@"eventKey"] = eventId;
                                 object[@"key"] = frcMatch.eventKey;
                                 object[@"blueTeam1"] = @{@"number" : [frcMatch.blueTeams[0] stringByReplacingOccurrencesOfString:@"frc" withString:@""]};
